@@ -1,0 +1,40 @@
+!!!
+html
+  head
+    title= title
+    link(rel='stylesheet', href='#{settings.web.url}:#{settings.web.port}/extjs/resources/css/ext-all.css')
+    
+    script(src='/extjs/ext-all-debug-w-comments.js', type='application/javascript')
+    
+    script
+      // Create namespaces for specific components of the application
+      Ext.namespace('Ext.bang.data');
+      Ext.namespace('Ext.bang.panels');
+      Ext.namespace('Ext.bang.viewport');
+      Ext.namespace('Ext.bang.security');
+      Ext.namespace('Ext.bang.util');
+      Ext.namespace('Ext.bang.socket');    
+      
+      Ext.bang.util.run = function(provider, response) {
+        var action = Ext.JSON.decode(response.result);
+        action.main();
+      };
+      
+      Ext.bang.util.startup = function() {
+
+        Ext.direct.Manager.addProvider({
+          url: '/bang/getJS',
+          type: 'remoting',
+          actions: {
+            remotejs: [
+              {name: 'getJS', len: 1}
+            ]
+          }
+        });
+        
+        remotejs.getJS({ js: 'app.js', app: '#{settings.app}'}, Ext.bang.util.run);
+      };
+
+      Ext.require('Ext.direct.*', Ext.bang.util.startup);
+            
+  body!= body
