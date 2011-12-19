@@ -11,7 +11,7 @@ Post.init = function(obj) {
    * /baing/getJS is our Ext.Direct api caller.  getJS takes
    * one or more objects.
    *
-   * each req.body object: { js: <string> }
+   * each req.body object: { js: <string>, app: <app name> }
    * 
    * response will be an object or an array of objects
    */
@@ -19,10 +19,14 @@ Post.init = function(obj) {
     //res.send(req.body);
     
     var rpc = function(request, cb) {
+      
       switch(request.method) {
         case "getJS":
-        
-          require('fs').readFile(settings.path + '/client/' + request.data[0].app + '/' + request.data[0].js, 'utf8',
+
+          var app = request.data[0].app;
+          var js  = request.data[0].js;
+          
+          require('fs').readFile(settings.path + '/client/' + app + '/' + js, 'utf8',
             function(err, data) {
               var response = {
                 tid:    request.tid,
@@ -35,6 +39,13 @@ Post.init = function(obj) {
             
               cb(response);  
           });
+          break;
+          
+        case "logMessage":
+        
+          var data = request.data[0];
+          logger.logMessage(data);
+          cb(request);
           break;
           
         default:
@@ -66,6 +77,17 @@ Post.init = function(obj) {
         res.send(data);
       });
     }    
+  });
+
+  app.post('/bang/login', function(req, res) {
+  
+    // check with security
+    var response = {
+      success: true,
+      username: req.body.username
+    };
+     
+    res.send(response);
   });
 }
 

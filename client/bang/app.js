@@ -1,27 +1,23 @@
 {
   main: function() {
-  
-    // Lets load the dependencies first
-    var request = { 
-      js: '/controller/bang.js', 
-      app: 'bang'
-    };
-    
-    remotejs.getJS(request, function(provider, response) {
-      var obj = Ext.JSON.decode(response.result);
-      
-      Ext.define('bang.controller.bang', obj);
-      
+      Ext.Loader.setConfig({
+        enabled: true
+      });
+
       Ext.application({
         name: 'bang',
+        appFolder: 'bang',
         controllers: [ 'bang' ],
         launch: function() {
-          console.log('launching app');
-        },
-        onLaunch: function() {
-          console.log('onLaunch');
+          remotejs.logMessage('launching bang app');
+          
+          Ext.create('Ext.container.Viewport', {
+            layout: 'fit',
+            items: [
+              { xtype: 'bangPanel' }
+            ]
+          });
         }
-      });    
-    });
+      });
   }
 }

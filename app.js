@@ -71,6 +71,7 @@ app.configure(function(){
   }));
   app.use(app.router);
   app.use('/extjs', express.static(__dirname + '/client/extjs'));
+  app.use('/img',   express.static(__dirname + '/client/img'));
   app.use(express.static(__dirname + '/client/public'));
 });
 
