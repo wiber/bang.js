@@ -6,51 +6,51 @@ Ext.define('bang.view.bang', {
   autoShow: true,
   requires: ['Ext.form.Panel'],
   initComponent: function() {    
-    
-    var form = Ext.create('Ext.form.Panel', {
-      url: '/bang/login',
-      padding: '5 5 0 5',
-      border: false,
-      style: 'background-color: #fff;',
-      items: [
-        {
-          xtype: 'box',
-          autoEl: {
-            tag: 'div',
-            html: '<img src="img/logo.jpg">&nbsp;\n<br>&nbsp;<br>'
+        
+    this.items = [
+      {
+        xtype: 'form',
+        padding: '5 5 0 5',
+        border: false,
+        style: 'background-color: #fff;',
+        url: '/bang/login',
+        items: [
+          {
+            xtype: 'box',
+            autoEl: {
+              tag: 'div',
+              html: '<img src="img/logo.jpg">&nbsp;\n<br>&nbsp;<br>'
+            }
+          },            
+          {
+            xtype: 'textfield',
+            name : 'username',
+            fieldLabel: 'Username',
+            value: 'test',
+            width: 420
+          },
+          {
+            xtype: 'textfield',
+            inputType: 'password',
+            name : 'password',
+            fieldLabel: 'Password',
+            value: 'test',
+            width: 420
           }
-        },            
-        {
-          xtype: 'textfield',
-          name : 'username',
-          fieldLabel: 'Username',
-          width: 420
-        },
-        {
-          xtype: 'textfield',
-          inputType: 'password',
-          name : 'password',
-          fieldLabel: 'Password',
-          width: 420
-        }
-      ],
-      buttons: [
-        {
-          text: 'Login',
-          formBind: true,
-          action: login
-        },
-        {
-          text: 'Cancel',
-          scope: this,
-          handler: this.close
-        }
-      ]
-    });
-      
-    this.items = [ form ];
+        ]
+      }
+    ];
+
+    this.buttons = [
+      {
+        text: 'Login',
+        formBind: true,
+        action: 'login'
+      }
+    ];    
+    
     this.width  = 492;
-    this.height = 530;
+    this.height = 550;
     // this.callParent(arguments) is required.  Not clear in API
     this.callParent(arguments);
   }

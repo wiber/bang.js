@@ -12,6 +12,7 @@
 #### Requires
 	-  NodeJS 0.6.6
 	-  MongoDB 2.0.2
+	-  ExtJS 4.0.7 (place it inside ./client)
     
 #### installation
     -  npm install express

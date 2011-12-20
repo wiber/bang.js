@@ -9,7 +9,7 @@
         appFolder: 'bang',
         controllers: [ 'bang' ],
         launch: function() {
-          remotejs.logMessage('launching bang app');
+          remotejs.logMessage('[Client] - launching bang app');
           
           Ext.create('Ext.container.Viewport', {
             layout: 'fit',
