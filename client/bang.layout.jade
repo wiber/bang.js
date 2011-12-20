@@ -5,15 +5,30 @@ html
     link(rel='stylesheet', href='#{settings.web.url}:#{settings.web.port}/extjs/resources/css/ext-all.css')
     
     script(src='/extjs/ext-all-debug-w-comments.js', type='application/javascript')
+    script(src='socket.io/socket.io.js', type='application/javascript')
     
     script
       // Create namespaces for specific components of the application
       Ext.namespace('Ext.bang.data');
-      Ext.namespace('Ext.bang.panels');
-      Ext.namespace('Ext.bang.viewport');
+      Ext.namespace('Ext.bang.views');
       Ext.namespace('Ext.bang.security');
       Ext.namespace('Ext.bang.util');
       Ext.namespace('Ext.bang.socket');    
+      
+      var socket = new io.connect('#{settings.web.url}');
+      
+      socket.on('connection received', function(data) {
+        Ext.bang.socket.connection = data;
+  
+        if(Ext.bang.security.handshake) {
+          socket.emit('update handshake', { 
+            session_id: Ext.bang.security.session_id,
+            handshake: Ext.bang.security.handshake,
+            account_id: Ext.bang.security.account_id,
+            username: Ext.bang.security.username
+          });
+        }
+      }); 
       
       Ext.bang.util.run = function(provider, response) {
         var action = Ext.JSON.decode(response.result);

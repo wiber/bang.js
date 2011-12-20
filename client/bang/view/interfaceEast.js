@@ -8,6 +8,7 @@ Ext.define('bang.view.interfaceEast', {
   region: 'east',
   width: 150,
   initComponent: function() {    
+    Ext.bang.views.interfaceEast = this;
 
     // this.callParent(arguments) is required.  Not clear in API
     this.callParent(arguments);

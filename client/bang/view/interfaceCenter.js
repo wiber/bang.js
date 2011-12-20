@@ -7,7 +7,8 @@ Ext.define('bang.view.interfaceCenter', {
   requires: ['Ext.form.Panel'],
   region: 'center',
   initComponent: function() {    
-
+    Ext.bang.views.interfaceCenter = this;
+    
     // this.callParent(arguments) is required.  Not clear in API
     this.callParent(arguments);
   }

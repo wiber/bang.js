@@ -8,6 +8,7 @@
       launch: function() {
         remotejs.logMessage('[Client] - launching interface app');
 
+        // Border Viewport
         Ext.create('Ext.container.Viewport', {
           layout: 'border',
           renderTo: Ext.getBody(),
@@ -16,7 +17,8 @@
             { xtype: 'interfaceEast'   },
             { xtype: 'interfaceCenter' }
           ]
-        });             
+        });    
+
       }
     });        
   }

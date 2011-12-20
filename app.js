@@ -52,6 +52,9 @@ security.init({ logger: logger }, function(err) {
  * 
  */
 var app = module.exports = express.createServer();
+var io  = require('socket.io').listen(app);
+
+io.set('transports', ['websocket', 'xhr-polling']);
 
 app.configure(function(){
   app.set('views', __dirname + '/client');
@@ -91,6 +94,24 @@ routes.init({
   logger:   lib.logger,
   settings: settings,
   app:      app
+});
+
+// Socket.io
+io.sockets.on('connection', function(socket) {
+  console.log('socket_id: '  + socket.id + ' has connected');
+  
+  socket.emit('connection received', {
+    timestamp: Date.now(),
+    socket_id: socket.id
+  });
+  
+  socket.on('client authenticated', function(data) {
+    console.log(data.username + '@' + data.socket_id + ' authenticated, store socket in mongo');
+  });
+  
+  socket.on('disconnect', function() {
+    console.log(socket.id + '.sid disconnected ');
+  });
 });
 
 /**

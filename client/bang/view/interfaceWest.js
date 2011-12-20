@@ -9,6 +9,8 @@ Ext.define('bang.view.interfaceWest', {
   width: 150,
   initComponent: function() {    
 
+    Ext.bang.views.interfaceWest = this;
+
     // this.callParent(arguments) is required.  Not clear in API
     this.callParent(arguments);
   }
