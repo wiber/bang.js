@@ -1,8 +1,11 @@
-
 /**
+ * Bang.js
+ *
+ * Author: Mike Kunze
+ * GPL 3.0
+ *
  * Module dependencies.
  */
-
 var express  = require('express')
   , mongoose = require('mongoose')
   , stylus   = require('stylus')
@@ -15,6 +18,10 @@ var logger   = lib.logger;
 var db       = lib.db;
 var security = lib.security;
 
+/**
+ * Initialize the logger.  init[obj, callback]
+ * callback takes a function(err)
+ */
 logger.init({ settings: settings }, function(err) {
   if(err) {
     console.log(err.msg);
@@ -39,13 +46,16 @@ db.init({
  * start up security
  *
  */
-security.init({ logger: logger }, function(err) {
+security.init({ 
+  logger: logger, 
+  settings: settings,
+  mongoose: mongoose
+}, function(err) {
   if(err) {
     logger.logMessage(err.msg);
     console.log(err.msg);
   }
 });
-
 
 /**
  * start up the app server
