@@ -1,3 +1,6 @@
+![bang](/client/img/logo.jpg "Bang.js")
+
+
 #### Overview
 	Bang is an attempt at simplifying a completely asynchronous web application MVC
 	environment that utilizes ExtJS 4.  This application stack does not refresh, but rather
@@ -7,7 +10,7 @@
     -  Jade for a robust, elegant, feature rich template engine
     -  Stylus for an expressive, dynamic and robust CSS
     -  Mongoose for a MongoDB object modeling tool designed to work in an asynchronous environment.
-    
+    -  Socket.io for realtime transport mechanisms
     
 #### Requires
 	-  NodeJS 0.6.6
@@ -20,6 +23,8 @@
     -  npm install mongodb --mongodb:native
     -  npm install jade
     -  npm install stylus
+    -  npm install async
+    -  npm install socket.io
 
 #### Settings.js
 

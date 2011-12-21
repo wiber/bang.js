@@ -1,6 +1,5 @@
 Ext.define('bang.view.bang', {
   extend: 'Ext.window.Window',
-  title: 'bang panel',
   alias: 'widget.bangPanel',
   layout: 'fit',
   autoShow: true,

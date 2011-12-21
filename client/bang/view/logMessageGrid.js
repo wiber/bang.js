@@ -8,7 +8,8 @@ Ext.define('bang.view.logMessageGrid', {
     { header: 'message', dataIndex: 'message'}
     ];
     
-    this.layout = 'fit';
+    this.layout   = 'fit';
+    this.closable = true;
 
     this.store = Ext.create('bang.store.logMessages');
     
