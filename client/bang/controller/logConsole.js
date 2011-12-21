@@ -1,11 +1,14 @@
 Ext.define('bang.controller.logConsole', {
   extend: 'Ext.app.Controller',
+  views:  ['logMessageGrid'],
   models: ['logMessage'],
   stores: ['logMessages'],
-  views:  ['logMessageGrid'],
   init: function() {
-    remotejs.logMessage('[Client] - Initialized interface controller');
+    remotejs.logMessage('[Client] - Initialized logger controller');
     this.control({
+      'logMessageGrid': {
+        render: function() {  remotejs.logMessage('[Client] - logMessageGrid rendered'); }
+      }
     });
   }
 });
