@@ -5,7 +5,7 @@ Post.init = function(obj) {
   var logger   = obj.logger;
   var settings = obj.settings;
 
-  logger.logMessage('Mapping Routes for post');
+  logger.logMessage('Mapping Routes for post', function(err, doc) {});
   
   /**
    * /baing/getJS is our Ext.Direct api caller.  getJS takes
@@ -15,6 +15,7 @@ Post.init = function(obj) {
    * 
    * response will be an object or an array of objects
    */
+   // POST '/bang/getJS'
   app.post('/bang/getJS', function(req, res) {
     //res.send(req.body);
     
@@ -44,8 +45,16 @@ Post.init = function(obj) {
         case "logMessage":
         
           var data = request.data[0];
-          logger.logMessage(data);
-          cb(request);
+          logger.logMessage(data, function(err, doc) {
+          
+            if(err) {
+              console.log(err);
+            }
+            
+            request.result = doc;
+            
+            cb(request);
+          });
           break;
           
         default:
@@ -79,6 +88,7 @@ Post.init = function(obj) {
     }    
   });
 
+  // POST '/bang/login'
   app.post('/bang/login', function(req, res) {
   
     // check with security

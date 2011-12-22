@@ -22,7 +22,10 @@ var security = lib.security;
  * Initialize the logger.  init[obj, callback]
  * callback takes a function(err)
  */
-logger.init({ settings: settings }, function(err) {
+logger.init({ 
+  settings: settings ,
+  mongoose: mongoose
+}, function(err) {
   if(err) {
     console.log(err.msg);
   }
@@ -37,8 +40,7 @@ db.init({
   settings: settings
 }, function(err) {
   if(err) {
-    logger.logMessage(err.msg);
-    console.log(err.msg);
+    logger.logMessage(err.msg, function(err, doc) {});
   }
 });
 
@@ -128,4 +130,4 @@ io.sockets.on('connection', function(socket) {
  * listen on the web Port
  */
 app.listen(settings.web.port);
-logger.logMessage('Express server listening on port ' + app.address().port + ' in ' + app.settings.env + ' mode');
+logger.logMessage('Express server listening on port ' + app.address().port + ' in ' + app.settings.env + ' mode', function(err, doc) {});
