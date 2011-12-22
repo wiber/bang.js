@@ -1,4 +1,4 @@
-![bang](/mikekunze/bang.js/blob/master/client/img/logo.jpg?raw=true "Bang.js")
+<center>![bang](/mikekunze/bang.js/blob/master/client/img/logo.jpg?raw=true "Bang.js")</center>
 
 
 #### Overview
