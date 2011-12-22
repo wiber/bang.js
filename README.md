@@ -1,7 +1,4 @@
-<center>
 ![bang](/mikekunze/bang.js/blob/master/client/img/logo.jpg?raw=true "Bang.js")
-</center>
-
 
 #### Overview
 	Bang is an attempt at simplifying a completely asynchronous web application MVC

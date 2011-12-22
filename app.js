@@ -18,13 +18,17 @@ var logger   = lib.logger;
 var db       = lib.db;
 var security = lib.security;
 
+var app = module.exports = express.createServer();
+var io  = require('socket.io').listen(app);
+
 /**
  * Initialize the logger.  init[obj, callback]
  * callback takes a function(err)
  */
 logger.init({ 
-  settings: settings ,
-  mongoose: mongoose
+  settings: settings,
+  mongoose: mongoose,
+  io:       io
 }, function(err) {
   if(err) {
     console.log(err.msg);
@@ -63,8 +67,7 @@ security.init({
  * start up the app server
  * 
  */
-var app = module.exports = express.createServer();
-var io  = require('socket.io').listen(app);
+
 
 io.set('transports', ['websocket', 'xhr-polling']);
 
