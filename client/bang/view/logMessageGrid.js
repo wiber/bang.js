@@ -4,7 +4,7 @@ Ext.define('bang.view.logMessageGrid', {
   title: 'logMessageGrid',
   initComponent: function() {    
     this.columns = [
-      { text: 'date',    dataIndex: 'date', xtype: 'datecolumn', format:'Y-m-d h:m:s', width: 200},
+      { text: 'date',    dataIndex: 'date', xtype: 'datecolumn', format:'Y-m-d - H:i:s', width: 200},
       { text: 'message', dataIndex: 'message', flex: 1}
     ];
     
@@ -12,6 +12,17 @@ Ext.define('bang.view.logMessageGrid', {
     this.closable = true;
 
     this.store = Ext.create('bang.store.logMessages');
+    
+    
+    this.dockedItems = [
+      {
+        xtype: 'pagingtoolbar',
+        store: this.store,
+        dock:  'bottom',
+        displayInfo: true
+      }
+    ];
+    
     this.store.load();
     
     // this.callParent(arguments) is required.  Not clear in API

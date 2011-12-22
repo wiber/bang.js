@@ -2,6 +2,7 @@ Ext.define('bang.store.logMessages', {
     extend: 'Ext.data.Store',
     model: 'bang.model.logMessage',
     storeId: 'logMessages',
+    pageSize: 100,
     proxy: {
       extraParams: {},
       api: {
@@ -13,7 +14,8 @@ Ext.define('bang.store.logMessages', {
       type: 'ajax',
       reader: {
         type: 'json',
-        root: 'items'
+        root: 'items',
+        totalProperty: 'results'
       },
       writer: {
         type: 'json'

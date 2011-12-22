@@ -5,7 +5,7 @@ Post.init = function(obj) {
   var logger   = obj.logger;
   var settings = obj.settings;
 
-  logger.logMessage('Mapping Routes for post', function(err, doc) {});
+  logger.logMessage('[Server][routes] - Mapping posts', function(err, doc) {});
   
   /**
    * /baing/getJS is our Ext.Direct api caller.  getJS takes

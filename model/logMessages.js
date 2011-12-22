@@ -5,8 +5,9 @@ module.exports = {
         ObjectId = Schema.ObjectId;
     
     mongoose.model('logmessages', new Schema({
-      date:    { type: Date  },
-      message: { type: String}
+      date:      { type: Date   },
+      timestamp: { time: Number },
+      message:   { type: String }
     }));
   }
 }

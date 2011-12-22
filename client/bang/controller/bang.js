@@ -14,7 +14,7 @@ Ext.define('bang.controller.bang', {
           form.submit({
             success: function(button) {
               win.close();
-              remotejs.logMessage(form.getValues().username + ' has logged in, loading interface');
+              remotejs.logMessage('[Client] - ' + form.getValues().username + ' has logged in, loading interface');
               
               // Now that we're logged in, get the interface
               remotejs.getJS({ js: 'interface.js', app: 'bang'}, Ext.bang.util.run);

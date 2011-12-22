@@ -8,7 +8,7 @@ get.init = function(obj) {
   var logger   = obj.logger;
   var settings = obj.settings;
   
-  logger.logMessage('Mapping Routes for Get', function(err, doc) {});
+  logger.logMessage('[Server][routes] - Mapping Gets', function(err, doc) {});
   
   app.get('/', function(req, res){
     res.render('index', { 
@@ -40,12 +40,7 @@ get.init = function(obj) {
             
             // Get the messages, provide a callback that uses res
 
-            logger.getMessages({
-              page:  req.query.page,
-              start: req.query.start,
-              limit: req.query.start
-              
-            }, function(err, response) {
+            logger.getMessages(req.query, function(err, response) {
               if(err) {
                 logger.logMessage(err, function() {});
               }

@@ -130,4 +130,4 @@ io.sockets.on('connection', function(socket) {
  * listen on the web Port
  */
 app.listen(settings.web.port);
-logger.logMessage('Express server listening on port ' + app.address().port + ' in ' + app.settings.env + ' mode', function(err, doc) {});
+logger.logMessage('[Server] - listening on port ' + app.address().port + ' in ' + app.settings.env + ' mode', function(err, doc) {});
