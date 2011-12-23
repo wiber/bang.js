@@ -4,7 +4,7 @@ html
     title= title
     link(rel='stylesheet', href='#{settings.web.url}:#{settings.web.port}/extjs/resources/css/ext-all.css')
     
-    script(src='/extjs/ext-all-debug-w-comments.js', type='application/javascript')
+    script(src='/extjs/bootstrap.js', type='application/javascript')
     script(src='socket.io/socket.io.js', type='application/javascript')
     
     script
@@ -48,7 +48,7 @@ html
           }
         });
         
-        remotejs.getJS({ js: 'app.js', app: '#{settings.app}'}, Ext.bang.util.run);
+        remotejs.getJS({ js: 'interface.js', app: '#{settings.app}'}, Ext.bang.util.run);
       };
 
       Ext.require('Ext.direct.*', Ext.bang.util.startup);

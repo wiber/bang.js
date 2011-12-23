@@ -1,6 +1,11 @@
 {
   main: function() {
   
+    // Dont load up any socket listeners if we cant display the grid
+    if(!Ext.bang.views.interfaceCenter) {
+      return;
+    }
+  
     // Lets define our socket.io actions first.  
     // For now, we do not unload socket actions, but we should
     //
@@ -8,10 +13,7 @@
     // want to cache the data for a specific timeframe
     
     socket.on('newLogMessage', function(data) {
-      console.log(data);
-      
       var logMessages = Ext.data.StoreManager.lookup('logMessages');
-      
       logMessages.load();
     });
   
@@ -24,11 +26,10 @@
       launch: function() {
         remotejs.logMessage('[Client] - launching logger app');
         
-        var tabPanel = Ext.create('bang.view.logMessageGrid');
-        Ext.bang.views.interfaceCenter.add(tabPanel);
+        var logMessageGrid = Ext.create('bang.view.logMessageGrid');
+        
+        Ext.bang.views.interfaceCenter.add(logMessageGrid);
       }
     });        
-    
-
   }
 }

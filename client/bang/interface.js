@@ -1,6 +1,9 @@
 {
   main: function() {
-
+    Ext.Loader.setConfig({
+      enabled: true
+    });
+      
     Ext.application({
       name: 'bang',
       appFolder: 'bang',
@@ -9,7 +12,7 @@
         remotejs.logMessage('[Client] - launching interface app');
 
         // Border Viewport
-        Ext.create('Ext.container.Viewport', {
+        Ext.bang.views.viewport = Ext.create('Ext.container.Viewport', {
           layout: 'border',
           renderTo: Ext.getBody(),
           items: [ 
