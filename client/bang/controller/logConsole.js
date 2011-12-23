@@ -7,7 +7,12 @@ Ext.define('bang.controller.logConsole', {
     remotejs.logMessage('[Client] - Initialized logger controller');
     this.control({
       'logMessageGrid': {
-        render: function() {  remotejs.logMessage('[Client] - logMessageGrid rendered'); }
+        render: function() {  
+          remotejs.logMessage('[Client] - logMessageGrid rendered'); 
+        },
+        close: function() {
+          delete(Ext.bang.views.logMessageGrid);
+        }
       }
     });
   }
