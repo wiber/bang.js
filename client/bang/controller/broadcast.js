@@ -1,11 +1,11 @@
-Ext.define('bang.controller.login', {
+Ext.define('bang.controller.broadcast', {
   extend: 'Ext.app.Controller',
-  views:  ['loginPanel'],
+  views:  ['broadcastPanel'],
   init: function() {
-    remotejs.logMessage('[Client] - Initialized login controller');
+    remotejs.logMessage('[Client] - Initialized broadcast controller');
         
     this.control({
-      'loginPanel button[action=login]': {
+      'broadcastPanel button[action=submit]': {
         click: function(button) {
             
           var win    = button.up('window'),
@@ -14,7 +14,6 @@ Ext.define('bang.controller.login', {
           form.submit({
             success: function(button) {
               win.close();
-              remotejs.logMessage('[Client] - ' + form.getValues().username + ' has logged in, loading interface');
             }
           });
         }

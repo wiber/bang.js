@@ -1,5 +1,10 @@
 {
   main: function() {
+  
+    socket.on('broadcastMessage', function(data) {
+      Ext.Msg.alert('broadcastMessage', data.message);
+    });
+      
     Ext.Loader.setConfig({
       enabled: true
     });

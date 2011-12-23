@@ -1,8 +1,7 @@
 {
   main: function() {
-  
-    // Dont load up any socket listeners if we cant display the grid
-    if(!Ext.bang.views.interfaceCenter) {
+
+    if(Ext.bang.views.logMessageGrid) {
       return;
     }
   
@@ -27,6 +26,7 @@
         remotejs.logMessage('[Client] - launching logger app');
         
         var logMessageGrid = Ext.create('bang.view.logMessageGrid');
+        Ext.bang.views.logMessageGrid = logMessageGrid;
         
         Ext.bang.views.interfaceCenter.add(logMessageGrid);
       }

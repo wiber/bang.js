@@ -108,7 +108,8 @@ routes.init({
   mongoose: mongoose,
   logger:   lib.logger,
   settings: settings,
-  app:      app
+  app:      app,
+  io:       io
 });
 
 // Socket.io

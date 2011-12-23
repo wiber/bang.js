@@ -4,6 +4,7 @@ Post.init = function(obj) {
   var app      = obj.app;
   var logger   = obj.logger;
   var settings = obj.settings;
+  var io       = obj.io;
 
   logger.logMessage('[Server][routes] - Mapping posts', function(err, doc) {});
   
@@ -97,6 +98,21 @@ Post.init = function(obj) {
       username: req.body.username
     };
      
+    res.send(response);
+  });
+  
+  app.post('/bang/broadcastMessage', function(req, res) {
+    
+    var response = {
+      success: true,
+      message: req.body.message
+    };
+    
+    io.sockets.emit('broadcastMessage', {
+      message: req.body.message
+    });
+    
+    logger.logMessage('[Server][broadcastMessage] - ' + req.body.message, function() {});
     res.send(response);
   });
 }
