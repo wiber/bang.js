@@ -9,7 +9,7 @@ Ext.define('bang.view.loginPanel', {
     this.items = [
       {
         xtype: 'form',
-        padding: '5 5 0 5',
+        padding: '15 15 15 25',
         border: false,
         style: 'background-color: #fff;',
         url: '/bang/login',
@@ -26,7 +26,7 @@ Ext.define('bang.view.loginPanel', {
             name : 'username',
             fieldLabel: 'Username',
             value: 'test',
-            width: 420
+            width: 470
           },
           {
             xtype: 'textfield',
@@ -34,7 +34,7 @@ Ext.define('bang.view.loginPanel', {
             name : 'password',
             fieldLabel: 'Password',
             value: 'test',
-            width: 420
+            width: 470
           }
         ]
       }
@@ -48,8 +48,8 @@ Ext.define('bang.view.loginPanel', {
       }
     ];    
     
-    this.width  = 492;
-    this.height = 550;
+    this.width  = 540;
+    this.height = 375;
     // this.callParent(arguments) is required.  Not clear in API
     this.callParent(arguments);
   }
