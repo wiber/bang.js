@@ -57,7 +57,20 @@ Post.init = function(obj) {
             cb(request);
           });
           break;
+        
+        case "broadcastMessage":
+          var data = request.data[0];
           
+          io.sockets.emit('broadcastMessage', {
+            message: data
+          });
+
+          logger.logMessage('[Server][broadcastMessage] - ' + data, function() {});
+          request.result = data;
+
+          cb(request);
+          break;
+  
         default:
           logger.logMessage("unknown method \'" + request.method + "\' called from " 
             + request.action);
