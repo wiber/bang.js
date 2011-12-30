@@ -6,24 +6,24 @@
 	exploits powerful dynamic features of code injection through ajax and websockets.
 
 #### Features
-    -  Jade for a robust, elegant, feature rich template engine
-    -  Stylus for an expressive, dynamic and robust CSS
-    -  Mongoose for a MongoDB object modeling tool designed to work in an asynchronous environment.
-    -  Socket.io for realtime transport mechanisms
+* [Jade](http://jade-lang.com/) for a robust, elegant, feature rich template engine
+* [Stylus](http://learnboost.github.com/stylus/) for an expressive, dynamic and robust CSS
+* [Mongoose](http://mongoosejs.com/) for a MongoDB object modeling tool designed to work in an asynchronous environment.
+* [Socket.io](http://socket.io) for realtime transport mechanisms
     
 #### Requires
-	-  NodeJS 0.6.6
-	-  MongoDB 2.0.2
-	-  ExtJS 4.0.7 (place it inside ./client)
+* [NodeJS](http://nodejs.org/) 0.6.6
+* [MongoDB](http://www.mongodb.org/) 2.0.2
+* [ExtJS](http://www.sencha.com/products/extjs/) 4.0.7 (place it inside ./client)
     
 #### installation
-    -  npm install express
-    -  npm install mongoose
-    -  npm install mongodb --mongodb:native
-    -  npm install jade
-    -  npm install stylus
-    -  npm install async
-    -  npm install socket.io
+* npm install express
+* npm install mongoose
+* npm install mongodb --mongodb:native
+* npm install jade
+* npm install stylus
+* npm install async
+* npm install socket.io
 
 #### Settings.js
 
