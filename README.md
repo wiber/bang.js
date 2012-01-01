@@ -17,17 +17,14 @@
 * [ExtJS](http://www.sencha.com/products/extjs/) 4.0.7 (place it inside ./client)
     
 #### installation
-* npm install express
-* npm install mongoose
+* npm install
 * npm install mongodb --mongodb:native
-* npm install jade
-* npm install stylus
-* npm install async
-* npm install socket.io
+
 
 #### Settings.js
 
-    none yet
+* settings/db.js  configures mongoose connect string and other db related constants
+* settings/web.js configures web server constants
 
 
 #### Start up
