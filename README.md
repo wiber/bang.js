@@ -31,20 +31,20 @@
     node app.js
     
 #### Using bang
-Bang is designed to utilize the current functionality:  realtime log console, 
-system wide message broadcasting, and an API interface to the server side
-logger functionality.
+    Bang is designed to utilize the current functionality:  realtime log console, 
+    system wide message broadcasting, and an API interface to the server side
+    logger functionality.
 
 To witness current functionality, load the logConsole first.
 
 * Navigate to running instance with a web browser
 * Using the console, type the following commands:
 
-###### logConsole - GUI for realtime log monitoring
-* remotejs.getJS({app: 'bang', js: 'logConsole.js'}, Ext.bang.util.run);
+##### logConsole - GUI for realtime log monitoring 
+    remotejs.getJS({app: 'bang', js: 'logConsole.js'}, Ext.bang.util.run);
 
-###### broadcastMessage - messages all users with interface loaded
-* remotejs.getJS({app: 'bang', js: 'broadcastMessage.js'}, Ext.bang.util.run);
+##### broadcastMessage - messages all users with interface loaded
+    remotejs.getJS({app: 'bang', js: 'broadcastMessage.js'}, Ext.bang.util.run);
 
-###### logMessage - API for server logger
-* remotejs.logMessage('log your message');
+##### logMessage - API for server logger
+    remotejs.logMessage('log your message');
