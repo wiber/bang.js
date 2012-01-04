@@ -1,9 +1,10 @@
 var model = {};
 
-model.init = function(obj, cb) {
+model.init = function(bang, cb) {
   
-  require('./users').init(obj);   
-  require('./logMessages').init(obj);
+  require('./users').init(bang);
+  require('./logMessages').init(bang);
+  require('./clients').init(bang);
   
   cb();
 };

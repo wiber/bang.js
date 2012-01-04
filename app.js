@@ -106,8 +106,9 @@ app.configure('production', function(){
  */
 routes.init({
   mongoose: mongoose,
-  logger:   lib.logger,
+  logger:   logger,
   settings: settings,
+  security: security,
   app:      app,
   io:       io
 });
