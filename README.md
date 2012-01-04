@@ -44,7 +44,7 @@ To witness current functionality, load the logConsole first.
     remotejs.getJS({app: 'bang', js: 'logConsole.js'}, Ext.bang.util.run);
 
 ##### broadcastMessage - messages all users with interface loaded
-    remotejs.getJS({app: 'bang', js: 'broadcastMessage.js'}, Ext.bang.util.run);
+    remotejs.getJS({app: 'bang', js: 'broadcast.js'}, Ext.bang.util.run);
 
 ##### logMessage - API for server logger
     remotejs.logMessage('log your message');
