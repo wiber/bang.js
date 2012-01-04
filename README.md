@@ -29,3 +29,16 @@
 
 #### Start up
     node app.js
+    
+#### Using bang
+* Navigate to running instance with a web browser
+* Using the console, type the following commands:
+
+###### logConsole
+* remotejs.getJS({app: 'bang', js: 'logConsole.js'}, Ext.bang.util.run);
+
+###### broadcastMessage
+* remotejs.getJS({app: 'bang', js: 'broadcastMessage.js'}, Ext.bang.util.run);
+
+###### logMessage
+* remotejs.logMessage('log your message');
