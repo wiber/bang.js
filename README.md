@@ -36,7 +36,7 @@
 To witness current functionality, load the logConsole first.
 
 * Navigate to running instance with a web browser
-* Using the console, type the following commands:
+* Using the web browser's javascript console, type the following commands:
 
 ##### logConsole - GUI for realtime log monitoring 
     remotejs.getJS({app: 'bang', js: 'logConsole.js'}, Ext.bang.util.run);
