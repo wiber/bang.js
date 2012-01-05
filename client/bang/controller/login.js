@@ -18,6 +18,11 @@ Ext.define('bang.controller.login', {
             }
           });
         }
+      },
+      'loginPanel': {
+        close: function() {
+          delete(Ext.bang.views.loginPanel);
+        }
       }
     });
   }

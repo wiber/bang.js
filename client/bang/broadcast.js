@@ -1,10 +1,14 @@
 {
   main: function() {
  
+    if(Ext.bang.views.broadcastPanel) {
+      return;
+    }
+ 
     Ext.bang.util.app.getController('broadcast').init();
     
-    remotejs.logMessage('[Client] - launching broadcast app');
+    remotejs.logMessage('[Client] - launching broadcast controller');
           
-    Ext.create('bang.view.broadcastPanel');    
+    Ext.bang.views.broadcastPanel = Ext.create('bang.view.broadcastPanel');    
   }
 }

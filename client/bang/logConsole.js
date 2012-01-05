@@ -18,7 +18,7 @@
 
     Ext.bang.util.app.getController('logConsole').init();
   
-    remotejs.logMessage('[Client] - launching logger app');
+    remotejs.logMessage('[Client] - launching logConsole controller');
         
     var logMessageGrid = Ext.create('bang.view.logMessageGrid');
     Ext.bang.views.logMessageGrid = logMessageGrid;

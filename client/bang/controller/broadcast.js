@@ -17,6 +17,11 @@ Ext.define('bang.controller.broadcast', {
             }
           });
         }
+      },
+      'broadcastPanel': {
+        close: function() {
+          delete(Ext.bang.views.broadcastPanel);
+        }
       }
     });
   }
