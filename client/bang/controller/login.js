@@ -14,6 +14,7 @@ Ext.define('bang.controller.login', {
           form.submit({
             success: function(button) {
               win.close();
+              
               remotejs.logMessage('[Client] - ' + form.getValues().username + ' has logged in, loading interface');
             }
           });

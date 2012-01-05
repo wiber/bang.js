@@ -1,13 +1,19 @@
 Ext.define('bang.view.interfaceWest', {
   extend: 'Ext.panel.Panel',
-  title: 'bang panel West',
+  title: 'Navigation',
   alias: 'widget.interfaceWest',
-  layout: 'fit',
+
   autoShow: true,
   requires: ['Ext.form.Panel'],
-  region: 'west',
-  width: 150,
+  
   initComponent: function() {    
+
+    this.collapsible  = true;
+    this.collapsed    = true;
+    this.region       = 'west';
+    this.width        = 150;
+    this.layout       = 'fit';
+    this.animCollapse = 1000;
 
     Ext.bang.views.interfaceWest = this;
 
