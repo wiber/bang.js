@@ -1,6 +1,7 @@
 {
   main: function() {
   
+    // First add our broadcastMessage listener
     socket.on('broadcastMessage', function(data) {
       Ext.Msg.alert('broadcastMessage', data.message);
     });
@@ -9,7 +10,7 @@
       enabled: true
     });
       
-    Ext.application({
+    Ext.bang.util.app = Ext.create('Ext.app.Application', {
       name: 'bang',
       appFolder: 'bang',
       controllers: [ 'interface' ],
@@ -28,6 +29,8 @@
         });    
 
       }
-    });        
+    });
+    
+     
   }
 }

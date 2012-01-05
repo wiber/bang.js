@@ -1,14 +1,9 @@
 {
   main: function() {
-      Ext.application({
-        name: 'bang',
-        appFolder: 'bang',
-        controllers: [ 'login' ],
-        launch: function() {
-          remotejs.logMessage('[Client] - launching bang app');
+    Ext.bang.util.app.getController('login').init();
+    
+    remotejs.logMessage('[Client] - launching bang app');
           
-          Ext.create('bang.view.loginPanel');
-        }
-      });
+    Ext.create('bang.view.loginPanel');    
   }
 }

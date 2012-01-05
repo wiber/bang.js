@@ -15,21 +15,15 @@
       var logMessages = Ext.data.StoreManager.lookup('logMessages');
       logMessages.load();
     });
+
+    Ext.bang.util.app.getController('logConsole').init();
   
-  
-    // Define the application itself
-    Ext.application({
-      name: 'bang',
-      appFolder: 'bang',
-      controllers: [ 'logConsole' ],
-      launch: function() {
-        remotejs.logMessage('[Client] - launching logger app');
+    remotejs.logMessage('[Client] - launching logger app');
         
-        var logMessageGrid = Ext.create('bang.view.logMessageGrid');
-        Ext.bang.views.logMessageGrid = logMessageGrid;
+    var logMessageGrid = Ext.create('bang.view.logMessageGrid');
+    Ext.bang.views.logMessageGrid = logMessageGrid;
         
-        Ext.bang.views.interfaceCenter.add(logMessageGrid);
-      }
-    });        
+    Ext.bang.views.interfaceCenter.add(logMessageGrid);
+        
   }
 }

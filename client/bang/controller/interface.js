@@ -5,7 +5,7 @@ Ext.define('bang.controller.interface', {
   views:  ['interfaceEast', 'interfaceCenter', 'interfaceWest'],
   init: function() {
     remotejs.logMessage('[Client] - Initialized interface controller');
-        
+                
     this.control({
     });
   }

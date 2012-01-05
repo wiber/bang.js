@@ -4,10 +4,11 @@ html
     title= title
     link(rel='stylesheet', href='#{settings.web.url}:#{settings.web.port}/extjs/resources/css/ext-all.css')
     
-    script(src='/extjs/bootstrap.js', type='application/javascript')
-    script(src='socket.io/socket.io.js', type='application/javascript')
-    
+    script(src='/extjs/bootstrap.js',     type='application/javascript')
+    script(src='/socket.io/socket.io.js', type='application/javascript')
+
     script
+    
       // Create namespaces for specific components of the application
       Ext.namespace('Ext.bang.data');
       Ext.namespace('Ext.bang.views');
@@ -29,10 +30,10 @@ html
           });
         }
       }); 
-      
+
       Ext.bang.util.run = function(provider, response) {
-        var action = Ext.JSON.decode(response.result);
-        action.main();
+        var object = Ext.JSON.decode(response.result);
+        object.main();
       };
       
       Ext.bang.util.startup = function() {
@@ -48,10 +49,10 @@ html
             ]
           }
         });
-        
-        remotejs.getJS({ js: 'interface.js', app: '#{settings.app}'}, Ext.bang.util.run);
+
+        remotejs.getJS({ js: 'interface.js', app: 'bang'}, Ext.bang.util.run);
       };
 
-      Ext.require('Ext.direct.*', Ext.bang.util.startup);
-            
+      Ext.require('Ext.direct.*', Ext.bang.util.startup);      
+
   body!= body
