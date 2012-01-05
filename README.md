@@ -18,8 +18,6 @@
     
 #### installation
 * npm install
-* npm install mongodb --mongodb:native
-
 
 #### Settings.js
 
