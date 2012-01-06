@@ -5,6 +5,7 @@ Post.init = function(obj) {
   var logger   = obj.logger;
   var settings = obj.settings;
   var io       = obj.io;
+  var security = obj.security;
 
   logger.logMessage('[Server][routes] - Mapping posts', function(err, doc) {});
   
@@ -18,8 +19,10 @@ Post.init = function(obj) {
    */
    // POST '/bang/getJS'
   app.post('/bang/getJS', function(req, res) {
-    //res.send(req.body);
     
+    /**
+     * @todo refactor rpc function, put it in a library
+     */
     var rpc = function(request, cb) {
       
       switch(request.method) {
@@ -105,15 +108,42 @@ Post.init = function(obj) {
   // POST '/bang/login'
   app.post('/bang/login', function(req, res) {
   
-    // check with security
-    var response = {
-      success: true,
-      username: req.body.username
-    };
+    /**
+     * authCallback
+     *
+     * @param {object} error information upon auth failure
+     * @param {object} user information upon successful auth
+     */
+    var authCallback = function(err, user) {
+
+      // if we have an error, give the err in the response
+      if(err) {
+        var response = {
+          success: false,
+          err: err
+        };
+        
+        var logMessage = '[Server][routes] - bad user/pass for ';
+        logger.logMessage(logMessage + req.body.username, function(err, doc) {});
      
-    res.send(response);
+        res.send(response); 
+        return;       
+      }
+
+      // authed user, provide user response
+      var response = {
+        success: true,
+        data: user
+      };
+     
+      res.send(response); 
+    };
+    
+    // Authenticate our user, cb provides response
+    security.authenticate(req.body, authCallback);  
   });
   
+  // POST '/bang/broadcastMessage'
   app.post('/bang/broadcastMessage', function(req, res) {
     
     var response = {

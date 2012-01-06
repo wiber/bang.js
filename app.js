@@ -64,11 +64,9 @@ security.init({
 });
 
 /**
- * start up the app server
+ * start up the app and io services
  * 
  */
-
-
 io.set('transports', ['websocket', 'xhr-polling']);
 
 app.configure(function(){
