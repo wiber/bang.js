@@ -2,8 +2,17 @@
 
 #### Overview
 	Bang is an attempt at simplifying a completely asynchronous web application MVC
-	environment that utilizes ExtJS 4.  This application stack does not refresh, but rather
-	exploits powerful dynamic features of code injection through ajax and websockets.
+	environment that utilizes NodeJS server side and ExtJS 4.0.7 client side.  
+	This application stack does not refresh, but rather exploits powerful dynamic 
+	code injection through ajax and websockets.
+	
+	The client side is organized by controller, model, view, and store each having
+	their own directories.  Ext.Direct is used to load "bootstrap" apps that in turn
+	load controllers, all dynamically and via asyncronous design.
+	
+	The server side is organized by lib, model, routes, and settings each having 
+	their own directories.  Each defined component is loaded modularly with the 
+	use of NodeJS module export concept.
 
 #### Features
 * [Jade](http://jade-lang.com/) for a robust, elegant, feature rich template engine
