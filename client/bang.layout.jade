@@ -6,11 +6,12 @@ html
     
     script(src='/extjs/bootstrap.js',     type='application/javascript')
     script(src='/socket.io/socket.io.js', type='application/javascript')
+    
+    script(src='http://crypto-js.googlecode.com/files/2.3.0-crypto-sha256.js', type='application/javascript')
 
     script
     
       // Create namespaces for specific components of the application
-      Ext.namespace('Ext.bang.data');
       Ext.namespace('Ext.bang.views');
       Ext.namespace('Ext.bang.security');
       Ext.namespace('Ext.bang.util');
@@ -19,13 +20,13 @@ html
       var socket = new io.connect('#{settings.web.url}');
       
       socket.on('connection received', function(data) {
-        Ext.bang.socket.connection = data;
+        Ext.bang.socket = data;
   
         if(Ext.bang.security.handshake) {
           socket.emit('update handshake', { 
             session_id: Ext.bang.security.session_id,
             handshake: Ext.bang.security.handshake,
-            account_id: Ext.bang.security.account_id,
+            account_id: Ext.bang.security.user_id,
             username: Ext.bang.security.username
           });
         }

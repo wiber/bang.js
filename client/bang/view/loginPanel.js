@@ -13,19 +13,24 @@ Ext.define('bang.view.loginPanel', {
         border: false,
         style: 'background-color: #fff;',
         url: '/bang/login',
+        
+        // Insert our fields
         items: [
           {
             xtype: 'box',
             autoEl: {
               tag: 'div',
               html: '<img src="img/logo.jpg">&nbsp;\n<br>&nbsp;<br>'
+                +   '<center><br><font size=2>'
+                +   'This system encrypts your password before sending'
+                +   '</center><br><br>'
             }
           },            
           {
             xtype: 'textfield',
             name : 'username',
             fieldLabel: 'Username',
-            value: 'test',
+            id: 'loginPanel.username',
             width: 470
           },
           {
@@ -33,7 +38,7 @@ Ext.define('bang.view.loginPanel', {
             inputType: 'password',
             name : 'password',
             fieldLabel: 'Password',
-            value: 'test',
+            id: 'loginPanel.password',
             width: 470
           }
         ]
@@ -49,7 +54,7 @@ Ext.define('bang.view.loginPanel', {
     ];    
     
     this.width  = 540;
-    this.height = 375;
+    this.height = 475;
     // this.callParent(arguments) is required.  Not clear in API
     this.callParent(arguments);
   }
