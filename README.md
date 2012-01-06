@@ -19,6 +19,7 @@
 * [Stylus](http://learnboost.github.com/stylus/) for an expressive, dynamic and robust CSS
 * [Mongoose](http://mongoosejs.com/) for a MongoDB object modeling tool designed to work in an asynchronous environment.
 * [Socket.io](http://socket.io) for realtime transport mechanisms
+* Crypto for client side encryption
     
 #### Requires
 * [NodeJS](http://nodejs.org/) 0.6.6

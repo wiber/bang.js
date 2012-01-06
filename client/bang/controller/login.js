@@ -24,10 +24,14 @@ Ext.define('bang.controller.login', {
               win.close();
               
               Ext.bang.security = {
-                user_id:  action.result.data._id,
-                username: action.result.data.username
+                user_id:   action.result.data.user_id,
+                username:  action.result.data.username,
+                handshake: action.result.data.handshake,
+                socket_id: Ext.bang.socket.socket_id
               };
               
+              socket.emit('client authenticated', Ext.bang.security);
+          
               remotejs.logMessage('[Client] - ' + Ext.bang.security.username + ' has logged in, loading interface');
             },
             failure: function() {

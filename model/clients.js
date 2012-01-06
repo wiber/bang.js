@@ -6,10 +6,10 @@ module.exports = {
     
   
     mongoose.model('clients', new Schema({
-      session_id: { type: String   },
       socket_id:  { type: String   },
       user_id:    { type: ObjectId },
-      username:   { type: String   }
+      username:   { type: String   },
+      handshake:  { type: String   }
     }));
   }
 }

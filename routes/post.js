@@ -140,7 +140,11 @@ Post.init = function(obj) {
     };
     
     // Authenticate our user, cb provides response
-    security.authenticate(req.body, authCallback);  
+    var request = {
+      username: req.body.username,
+      password: req.body.password
+    };
+    security.authenticate(request, authCallback);  
   });
   
   // POST '/bang/broadcastMessage'

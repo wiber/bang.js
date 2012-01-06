@@ -121,11 +121,18 @@ io.sockets.on('connection', function(socket) {
   });
   
   socket.on('client authenticated', function(data) {
-    console.log(data.username + '@' + data.socket_id + ' authenticated, store socket in mongo');
+    var clients = mongoose.model('clients');
+    
+    var client = new clients(data);
+    client.save();
   });
   
   socket.on('disconnect', function() {
-    console.log(socket.id + '.sid disconnected ');
+    var clients = mongoose.model('clients');
+    clients.findOne({ socket_id: socket.id }, function(err, doc) {
+      doc.remove();
+      console.log(socket.id + '.sid disconnected ');
+    });
   });
 });
 
