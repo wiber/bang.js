@@ -27,7 +27,8 @@ Ext.define('bang.controller.login', {
                 user_id:   action.result.data.user_id,
                 username:  action.result.data.username,
                 handshake: action.result.data.handshake,
-                socket_id: Ext.bang.socket.socket_id
+                socket_id: Ext.bang.socket.socket_id,
+                timestamp: Date.now()
               };
               
               socket.emit('client authenticated', Ext.bang.security);

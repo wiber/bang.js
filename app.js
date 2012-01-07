@@ -124,13 +124,25 @@ io.sockets.on('connection', function(socket) {
     var clients = mongoose.model('clients');
     
     var client = new clients(data);
-    client.save();
+    client.save(function(err) {
+      io.sockets.emit('newClient', data);
+    });
   });
   
   socket.on('disconnect', function() {
     var clients = mongoose.model('clients');
     clients.findOne({ socket_id: socket.id }, function(err, doc) {
+    
+      if(err) {
+        return;
+      }
+      
+      if(!doc) {
+        return;
+      }
+      
       doc.remove();
+      io.sockets.emit('newClient', {});
       console.log(socket.id + '.sid disconnected ');
     });
   });

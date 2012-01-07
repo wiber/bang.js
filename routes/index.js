@@ -3,9 +3,9 @@ module.exports = {
   get:  require('./get'),
   put:  require('./put'), 
   
-  init: function(obj) {
-    this.post.init(obj);
-    this.get.init(obj);
-    this.put.init(obj);
+  init: function(bang) {
+    this.post.init(bang);
+    this.get.init(bang);
+    this.put.init(bang);
   }
 }

@@ -2,11 +2,12 @@ var express = require('express');
     
 var get = {};
 
-get.init = function(obj) {
+get.init = function(bang) {
 
-  var app      = obj.app;
-  var logger   = obj.logger;
-  var settings = obj.settings;
+  var app      = bang.app,
+      logger   = bang.logger,
+      settings = bang.settings,
+      mongoose = bang.mongoose;
   
   logger.logMessage('[Server][routes] - Mapping Gets', function(err, doc) {});
   
@@ -33,8 +34,13 @@ get.init = function(obj) {
   // GET '/:app/:component/read
   app.get('/:app/:component/read', function(req, res) {
     
+    // Which app
     switch(req.params.app) {
+    
+      // App bang
       case 'bang':
+      
+        // Which component
         switch(req.params.component) {
           case 'logMessages':
             
@@ -49,6 +55,30 @@ get.init = function(obj) {
               return;
             });
             
+            break;
+          
+          case 'clients':
+            
+          // refactor this  
+          var clients = mongoose.model('clients');
+          clients.count({}, function(err, count) {
+  
+            var query = clients.find({});
+            query.sort('timestamp', -1)
+            .limit(req.params.limit)
+            .skip(req.params.start);
+  
+            query.exec(function(err, docs) {
+  
+            var response = {
+            results: count,
+            items: docs
+            };
+    
+            res.send(response);
+            });  
+          });
+
             break;
             
           default:

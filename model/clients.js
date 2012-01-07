@@ -6,6 +6,7 @@ module.exports = {
     
   
     mongoose.model('clients', new Schema({
+      timestamp:  { type: Date     },
       socket_id:  { type: String   },
       user_id:    { type: ObjectId },
       username:   { type: String   },
