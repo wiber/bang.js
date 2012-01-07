@@ -26,7 +26,7 @@
 * [MongoDB](http://www.mongodb.org/) 2.0.2
 * [ExtJS](http://www.sencha.com/products/extjs/) 4.0.7 (place it inside ./client)
     
-## installation
+## Installation
 * npm install
 
 ## Settings.js
@@ -48,23 +48,23 @@ To witness current functionality, load the logConsole first.
 * Navigate to running instance with a web browser
 * Using the web browser's javascript console, type the following commands:
 
-#### logConsole - GUI for realtime log monitoring 
+##### logConsole - GUI for realtime log monitoring 
     remotejs.getJS({app: 'bang', js: 'logConsole.js'}, Ext.bang.util.run);
 
   
-#### broadcastMessage - messages all users with interface loaded
+##### broadcastMessage - messages all users with interface loaded
     remotejs.getJS({app: 'bang', js: 'broadcast.js'}, Ext.bang.util.run);
     
   
-#### logMessage - API for server logger
+##### logMessage - API for server logger
     remotejs.logMessage('log your message');    
     
     
-#### login - login mechanism
-##### With the mongo client, run the following command:
+##### login - login mechanism
+###### With the mongo client, run the following command:
     db.users.insert({ username: 'test', password: '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08'})
     
-##### With the web browser's console, run the following:
+###### With the web browser's console, run the following:
     remotejs.getJS({app: 'bang', js: 'login.js'}, Ext.bang.util.run);
     
     After the loginPanel loads, enter the user pass combination (test/test)
