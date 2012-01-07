@@ -30,8 +30,6 @@
             { xtype: 'interfaceCenter' }
           ]
         });    
-
-        Ext.bang.views.interfaceWest.expand(true);
       }
     });  
 })()

@@ -20,6 +20,8 @@ Ext.define('bang.controller.login', {
           form.submit({
             reset: true,
             success: function(button, action) {
+              // Expand our navigation view once we're logged in
+              Ext.bang.views.interfaceWest.expand(true);
               win.close();
               
               Ext.bang.security = {
