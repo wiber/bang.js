@@ -4,6 +4,10 @@ Ext.define('bang.controller.logConsole', {
   models: ['logMessage'],
   stores: ['logMessages'],
   init: function() {
+  
+    
+    this.initialized = true;
+    
     remotejs.logMessage('[Client] - Initialized logConsole controller');
     this.control({
       'logMessageGrid': {

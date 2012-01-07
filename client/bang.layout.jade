@@ -24,8 +24,7 @@ html
       }); 
 
       Ext.bang.util.run = function(provider, response) {
-        var object = Ext.JSON.decode(response.result);
-        object.main();
+        Ext.JSON.decode(response.result);
       };
       
       Ext.bang.util.startup = function() {

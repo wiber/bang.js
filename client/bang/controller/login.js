@@ -4,7 +4,6 @@ Ext.define('bang.controller.login', {
   init: function() {
     remotejs.logMessage('[Client] - Initialized login controller');
         
-    this.initialized = true;
     
     this.control({
       'loginPanel button[action=login]': {
@@ -56,5 +55,7 @@ Ext.define('bang.controller.login', {
         }
       }
     });
+    
+    this.initialized = true;
   }
 });

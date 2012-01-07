@@ -1,25 +1,19 @@
-{
-  main: function() {
+(function() {
 
-    if(Ext.bang.views.clientsConsole) {
-      return;
+    // Create the view
+    if(!Ext.bang.views.clientsConsole) {
+      var clientsConsole = Ext.create('bang.view.clientsGrid');
+      Ext.bang.views.clientsConsole = clientsConsole;
+      Ext.bang.views.interfaceCenter.add(clientsConsole).show(); 
     }
-
-
-    socket.on('newClient', function(data) {
-      var clients = Ext.data.StoreManager.lookup('clients');
-      clients.load();
-    });
-
-
-    Ext.bang.util.app.getController('clientsConsole').init();
-
-    remotejs.logMessage('[Client] - launching clientsConsole controller');
-
-    var clientsConsole = Ext.create('bang.view.clientsGrid');
-
-    Ext.bang.views.clientsConsole = clientsConsole;
-    Ext.bang.views.interfaceCenter.add(clientsConsole);
-
-  }
-}
+  
+    var controller = Ext.bang.util.app.getController('clientsConsole');
+    if(!controller.initialized) {      
+      controller.init();
+      
+      socket.on('newClient', function(data) {
+        var clients = Ext.data.StoreManager.lookup('clients');
+        clients.load();
+      });
+    } 
+})()

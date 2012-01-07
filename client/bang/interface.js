@@ -1,5 +1,4 @@
-{
-  main: function() {
+(function() {
   
     // Dont load this if viewport exists
     if(Ext.bang.views.viewport) {
@@ -20,7 +19,6 @@
       appFolder: 'bang',
       controllers: [ 'interface' ],
       launch: function() {
-        remotejs.logMessage('[Client] - launching interface application and controller');
 
         // Border Viewport
         Ext.bang.views.viewport = Ext.create('Ext.container.Viewport', {
@@ -35,8 +33,5 @@
 
         Ext.bang.views.interfaceWest.expand(true);
       }
-    });
-    
-     
-  }
-}
+    });  
+})()

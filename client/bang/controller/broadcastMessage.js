@@ -3,7 +3,9 @@ Ext.define('bang.controller.broadcastMessage', {
   views:  ['broadcastMessagePanel'],
   init: function() {
     remotejs.logMessage('[Client] - Initialized broadcastMessage controller');
-        
+    
+    this.initialized = true;
+    
     this.control({
       'broadcastMessagePanel button[action=submit]': {
         click: function(button) {

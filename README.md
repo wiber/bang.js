@@ -27,7 +27,8 @@
 * [ExtJS](http://www.sencha.com/products/extjs/) 4.0.7 (place it inside ./client)
     
 ## Installation
-* npm install
+    Inside the bang.js directory
+    npm install
 
 ## Settings
 
@@ -40,9 +41,9 @@
     node app.js
     
 ## Using bang
-    Bang is designed to utilize the current functionality:  realtime log console, 
-    system wide message broadcasting, and an API interface to the server side
-    logger functionality.
+    Bang is designed to utilize the current functionality:  realtime log console, realtime
+    authenticated socket client monitoring system wide message broadcasting, and an API 
+    interface to the server side logger functionality.
 
 To witness current functionality, load the logConsole first.
 

@@ -1,7 +1,7 @@
 Ext.define('bang.view.clientsGrid', {
   extend: 'Ext.grid.Panel',
   alias: 'widget.clientsGrid',
-  title: 'clientsGrid',
+  title: 'clientsConsole',
   initComponent: function() {    
     this.columns = [
       { text: 'timestamp',    dataIndex: 'timestamp', xtype: 'datecolumn', format:'Y-m-d - H:i:s', width: 200 },

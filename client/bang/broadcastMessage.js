@@ -1,14 +1,12 @@
-{
-  main: function() {
+(function() {
  
-    if(Ext.bang.views.broadcastMessagePanel) {
-      return;
+    if(!Ext.bang.views.broadcastMessagePanel) {
+      Ext.bang.views.broadcastMessagePanel = Ext.create('bang.view.broadcastMessagePanel');        
     }
  
-    Ext.bang.util.app.getController('broadcastMessage').init();
-    
-    remotejs.logMessage('[Client] - launching broadcast controller');
-          
-    Ext.bang.views.broadcastMessagePanel = Ext.create('bang.view.broadcastMessagePanel');    
-  }
-}
+    // Launch the controller if it hasnt been already
+    var controller = Ext.bang.util.app.getController('broadcastMessage');
+    if(!controller.initialized) {
+      controller.init();
+    }
+})()

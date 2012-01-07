@@ -5,6 +5,7 @@ Ext.define('bang.controller.clientsConsole', {
     stores: ['clients'],
     init: function() {
         remotejs.logMessage('[Client] - Initialized clients controller');
+        this.initalized = true,
         this.control({
             'clientsGrid': {
                 render: function() {
