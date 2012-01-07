@@ -66,8 +66,11 @@ To witness current functionality, load the logConsole first.
     
 ##### login - login mechanism
 ###### With the mongo client, run the following command:
-    db.users.insert({ username: 'test', password: '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08'})
-    
+    db.users.insert({ username: 'test', userHash: '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', password: '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08'})
+    db.users.insert({ username: 'test1', userHash: '1b4f0e9851971998e732078544c96b36c3d01cedf7caa332359d6f1d83567014', password: '1b4f0e9851971998e732078544c96b36c3d01cedf7caa332359d6f1d83567014'})
+    db.users.insert({ username: 'test2', userHash: '60303ae22b998861bce3b28f33eec1be758a213c86c93c076dbe9f558c11c752', password: '60303ae22b998861bce3b28f33eec1be758a213c86c93c076dbe9f558c11c752'})
+    db.users.insert({ username: 'test3', userHash: 'fd61a03af4f77d870fc21e05e7e80678095c92d808cfb3b5c279ee04c74aca13', password: 'fd61a03af4f77d870fc21e05e7e80678095c92d808cfb3b5c279ee04c74aca13'})
+
 ###### With the web browser's console, run the following:
     remotejs.getJS({app: 'bang', js: 'login.js'}, Ext.bang.util.run);
     
