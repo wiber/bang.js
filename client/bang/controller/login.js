@@ -45,10 +45,12 @@ Ext.define('bang.controller.login', {
       'loginPanel': {
         render: function(formPanel) {
           formPanel.down('form').on('beforeaction', function(form) {
-            var pwd    = Crypto.SHA256(form.getValues().password);            
+            var pwd      = Crypto.SHA256(form.getValues().password);
+            var userHash = Crypto.SHA256(form.getValues().username);     
                 
             form.setValues({
-              password: pwd
+              password: pwd,
+              username: userHash
             });
           });
         },
