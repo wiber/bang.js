@@ -60,14 +60,20 @@ To witness current functionality, load the logConsole first.
   type the following commands:
 
 ##### logConsole - GUI for realtime log monitoring 
-    remotejs.getJS({app: 'bang', js: 'logConsole.js'}, Ext.bang.util.run);
+    Ext.bang.util.getApp({ app: 'bang', js: 'logConsole.js' }, function(err, app) {
+      Ext.JSON.decode(app);
+    });
 
 ##### clientsConsole - GUI for realtime authenticated clients monitoring
-    remotejs.getJS({app: 'bang', js: 'clientsConsole.js'}, Ext.bang.util.run);
-  
+    Ext.bang.util.getApp({ app: 'bang', js: 'clientsConsole.js' }, function(err, app) {
+      Ext.JSON.decode(app);
+    });
+      
 ##### broadcastMessage - messages all users with interface loaded
-    remotejs.getJS({app: 'bang', js: 'broadcastMessage.js'}, Ext.bang.util.run);
-    
+    Ext.bang.util.getApp({ app: 'bang', js: 'broadcastMessage.js' }, function(err, app) {
+      Ext.JSON.decode(app);
+    });    
 ##### logMessage - API for server logger
-    remotejs.logMessage('log your message');    
-    
+    Ext.bang.util.getApp({ app: 'bang', js: 'logMessage.js' }, function(err, app) {
+      Ext.JSON.decode(app);
+    });    
