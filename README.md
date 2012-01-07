@@ -48,6 +48,12 @@
     db.users.insert({ username: 'test2', userHash: '60303ae22b998861bce3b28f33eec1be758a213c86c93c076dbe9f558c11c752', password: '60303ae22b998861bce3b28f33eec1be758a213c86c93c076dbe9f558c11c752'})
     db.users.insert({ username: 'test3', userHash: 'fd61a03af4f77d870fc21e05e7e80678095c92d808cfb3b5c279ee04c74aca13', password: 'fd61a03af4f77d870fc21e05e7e80678095c92d808cfb3b5c279ee04c74aca13'})
     
+    You now have 4 test uses with the following user/pass combinations:
+    test  / test
+    test1 / test1
+    test2 / test2
+    test3 / test3
+    
 ## Using bang
     Bang is designed to utilize the current functionality:  realtime log console, realtime
     authenticated socket client monitoring system wide message broadcasting, and an API 
