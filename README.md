@@ -46,7 +46,7 @@
 
 To witness current functionality, load the logConsole first.
 
-* Navigate to running instance with a web browser, [http://localhost:3069](http://localhost:3069/bang)
+* Navigate to running instance with a web browser, [http://localhost:3069/bang](http://localhost:3069/bang)
 * Using the web browser's javascript console, type the following commands:
 
 ##### logConsole - GUI for realtime log monitoring 
