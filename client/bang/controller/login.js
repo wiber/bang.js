@@ -37,7 +37,24 @@ Ext.define('bang.controller.login', {
               remotejs.logMessage('[Client] - ' + Ext.bang.security.username + ' has logged in, loading interface');
             },
             failure: function() {
-              Ext.Msg.alert('Failed Authentication');
+              var title = 'Failed Authentication',
+                  msg   = 'Bad user/pass combination';
+
+              win.close();                  
+              Ext.Msg.show({
+                title: title, 
+                msg: msg, 
+                buttons: Ext.Msg.OK,
+                icon: Ext.Msg.ERROR,
+                fn: function(btn, text) {
+                  if(btn == 'ok') {
+                    // Reload the login window
+                    Ext.bang.util.getApp({ app: 'bang', js: 'login.js' }, function(err, app) {
+                      Ext.JSON.decode(app);
+                    });                 
+                  }
+                }
+              });                            
             }
           });
         }
