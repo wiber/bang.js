@@ -29,10 +29,11 @@
 ## Installation
 * npm install
 
-## Settings.js
+## Settings
 
-* settings/db.js  configures mongoose connect string and other db related constants
-* settings/web.js configures web server constants
+* settings/db.js    configures mongoose connect string and other db related constants
+* settings/web.js   configures web server constants
+* settings/index.js configures path and auto loads db, web, and anything else in settings
 
 
 ## Start up
