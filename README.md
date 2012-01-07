@@ -55,15 +55,13 @@ To witness current functionality, load the logConsole first.
     remotejs.getJS({app: 'bang', js: 'broadcast.js'}, Ext.bang.util.run);
     
 #### login - login mechanism
-* With the mongo client, run the following command:
-  
+##### With the mongo client, run the following command:
     db.users.insert({ username: 'test', password: '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08'})
     
-* With the web browser's console, run the following:
-  
+##### With the web browser's console, run the following:
     remotejs.getJS({app: 'bang', js: 'login.js'}, Ext.bang.util.run);
     
-* After the loginPanel loads, enter the user pass combination (test/test)
+##### After the loginPanel loads, enter the user pass combination (test/test)
   
-#### logMessage - API for server logger
+##### logMessage - API for server logger
     remotejs.logMessage('log your message');
