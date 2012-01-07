@@ -5,7 +5,7 @@ Ext.define('bang.view.broadcastMessagePanel', {
   autoShow: true,
   requires: ['Ext.form.Panel'],
   initComponent: function() {    
-        
+    this.title = 'broadcastMessage';
     this.items = [
       {
         xtype: 'form',
@@ -17,7 +17,6 @@ Ext.define('bang.view.broadcastMessagePanel', {
           {
             xtype: 'textareafield',
             name : 'message',
-            fieldLabel: 'Message',
             width: 420,
             anchor: '100% 100%'
           }

@@ -1,7 +1,7 @@
 Ext.define('bang.view.logMessageGrid', {
   extend: 'Ext.grid.Panel',
   alias: 'widget.logMessageGrid',
-  title: 'logMessageGrid',
+  title: 'logConsole',
   initComponent: function() {    
     this.columns = [
       { text: 'date',    dataIndex: 'date', xtype: 'datecolumn', format:'Y-m-d - H:i:s', width: 200},
