@@ -1,6 +1,6 @@
-Ext.define('bang.view.broadcastPanel', {
+Ext.define('bang.view.broadcastMessagePanel', {
   extend: 'Ext.window.Window',
-  alias: 'widget.broadcastPanel',
+  alias: 'widget.broadcastMessagePanel',
   layout: 'fit',
   autoShow: true,
   requires: ['Ext.form.Panel'],

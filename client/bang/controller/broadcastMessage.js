@@ -1,11 +1,11 @@
-Ext.define('bang.controller.broadcast', {
+Ext.define('bang.controller.broadcastMessage', {
   extend: 'Ext.app.Controller',
-  views:  ['broadcastPanel'],
+  views:  ['broadcastMessagePanel'],
   init: function() {
-    remotejs.logMessage('[Client] - Initialized broadcast controller');
+    remotejs.logMessage('[Client] - Initialized broadcastMessage controller');
         
     this.control({
-      'broadcastPanel button[action=submit]': {
+      'broadcastMessagePanel button[action=submit]': {
         click: function(button) {
             
           var win    = button.up('window'),
@@ -18,9 +18,9 @@ Ext.define('bang.controller.broadcast', {
           });
         }
       },
-      'broadcastPanel': {
+      'broadcastMessagePanel': {
         close: function() {
-          delete(Ext.bang.views.broadcastPanel);
+          delete(Ext.bang.views.broadcastMessagePanel);
         }
       }
     });
