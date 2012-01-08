@@ -17,7 +17,7 @@
     Ext.bang.util.app = Ext.create('Ext.app.Application', {
       name: 'bang',
       appFolder: 'bang',
-      controllers: [ 'interface' ],
+      controllers: [ 'interface', 'naviTree' ],
       launch: function() {
 
         // Border Viewport

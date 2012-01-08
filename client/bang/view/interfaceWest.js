@@ -7,6 +7,8 @@ Ext.define('bang.view.interfaceWest', {
   requires: ['Ext.form.Panel'],
   
   initComponent: function() {    
+  
+    Ext.bang.views.naviTreePanel = Ext.create('bang.view.naviTreePanel');
 
     this.collapsible  = true;
     this.collapsed    = true;
@@ -14,6 +16,8 @@ Ext.define('bang.view.interfaceWest', {
     this.width        = 150;
     this.layout       = 'fit';
     this.animCollapse = 1000;
+    
+    this.items        = [Ext.bang.views.naviTreePanel];
 
     Ext.bang.views.interfaceWest = this;
 
