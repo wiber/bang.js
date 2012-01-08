@@ -63,8 +63,13 @@ get.init = function(bang) {
           var clients = mongoose.model('clients');
           clients.count({}, function(err, count) {
   
+            /**
+             * @todo refine this so username in clients is not necessary.
+             * @todo refine amount of detail returned
+             */
             var query = clients.find({});
             query.sort('timestamp', -1)
+            .populate('user_id')
             .limit(req.params.limit)
             .skip(req.params.start);
   
