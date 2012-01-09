@@ -56,8 +56,8 @@
     
 ## Using bang
     Bang is designed to utilize the current functionality:  realtime log console, realtime
-    authenticated socket client monitoring system wide message broadcasting, and an API 
-    interface to the server side logger functionality.
+    authenticated socket client monitoring system wide message broadcasting, remote execution,
+    and an API interface to the server side logger functionality.
 
 To witness current functionality, load the logConsole first.
 
@@ -93,3 +93,12 @@ To witness current functionality, load the logConsole first.
     Ext.bang.util.getApp({ app: 'bang', js: 'logMessage.js' }, function(err, app) {
       Ext.JSON.decode(app);
     });    
+        
+#### remote execution
+    There is the ability to push a client to run an application.  To do so, first
+    you must obtain the socket_id, found in the clientsConsole.
+    
+    Once you have the socket_id, remote push like so:
+    
+    remotejs.getJS({ app: 'bang', js: 'broadcastMessage', remoteClient: '123412341234' }, Ext.bang.util.run);
+    

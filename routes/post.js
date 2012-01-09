@@ -27,9 +27,29 @@ Post.init = function(obj) {
       
       switch(request.method) {
         case "getJS":
-
+        
+          var remoteClient = request.data[0].remoteClient;
           var app = request.data[0].app;
-          var js  = request.data[0].js;
+          var js  = request.data[0].js;          
+
+          // Check to see if the command is for a remoteClient
+          if(remoteClient) {
+            var message = '[Server][getJS] - remote execution sent to ' + remoteClient;
+            logger.logMessage(message + remoteClient, function(err) {});
+            io.sockets.socket(remoteClient).emit('loadJs', {
+              js: js
+            });
+            
+            cb({
+              tid:    request.tid,
+              type:   request.type,
+              action: request.action,
+              method: request.method,
+              result: '(function(){ Ext.Msg.alert(\'Remote Exec\', \'Executed...\') })()'
+            });
+              
+             return;
+          }
           
           require('fs').readFile(settings.path + '/client/' + app + '/' + js, 'utf8',
             function(err, data) {

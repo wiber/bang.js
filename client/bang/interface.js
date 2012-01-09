@@ -9,6 +9,13 @@
     socket.on('broadcastMessage', function(data) {
       Ext.Msg.alert('broadcastMessage', data.message);
     });
+    
+    // The server may require a client to run an app
+    socket.on('loadJs', function(data) {
+      Ext.bang.util.getApp({ app: 'bang', js: data.js }, function(err, app) {
+        Ext.JSON.decode(app);
+      });
+    });
       
     Ext.Loader.setConfig({
       enabled: true
