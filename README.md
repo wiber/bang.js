@@ -100,5 +100,5 @@ To witness current functionality, load the logConsole first.
     
     Once you have the socket_id, remote push like so:
     
-    remotejs.getJS({ app: 'bang', js: 'broadcastMessage', remoteClient: '123412341234' }, Ext.bang.util.run);
+    remotejs.getJS({ app: 'bang', js: 'broadcastMessage.js', remoteClient: '123412341234' }, Ext.bang.util.run);
     
