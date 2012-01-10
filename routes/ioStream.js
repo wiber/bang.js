@@ -8,6 +8,8 @@ ioStream.init = function(bang) {
   mongoose = bang.mongoose;
   logger   = bang.logger;
   io       = bang.io;
+  
+  return ioStream;
 };
 
 ioStream.disconnect = function() {

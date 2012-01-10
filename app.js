@@ -112,7 +112,7 @@ routes.init({
 });
 
 // Socket.io
-io.sockets.on('connection', routes.io.addRoutes);
+io.sockets.on('connection', routes.ioStream.addRoutes);
 
 /**
  * listen on the web Port

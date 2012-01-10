@@ -9,7 +9,8 @@ module.exports = {
       username:    { type: String },
       description: { type: String },
       email:       { type: String },
-      password:    { type: String }
+      password:    { type: String },
+      userHash:    { type: String }
     }));
   }
 }

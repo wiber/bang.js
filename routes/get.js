@@ -2,6 +2,67 @@ var express = require('express');
     
 var get = {};
 
+get.logMessages = function(logger, req, res) {
+
+  logger.getMessages(req.query, function(err, response) {
+    if(err) {
+      logger.logMessage(err, function() {});
+    }
+              
+    res.send(response);
+    return;
+  });
+};
+
+get.getClients = function(mongoose, req, res) {
+  var clients = mongoose.model('clients');
+  clients.count({}, function(err, count) {
+  
+  /**
+   * @todo refine this so username in clients is not necessary.
+   * @todo refine amount of detail returned
+   */
+  var query = clients.find({});
+  query.sort('timestamp', -1)
+  .populate('user_id')
+  .limit(req.params.limit)
+  .skip(req.params.start);
+  
+  query.exec(function(err, docs) {
+  
+  var response = {
+    results: count,
+    items: docs
+  };
+    
+  res.send(response);
+    });  
+  });
+};
+
+get.getUsers = function(mongoose, req, res) {
+  var users = mongoose.model('users');
+  users.count({}, function(err, count) {
+  
+  /**
+   * @todo refine amount of detail returned
+   */
+  var query = users.find({})
+  .limit(req.params.limit)
+  .skip(req.params.start);
+  
+  query.exec(function(err, docs) {
+  
+  var response = {
+    results: count,
+    items: docs
+  };
+    
+  res.send(response);
+    });  
+  });
+};
+
 get.init = function(bang) {
 
   var app      = bang.app,
@@ -40,51 +101,19 @@ get.init = function(bang) {
       // App bang
       case 'bang':
       
-        // Which component
+        // Which bang component
         switch(req.params.component) {
           case 'logMessages':
-            
-            // Get the messages, provide a callback that uses res
-
-            logger.getMessages(req.query, function(err, response) {
-              if(err) {
-                logger.logMessage(err, function() {});
-              }
-              
-              res.send(response);
-              return;
-            });
-            
+            get.logMessages(logger, req, res);
             break;
           
           case 'clients':
-            
-          // refactor this  
-          var clients = mongoose.model('clients');
-          clients.count({}, function(err, count) {
-  
-            /**
-             * @todo refine this so username in clients is not necessary.
-             * @todo refine amount of detail returned
-             */
-            var query = clients.find({});
-            query.sort('timestamp', -1)
-            .populate('user_id')
-            .limit(req.params.limit)
-            .skip(req.params.start);
-  
-            query.exec(function(err, docs) {
-  
-            var response = {
-            results: count,
-            items: docs
-            };
-    
-            res.send(response);
-            });  
-          });
-
+            get.getClients(mongoose, req, res);
             break;
+            
+          case 'users':
+            get.getUsers(mongoose, req, res);          
+            break;  
             
           default:
             logger.logMessage('unknown component ' + req.params.component, function(err, doc) {});
