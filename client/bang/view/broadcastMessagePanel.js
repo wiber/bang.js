@@ -24,6 +24,8 @@ Ext.define('bang.view.broadcastMessagePanel', {
       }
     ];
 
+    this.maximizable = true;
+    
     this.buttons = [
       {
         text: 'Submit Message',
@@ -32,8 +34,8 @@ Ext.define('bang.view.broadcastMessagePanel', {
       }
     ];    
     
-    this.width  = 492;
-    this.height = 550;
+    this.width  = 592;
+    this.height = 450;
     // this.callParent(arguments) is required.  Not clear in API
     this.callParent(arguments);
   }

@@ -7,9 +7,9 @@
     }   
     
     if(!Ext.bang.views.usersConsole) {
-      var clientsConsole = Ext.create('bang.view.usersGrid');
+      var usersConsole = Ext.create('bang.view.usersGrid');
 
       Ext.bang.views.usersConsole = usersConsole;
-      Ext.bang.views.interfaceCenter.add(usersConsole); 
+      Ext.bang.views.interfaceCenter.add(usersConsole).show(); 
     }    
-})
+})()
