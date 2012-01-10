@@ -15,7 +15,7 @@ Ext.define('bang.view.broadcastMessagePanel', {
         url: '/bang/broadcastMessage',
         items: [           
           {
-            xtype: 'textareafield',
+            xtype: 'htmleditor',
             name : 'message',
             width: 420,
             anchor: '100% 100%'
