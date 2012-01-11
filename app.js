@@ -44,7 +44,8 @@ db.init({
   settings: settings
 }, function(err) {
   if(err) {
-    console.log(err.msg);
+    console.log(err);
+    process.exit();
   }
 });
 
