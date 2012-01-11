@@ -1,7 +1,6 @@
 module.exports = {
-  init: function(bang, callback) {
-    var mongoose = bang.mongoose,
-        Schema   = mongoose.Schema,
+  init: function(mongoose, callback) {
+    var Schema   = mongoose.Schema,
         ObjectId = Schema.ObjectId;
     
   

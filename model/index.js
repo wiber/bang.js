@@ -1,11 +1,11 @@
 var model = {};
 
-model.init = function(bang, cb) {
+model.init = function(mongoose, cb) {
   
-  require('./users').init(bang);
-  require('./log_messages').init(bang);
-  require('./clients').init(bang);
-  require('./loaded_applications').init(bang);
+  require('./users').init(mongoose);
+  require('./log_messages').init(mongoose);
+  require('./clients').init(mongoose);
+  require('./loaded_applications').init(mongoose);
   
   cb();
 };

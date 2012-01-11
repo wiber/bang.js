@@ -25,24 +25,27 @@ var io  = require('socket.io').listen(app);
  * Initialize the logger.  init[obj, callback]
  * callback takes a function(err)
  */
-logger.init({ 
+logger.extend({ 
   settings: settings,
   mongoose: mongoose,
   io:       io
-}, function(err) {
+})
+.init(function(err) {
   if(err) {
     console.log(err.msg);
+    process.exit();
   }
 });
 
 /**
  * start up the database
  */
-db.init({ 
+db.extend({ 
   mongoose: mongoose, 
   logger:   logger, 
   settings: settings
-}, function(err) {
+})
+.init(function(err) {
   if(err) {
     console.log(err);
     process.exit();
@@ -53,14 +56,16 @@ db.init({
  * start up security
  *
  */
-security.init({ 
+security.extend({ 
   logger: logger, 
   settings: settings,
   mongoose: mongoose
-}, function(err) {
+})
+.init(function(err) {
   if(err) {
     logger.logMessage(err.msg);
-    console.log(err.msg);
+    console.log('security failed - exiting...');
+    process.exit();
   }
 });
 
