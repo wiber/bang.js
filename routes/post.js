@@ -84,12 +84,24 @@ Post.init = function(bang) {
         case "broadcastMessage":
           var data = request.data[0];
           
-          io.sockets.emit('broadcastMessage', {
-            message: data
-          });
+          if(data.remoteClient) {
+          
+            logger.logMessage('[Server][broadcastMessage][' 
+              + data.remoteClient + '] - ' + data, function() {});
+              
+            io.sockets.socket(data.remoteClient).emit('broadcastMessage', {
+              message: data.msg
+            });
 
-          logger.logMessage('[Server][broadcastMessage] - ' + data, function() {});
-          request.result = data;
+          } else {
+            io.sockets.emit('broadcastMessage', {
+              message: data.msg
+            });
+            
+            logger.logMessage('[Server][broadcastMessage] - ' + data.msg, function() {});
+          }
+
+          request.result = data.msg;
 
           cb(request);
           break;
