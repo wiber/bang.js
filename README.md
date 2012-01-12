@@ -71,6 +71,11 @@ To witness current functionality, load the logConsole first.
 * Using the web browser's javascript console, login with one of the available test users, and 
   type the following commands:
 
+##### chatConsole - GUI for realtime global chat
+    Ext.bang.util.getApp({ app: 'bang', js: 'chatConsole.js' }, function(err, app) {
+      Ext.JSON.decode(app);
+    });
+
 ##### logConsole - GUI for realtime log monitoring 
     Ext.bang.util.getApp({ app: 'bang', js: 'logConsole.js' }, function(err, app) {
       Ext.JSON.decode(app);
