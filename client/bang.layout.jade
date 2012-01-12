@@ -39,7 +39,21 @@ html
       
       socket.on('connection received', function(data) {
         Ext.bang.socket = data;
+        
+        if(Ext.bang.security.handshake) {
+          socket.emit('update handshake', { 
+            handshake: Ext.bang.security.handshake,
+            user_id: Ext.bang.security.user_id,
+            socket_id: Ext.bang.security.socket_id,
+            username: Ext.bang.security.username
+          });
+        }
       }); 
+      
+      socket.on('update handshake', function(data) {
+        Ext.bang.security.handshake = data.handshake;
+        Ext.bang.security.socket_id = data.socket_id;
+      });
 
       // Setup anonymous self executing function caching
       Ext.bang.apps.appNames   = []
