@@ -50,6 +50,9 @@ db.extend({
     console.log(err);
     process.exit();
   }
+  
+  logger.clearLogMessages(mongoose);
+
 });
 
 /**

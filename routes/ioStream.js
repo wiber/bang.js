@@ -64,7 +64,8 @@ ioStream.updateHandshake = function(data) {
       var client = new clients({
         handshake: newHandshake,
         timestamp: Date.now(),
-        socket_id: ioStream.socket.id        
+        socket_id: ioStream.socket.id,
+        username:  data.username   
       });
       
       client.save(function(err) {
@@ -97,14 +98,11 @@ ioStream.disconnect = function() {
         return;
       }
       
-      console.log(doc);
+      console.log(doc);      
       
-      // do a socket.on('connection received') client side
-      
-      
-      //doc.remove();
-      //io.sockets.emit('newClient', {});
-      //console.log(ioStream.socket.id + '.sid disconnected ');
+      doc.remove();
+      ioStream.io.sockets.emit('newClient', {});
+      console.log(ioStream.socket.id + '.sid disconnected ');
     });
 };
 
