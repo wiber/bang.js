@@ -6,6 +6,7 @@ model.init = function(mongoose, cb) {
   require('./log_messages').init(mongoose);
   require('./clients').init(mongoose);
   require('./loaded_applications').init(mongoose);
+  require('./chat_messages').init(mongoose);
   
   cb();
 };

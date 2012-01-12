@@ -9,7 +9,7 @@ Ext.define('bang.store.users', {
         read:    '/bang/users/read',
         create:  '/bang/users/create',
         update:  '/bang/users/update',
-        destroy: '/bang/users/'
+        destroy: '/bang/users/destroy'
       },
       type: 'ajax',
       reader: {

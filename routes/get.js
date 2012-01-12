@@ -14,6 +14,32 @@ get.logMessages = function(logger, req, res) {
   });
 };
 
+get.chatMessages = function(mongoose, req, res) {
+  var chatMessages = mongoose.model('chat_message');
+  chatMessages.count({}, function(err, count) {
+  
+  /**
+   * @todo refine this so username in clients is not necessary.
+   * @todo refine amount of detail returned
+   */
+  var query = chatMessages.find({});
+  query.sort('timestamp', -1)
+  .populate('user_id', ['username'])
+  .limit(req.params.limit)
+  .skip(req.params.start);
+  
+  query.exec(function(err, docs) {
+  
+  var response = {
+    results: count,
+    items: docs
+  };
+    
+  res.send(response);
+    });  
+  });
+};
+
 get.getClients = function(mongoose, req, res) {
   var clients = mongoose.model('clients');
   clients.count({}, function(err, count) {
@@ -115,8 +141,12 @@ get.init = function(bang) {
             get.getUsers(mongoose, req, res);          
             break;  
             
+          case 'chatMessages':
+            get.chatMessages(mongoose, req, res);
+            break;
+            
           default:
-            logger.logMessage('unknown component ' + req.params.component, function(err, doc) {});
+            logger.logMessage('[Server][Router] Bang READ - unknown request ' + req.params.component, function(err, doc) {});
             break;
         }
         break;

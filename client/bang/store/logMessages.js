@@ -9,7 +9,7 @@ Ext.define('bang.store.logMessages', {
         read:    '/bang/logMessages/read',
         create:  '/bang/logMessages/create',
         update:  '/bang/logMessages/update',
-        destroy: '/bang/logMessages/'
+        destroy: '/bang/logMessages/destry'
       },
       type: 'ajax',
       reader: {

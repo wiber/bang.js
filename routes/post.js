@@ -6,6 +6,7 @@ Post.init = function(bang) {
   var settings = bang.settings;
   var io       = bang.io;
   var security = bang.security;
+  var mongoose = bang.mongoose;
 
   logger.logMessage('[Server][routes] - Mapping posts', function(err, doc) {});
   
@@ -103,6 +104,32 @@ Post.init = function(bang) {
 
           request.result = data.msg;
 
+          cb(request);
+          break;
+          
+        case "chatMessage":
+          var data = request.data[0];
+          
+          if(data.msg) {
+            var message = '[Server][chatMessage][' + data.user_id + ']' + data.msg;
+            logger.logMessage(message, function() {});
+            
+            var chatMessages = mongoose.model('chat_message');
+            var chatMessage = new chatMessages({
+              msg:       data.msg,
+              user_id:   data.user_id,
+              timestamp: Date.now()
+            });
+            
+            chatMessage.save(function(err) {
+              if(err) {
+                logger.logMessage(err, function() {});
+              }
+            });
+            
+            request.result = data.msg;
+          }
+          
           cb(request);
           break;
   
