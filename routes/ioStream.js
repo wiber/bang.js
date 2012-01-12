@@ -41,7 +41,7 @@ ioStream.updateHandshake = function(data) {
   var clients = mongoose.model('clients');
   
   var query = { 
-    socket_id: data.socket_id,
+    socket_id: data.old_socket_id,
     handshake: data.handshake 
   }
 
@@ -53,7 +53,7 @@ ioStream.updateHandshake = function(data) {
     if(doc) {
       doc.handshake = newHandshake;
       doc.timestamp = Date.now();
-      doc.socket_id = ioStream.socket.id
+      doc.socket_id = data.new_socket_id
       
       doc.save(function(err) {
         if(err) {
@@ -64,7 +64,7 @@ ioStream.updateHandshake = function(data) {
       var client = new clients({
         handshake: newHandshake,
         timestamp: Date.now(),
-        socket_id: ioStream.socket.id,
+        socket_id: data.new_socket_id,
         username:  data.username   
       });
       

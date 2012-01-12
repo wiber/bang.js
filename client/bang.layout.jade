@@ -44,7 +44,8 @@ html
           socket.emit('update handshake', { 
             handshake: Ext.bang.security.handshake,
             user_id: Ext.bang.security.user_id,
-            socket_id: Ext.bang.security.socket_id,
+            old_socket_id: Ext.bang.security.socket_id,
+            new_socket_id: Ext.bang.socket.socket_id,
             username: Ext.bang.security.username
           });
         }
