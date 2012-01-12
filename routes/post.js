@@ -110,21 +110,32 @@ Post.init = function(bang) {
         case "chatMessage":
           var data = request.data[0];
           
+          if(!data.msg || !data.user_id || !data.username) {
+            logger.logMessage('[Server][chatMessage] - missing arguments', function() {});
+            cb(request);
+            return;
+          }
+          
           if(data.msg) {
-            var message = '[Server][chatMessage][' + data.user_id + ']' + data.msg;
+            var message = '[Server][chatMessage][' + data.user_id + '] -' + data.msg;
             logger.logMessage(message, function() {});
             
-            var chatMessages = mongoose.model('chat_message');
-            var chatMessage = new chatMessages({
+            var chatMessageObject = {
               msg:       data.msg,
+              username:  data.username,
               user_id:   data.user_id,
               timestamp: Date.now()
-            });
+            };
+                 
+            var chatMessages = mongoose.model('chat_message');
+            var chatMessage = new chatMessages(chatMessageObject);
             
             chatMessage.save(function(err) {
               if(err) {
                 logger.logMessage(err, function() {});
               }
+              
+              io.sockets.emit('newChatMessage', chatMessageObject);
             });
             
             request.result = data.msg;

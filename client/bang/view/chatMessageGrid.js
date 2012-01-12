@@ -5,7 +5,7 @@ Ext.define('bang.view.chatMessageGrid', {
   initComponent: function() {    
     this.columns = [
       { text: 'date',     dataIndex: 'timestamp', xtype: 'datecolumn', format:'m-d - H:i:s', width: 100},
-      { text: 'username', dataIndex: 'user_id.username', width: 125},
+      { text: 'username', dataIndex: 'username', width: 85},
       { text: 'message',  dataIndex: 'msg', flex: 1}
     ];
     

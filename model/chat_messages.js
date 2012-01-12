@@ -7,7 +7,7 @@ module.exports = {
       timestamp:  { type: Date     },
       user_id:    { type: ObjectId, ref: 'users' },
       username:   { type: String   },
-      msg:    { type: String   }
+      msg:        { type: String   }
     }));
   }
 }

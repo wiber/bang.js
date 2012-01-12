@@ -14,6 +14,7 @@ Ext.define('bang.controller.chatConsole', {
           remotejs.chatMessage({ 
             msg: textField.getValue(),
             user_id: Ext.bang.security.user_id,
+            username: Ext.bang.security.username,
             timestamp: Date.now()
           }, function() {
             clearTextField();
