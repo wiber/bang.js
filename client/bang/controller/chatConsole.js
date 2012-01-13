@@ -11,12 +11,15 @@ Ext.define('bang.controller.chatConsole', {
             textField.setValue("");
           };
           
-          remotejs.chatMessage({ 
-            msg: textField.getValue(),
-            user_id: Ext.bang.security.user_id,
-            username: Ext.bang.security.username,
-            timestamp: Date.now()
-          }, function() {
+          var chatMessageData = (function() {
+            return { 
+              msg: textField.getValue(),
+              security: Ext.bang.security,
+              timestamp: Date.now()
+            }            
+          })();
+                    
+          remotejs.chatMessage(chatMessageData, function() {
             clearTextField();
           });
         };

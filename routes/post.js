@@ -110,36 +110,47 @@ Post.init = function(bang) {
         case "chatMessage":
           var data = request.data[0];
           
-          if(!data.msg || !data.user_id || !data.username) {
+          if(!data.msg || !data.security.handshake) {
             logger.logMessage('[Server][chatMessage] - missing arguments', function() {});
             cb(request);
             return;
           }
-          
-          if(data.msg) {
-            var message = '[Server][chatMessage][' + data.user_id + '] -' + data.msg;
-            logger.logMessage(message, function() {});
+
+          security.authenticateHandshake({
+            username: data.security.userHash,
+            handshake: data.security.handshake
+          }, function(err, user) {
+                // if we have an error, give the err in the response
+            if(err) {
+              request.result = '(function(){ Ext.Msg.alert(\'Failed\', \'Failed to authorize action...\') })()'
+              cb(request);
+              return;
+            } else {
+              if(data.msg) {
+                var message = '[Server][chatMessage][' + data.user_id + '] -' + data.msg;
+                logger.logMessage(message, function() {});
             
-            var chatMessageObject = {
-              msg:       data.msg,
-              username:  data.username,
-              user_id:   data.user_id,
-              timestamp: Date.now()
-            };
+                var chatMessageObject = {
+                  msg:       data.msg,
+                  username:  data.security.username,
+                  user_id:   data.security.user_id,
+                  timestamp: Date.now()
+                };
                  
-            var chatMessages = mongoose.model('chat_message');
-            var chatMessage = new chatMessages(chatMessageObject);
+                var chatMessages = mongoose.model('chat_message');
+                var chatMessage = new chatMessages(chatMessageObject);
             
-            chatMessage.save(function(err) {
-              if(err) {
-                logger.logMessage(err, function() {});
-              }
+                chatMessage.save(function(err) {
+                  if(err) {
+                    logger.logMessage(err, function() {});
+                  }
               
-              io.sockets.emit('newChatMessage', chatMessageObject);
-            });
-            
-            request.result = data.msg;
-          }
+                  io.sockets.emit('newChatMessage', chatMessageObject);
+                });
+                request.result = data.msg;
+              }
+            }
+          });
           
           cb(request);
           break;
