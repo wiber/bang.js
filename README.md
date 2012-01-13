@@ -55,7 +55,7 @@
     db.users.insert({ username: 'test5', userHash: 'a140c0c1eda2def2b830363ba362aa4d7d255c262960544821f556e16661b6ff', password: 'a140c0c1eda2def2b830363ba362aa4d7d255c262960544821f556e16661b6ff'})
     db.users.insert({ username: 'test6', userHash: 'ed0cb90bdfa4f93981a7d03cff99213a86aa96a6cbcf89ec5e8889871f088727', password: 'ed0cb90bdfa4f93981a7d03cff99213a86aa96a6cbcf89ec5e8889871f088727'})
 
-    You now have 4 test uses with the following user/pass combinations:
+    You now have test users with the following user/pass combinations:
     test  / test
     test1 / test1
     test2 / test2
