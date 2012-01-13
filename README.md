@@ -13,6 +13,10 @@
 	The server side is organized by lib, model, routes, and settings each having 
 	their own directories.  Each defined component is loaded modularly with the 
 	use of NodeJS module export concept.
+	
+	This application framework's front end works on any web browser on any operating
+	system, while the back end server works on any operating system including windows.
+	The entire goal of this project is to be open, universal, and reusable.
 
 ## Features
 * [Jade](http://jade-lang.com/) for a robust, elegant, feature rich template engine
