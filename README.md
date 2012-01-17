@@ -26,7 +26,7 @@
 * Crypto for client side encryption
     
 ## Requires
-* [NodeJS](http://nodejs.org/) 0.6.6
+* [NodeJS](http://nodejs.org/) 0.6.7
 * [MongoDB](http://www.mongodb.org/) 2.0.2
 * [ExtJS](http://www.sencha.com/products/extjs/) 4.0.7 (place it inside ./client)
     
@@ -66,8 +66,8 @@
     
 ## Using bang
     Bang is designed to utilize the current functionality:  realtime log console, realtime
-    authenticated socket client monitoring system wide message broadcasting, remote execution,
-    and an API interface to the server side logger functionality.
+    authenticated socket client monitoring, realtime system wide message broadcasting, remote execution,
+    realtime IRC like chat, and an API interface to the server side logger functionality.
 
 To witness current functionality, load the logConsole first.
 
