@@ -15,7 +15,7 @@ Ext.define('bang.view.chatMessageGrid', {
     this.store = Ext.create('bang.store.chatMessages');
     
     this.tbar = [
-      { xtype: 'textfield', flex: 1, id: 'message', enableKeyEvents: true }
+      { xtype: 'textfield', flex: 1, id: 'bang.view.chatMessageGrid.message', enableKeyEvents: true }
     ];
     
     this.dockedItems = [

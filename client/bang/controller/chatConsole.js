@@ -27,7 +27,12 @@ Ext.define('bang.controller.chatConsole', {
         remotejs.logMessage('[Client] - Initialized chat controller');
         this.initalized = true,
         this.control({
-            'chatMessageGrid textfield[id=message]': {
+            'chatMessageGrid': {
+              render: function() {
+                Ext.getCmp('bang.view.chatMessageGrid.message').focus(true, 100);
+              }
+            },
+            'chatMessageGrid textfield[id=bang.view.chatMessageGrid.message]': {
               keyup: function(textfield, event) {
                 if(event.getKey()==13) {      
                   if(textfield.getValue() === "") {

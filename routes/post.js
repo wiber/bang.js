@@ -127,7 +127,7 @@ Post.init = function(bang) {
               return;
             } else {
               if(data.msg) {
-                var message = '[Server][chatMessage][' + data.user_id + '] -' + data.msg;
+                var message = '[Server][chatMessage][' + data.security.username + '] - ' + data.msg;
                 logger.logMessage(message, function() {});
             
                 var chatMessageObject = {
