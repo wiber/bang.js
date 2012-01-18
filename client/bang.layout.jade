@@ -74,7 +74,11 @@ html
           appKey = Ext.bang.apps.appNames.push(request.js);
 
           // Get the string        
-          remotejs.getJS({ app: request.app, js: request.js }, function(provider, response) {
+          remotejs.getJS({ 
+            app: request.app, 
+            js: request.js, 
+            security: Ext.bang.security
+          }, function(provider, response) {
             Ext.bang.apps.appStrings.push(response.result);
             cb(undefined, response.result); 
             

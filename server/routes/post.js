@@ -112,9 +112,17 @@ Post.init = function(bang) {
           
           if(!data.msg || !data.security.handshake) {
             logger.logMessage('[Server][chatMessage] - missing arguments', function() {});
+            delete(request.data);
             cb(request);
             return;
           }
+          
+          var response = {
+            tid:    request.tid,
+            type:   request.type,
+            action: request.action,
+            method: request.method
+          };
 
           security.authenticateHandshake({
             username: data.security.userHash,
@@ -122,9 +130,9 @@ Post.init = function(bang) {
           }, function(err, user) {
                 // if we have an error, give the err in the response
             if(err) {
-              request.result = '(function(){ Ext.Msg.alert(\'Failed\', \'Failed to authorize action...\') })()'
-              cb(request);
-              return;
+              response.err      = err.msg;
+              logger.logMessage('bad handshake ' + data.security.username, function() {});
+              cb(response);
             } else {
               if(data.msg) {
                 var message = '[Server][chatMessage][' + data.security.username + '] - ' + data.msg;
@@ -147,12 +155,12 @@ Post.init = function(bang) {
               
                   io.sockets.emit('newChatMessage', chatMessageObject);
                 });
-                request.result = data.msg;
+                response.result = data.msg;
+                cb(response);                
               }
             }
           });
-          
-          cb(request);
+        
           break;
   
         default:
@@ -180,7 +188,7 @@ Post.init = function(bang) {
         res.send(response);
       });
     } else {
-      rpc(req.body, function(data) {
+      rpc(req.body, function(data) {       
         res.send(data);
       });
     }    

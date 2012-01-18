@@ -19,7 +19,8 @@ Ext.define('bang.controller.chatConsole', {
             }            
           })();
                     
-          remotejs.chatMessage(chatMessageData, function() {
+          remotejs.chatMessage(chatMessageData, function(p, res) {
+            console.log(res);
             clearTextField();
           });
         };

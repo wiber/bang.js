@@ -1,5 +1,3 @@
-var express = require('express');
-    
 var get = {};
 
 get.logMessages = function(logger, req, res) {
@@ -98,6 +96,7 @@ get.init = function(bang) {
   
   logger.logMessage('[Server][routes] - Mapping Gets', function(err, doc) {});
   
+  // GET '/'
   app.get('/', function(req, res){
     res.render('index', { 
   	  title: 'Bang.js',

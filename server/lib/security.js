@@ -56,7 +56,7 @@ Security.authenticateHandshake = function(request, cb) {
     
     // No user, callback an err
     if(!client) {
-      cb({ msg: 'incorrect user/pass combination' });
+      cb({ msg: 'invalid handshake' });
       return;
     }
    
