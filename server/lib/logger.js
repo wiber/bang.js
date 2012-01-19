@@ -1,5 +1,7 @@
 var logger = {};
 
+logger.logQueue = Array();
+
 logger.extend = function(bang) {
   logger.fs       = require('fs');
   logger.util     = require('util');
@@ -13,7 +15,7 @@ logger.extend = function(bang) {
 
 // initialize the logger, add needed components
 logger.init = function(cb) {
-  console.log('[Console] - Logger Initialized'); 
+  logger.logMessage('[Console] - Logger Initialized', function() {}); 
 };
 
 logger.clearLogMessages = function(mongoose) {
@@ -27,6 +29,15 @@ logger.clearLogMessages = function(mongoose) {
   
 };
 
+logger.purgeQueue = function(logQueue) {
+  if(logQueue.length > 0) {
+    var queueItem = logQueue.pop();
+    logger.logMessage('c' + queueItem, function() {});
+  }  
+  
+  return logger;
+};
+
 /**
  * logMessage will log a message to the database and update socket users
  *
@@ -35,6 +46,22 @@ logger.clearLogMessages = function(mongoose) {
  * @return { Object } logger
  */
 logger.logMessage = function(msg, cb) {
+
+  // Queue up logMessages if mongoose isnt ready yet
+  if(!logger.mongoose) {
+    
+    var msgId = logger.logQueue.push(msg);
+  
+    // Give queued msgId
+    cb(undefined, msgId);
+    
+    // Give back parent, allow chaining
+    return logger;
+  } else {
+    if(logger.mongoose.model('log_messages')) {
+      logger.purgeQueue(logger.logQueue);
+    }
+  }
 
   var logMessages = logger.mongoose.model('log_messages');
    

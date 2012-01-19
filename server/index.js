@@ -57,23 +57,6 @@ server.loadLibraries = function() {
   server.db       = require('./lib/db');
   
   /**
-   * Initialize the logger.  init[obj, callback]
-   * callback takes a function(err)
-   */
-  server.logger.extend({ 
-    settings: settings,
-    mongoose: server.mongoose,
-    io:       server.io
-  })
-  .init(function(err) {
-    if(err) {
-      console.log(err.msg);
-      process.exit();
-    }
-  });  
-   
-  
-  /**
    * start up the database
    */
   server.db.extend({ 
@@ -87,16 +70,36 @@ server.loadLibraries = function() {
       process.exit();
     }
   
-    server.logger.clearLogMessages(server.mongoose);
+  
+  /**
+   * Initialize the logger.  init[obj, callback]
+   * callback takes a function(err)
+   */
+  server.logger.extend({ 
+    settings: server.settings,
+    mongoose: server.mongoose,
+    io:       server.io
+  })
+  .init(function(err) {
+    if(err) {
+      console.log(err.msg);
+      process.exit();
+    }
+    
+  });    
+  
 
   });
+    
+
+   
 
   /**
    * start up security
    *
    */
   server.security.extend({ 
-    logger: server.logger, 
+    logger:   server.logger, 
     settings: server.settings,
     mongoose: server.mongoose
   })

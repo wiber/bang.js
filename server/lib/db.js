@@ -36,7 +36,7 @@ db.init = function(cb) {
     if(err) {
       cb(err);
     }
-    
+
     db.logger.logMessage('[Server][db] - schemas loaded', function(err, doc) {});
   });
   
@@ -47,7 +47,7 @@ db.init = function(cb) {
 
 db.loadSchema = function(cb) {
 
-  var model = require(db.settings.path + '/model');
+  var model = require(__dirname + '/../model');
   model.init(db.mongoose, function(err) {
     if(err) {
       db.logger.logMessage('[Server][db][model] - ' + err.msg, function(err, doc) {});
