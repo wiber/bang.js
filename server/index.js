@@ -70,30 +70,25 @@ server.loadLibraries = function() {
       process.exit();
     }
   
-  
-  /**
-   * Initialize the logger.  init[obj, callback]
-   * callback takes a function(err)
-   */
-  server.logger.extend({ 
-    settings: server.settings,
-    mongoose: server.mongoose,
-    io:       server.io
-  })
-  .init(function(err) {
-    if(err) {
-      console.log(err.msg);
+    /**
+     * Initialize the logger.  init[obj, callback]
+     * callback takes a function(err)
+     */
+    server.logger.extend({ 
+      settings: server.settings,
+      mongoose: server.mongoose,
+      io:       server.io
+    })
+    .init(function(err) {
+      if(err) {
+        console.log(err.msg);
       process.exit();
-    }
+      }
     
-  });    
-  
+    });  
 
   });
     
-
-   
-
   /**
    * start up security
    *
