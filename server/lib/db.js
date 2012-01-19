@@ -38,9 +38,9 @@ db.init = function(cb) {
     }
 
     db.logger.logMessage('[Server][db] - schemas loaded', function(err, doc) {});
+    cb();
   });
   
-  cb();
   
   return db;
 };
