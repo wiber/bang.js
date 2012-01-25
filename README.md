@@ -26,25 +26,18 @@
 * Crypto for client side encryption
     
 ## Requires
-* [NodeJS](http://nodejs.org/) 0.6.7
+* [NodeJS](http://nodejs.org/) 0.6.8
 * [MongoDB](http://www.mongodb.org/) 2.0.2
 * [ExtJS](http://www.sencha.com/products/extjs/) 4.0.7 (place it inside ./client)
-    
+     
+##  GitHub Repo Branches
+* [master](https://github.com/mikekunze/bang.js) has the most stable code base  
+* [bang.js-dev](https://github.com/mikekunze/bang.js/tree/bang.js-dev) has the most unstable and experimental code
+   
 ## Installation
-    Inside the bang.js directory
     npm install
-
-## Settings
-
-* settings/db.js    configures mongoose connect string and other db related constants
-* settings/web.js   configures web server constants
-* settings/index.js configures path and auto loads db, web, and anything else in settings
-
-
-## Start up
-    node app.js
-
-## Add mongo users
+    
+### Add mongo users
 ###### With the mongo client, run the following command:
     use bang
     db.users.insert({ username: 'test', userHash: '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', password: '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08'})
@@ -62,7 +55,16 @@
     test3 / test3
     test4 / test4
     test5 / test5
-    test6 / test6
+    test6 / test6    
+
+## Settings
+* settings/db.js    configures mongoose connect string and other db related constants
+* settings/web.js   configures web server constants
+* settings/index.js configures path and auto loads db, web, and anything else in settings
+
+
+## Start up
+    node app.js
     
 ## Using bang
     Bang is designed to utilize the current functionality:  realtime log console, realtime
