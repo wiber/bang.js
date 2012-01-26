@@ -33,8 +33,14 @@
 ##  GitHub Repo Branches
 * [master](https://github.com/mikekunze/bang.js) has the most stable code base  
 * [bang.js-dev](https://github.com/mikekunze/bang.js/tree/bang.js-dev) has the most unstable and experimental code
+
+## GitHub Wiki 
+* Bang.js Server CLI interface
+* Bang.js Client CLI interface (via web browser console)
    
 ## Installation
+    git clone https://mikekunze@github.com/mikekunze/bang.js.git
+    cd bang.js
     npm install
     
 ### Add mongo users
@@ -64,7 +70,7 @@
 
 
 ## Start up
-    node app.js
+    node bang.js
     
 ## Using bang
     Bang is designed to utilize the current functionality:  realtime log console, realtime
