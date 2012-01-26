@@ -4,6 +4,10 @@
  * Author: Mike Kunze
  * GPL 3.0
  */
-var bangServer = require('./server').start();
+require('./server').configure(function() {
+  console.log('server configured');
+})
+.start();
+
 
 
