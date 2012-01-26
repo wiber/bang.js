@@ -69,10 +69,25 @@
 * settings/index.js configures path and auto loads db, web, and anything else in settings
 
 
-## Start up
+## Start up bang.js
+
+### no interactive debugging
     node bang.js
     
-## Using bang
+### interactive debugging
+    node
+    > var server = require('./bang');
+
+    > server.settings;  // settings object
+    > server.db         // db object containing db functions
+    > server.logger     // logger object containing logging functionality
+    
+    // Log a message to the log_messages collection:
+    > server.logger.logMessage('hey, our servers are belong to us', function () {
+        console.log('#    logger succeeds');        
+      });
+    
+## Using bang Client
     Bang is designed to utilize the current functionality:  realtime log console, realtime
     authenticated socket client monitoring, realtime system wide message broadcasting, remote execution,
     realtime IRC like chat, and an API interface to the server side logger functionality.
@@ -115,7 +130,9 @@ To witness current functionality, load the logConsole first.
     
     
 ##### logMessage - API for server logger
-    remotejs.logMessage('message', function() {});    
+    remotejs.logMessage('message', function() {
+      console.log('logger succeeds');
+    });    
         
 #### remote execution
     There is the ability to push a client to run an application.  To do so, first
