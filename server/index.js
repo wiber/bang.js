@@ -1,52 +1,53 @@
 var server = {};
 
+server.configure = function(cb) {
+
+
+  server.mongoose = require('mongoose');
+  server.settings = require('./settings');
+  server.routes   = require('./routes'); 
+
+
+  server.app = server.configureApp();
+  server.io  = require('socket.io').listen(server.app);
+  server.io.set('transports', ['websocket', 'xhr-polling']);
+
+  server.loadLibraries();
+
+  console.log('find apps in ./server');
+  
+  cb();
+  return server;
+};
+
 /**
  * start will bootup the server
  */
 server.start = function() {
-
-  server.mongoose = require('mongoose');
-  server.settings = require('./settings');
-  
-  var routes   = require('./routes'); 
-
-
-  var app = server.configureApp();
-  server.io  = require('socket.io').listen(app);
-
-  server.loadLibraries();
-
-
-  /**
-   * start up the app and io services
-   * 
-   */
-  server.io.set('transports', ['websocket', 'xhr-polling']);
-
   /**
    * add the routes
    */
-  routes.init({
+  server.routes.init({
     mongoose: server.mongoose,
     logger:   server.logger,
     settings: server.settings,
     security: server.security,
-    app:      app,
+    app:      server.app,
     io:       server.io
   });
 
   // Socket.io
-  server.io.sockets.on('connection', routes.ioStream.addRoutes);
+  server.io.sockets.on('connection', server.routes.ioStream.addRoutes);
 
   /**
    * listen on the web Port
    */
-  app.listen(server.settings.web.port);
-  server.logger.logMessage('[Server] - listening on port ' + app.address().port + ' in ' + app.settings.env + ' mode', function(err, doc) {});
+  server.app.listen(server.settings.web.port);
+  server.logger.logMessage('[Server] - listening on port ' 
+    + server.app.address().port + ' in ' 
+    + server.app.settings.env   + ' mode', function(err, doc) {});
 
-
-
-  console.log('find apps in ./server');
+  return server;
 };
 
 server.loadLibraries = function() {
