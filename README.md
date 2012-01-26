@@ -35,8 +35,8 @@
 * [bang.js-dev](https://github.com/mikekunze/bang.js/tree/bang.js-dev) has the most unstable and experimental code
 
 ## GitHub Wiki 
-* Bang.js Server CLI interface
-* Bang.js Client CLI interface (via web browser console)
+* [Bang.js Server CLI interface](https://github.com/mikekunze/bang.js/wiki/Bang.js-Server-CLI-interface)
+* [Bang.js Client CLI interface](Bang.js Client CLI interface)  (via web browser console)
    
 ## Installation
     git clone https://mikekunze@github.com/mikekunze/bang.js.git
