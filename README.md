@@ -74,7 +74,7 @@
 ### no interactive debugging
     node bang.js
     
-### interactive debugging
+### interactive debugging with tab completion 
     node
     > var server = require('./bang');
 
