@@ -1,12 +1,12 @@
 var Post = {};
 
-Post.init = function(bang) {
-  var app      = bang.app;
-  var logger   = bang.logger;
-  var settings = bang.settings;
-  var io       = bang.io;
-  var security = bang.security;
-  var mongoose = bang.mongoose;
+Post.init = function(server) {
+  var app      = server.app;
+  var logger   = server.logger;
+  var settings = server.settings;
+  var io       = server.io;
+  var security = server.security;
+  var mongoose = server.mongoose;
 
   logger.logMessage('[Server][routes] - Mapping posts', function(err, doc) {});
   
