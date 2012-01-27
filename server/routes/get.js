@@ -155,17 +155,6 @@ get.init = function(bang) {
         break;
     }
   });
-  
-  // GET '/:app/:component/:js'
-  /**
-   * @todo add security / check for app, component and js roles&permissions / filter req.params
-   */
-  app.get('/:app/:component/:js', function(req, res) {
-    var fullPath = settings.path + '/client/' + req.params.app 
-      + '/' + req.params.component + '/' + req.params.js;
-            
-    res.sendfile(fullPath);
-  });
 }
 
 module.exports = get;

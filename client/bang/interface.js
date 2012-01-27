@@ -23,7 +23,7 @@
       
     Ext.bang.util.app = Ext.create('Ext.app.Application', {
       name: 'bang',
-      appFolder: 'bang',
+      appFolder: 'client/bang',
       controllers: [ 'interface', 'naviTree' ],
       launch: function() {
 

@@ -4,13 +4,13 @@ module.exports = {
   put:  require('./put'), 
   ioStream:   require('./ioStream'),
   
-  init: function(bang) {
+  init: function(server) {
   
     // Add the ioStream to bang
-    this.ioStream.init(bang);
+    this.ioStream.init(server);
     
-    this.post.init(bang);
-    this.get.init(bang);
-    this.put.init(bang);
+    this.post.init(server);
+    this.get.init(server);
+    this.put.init(server);
   }
 }

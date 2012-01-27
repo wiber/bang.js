@@ -7,7 +7,9 @@
 module.exports = require('./server').configure(function() {
   console.log('server configured');
 })
-.start();
+.start(function() {
+  console.log('server.start()');
+});
 
 
 

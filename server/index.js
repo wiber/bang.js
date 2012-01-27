@@ -1,20 +1,30 @@
 var server = {};
 
+/**
+ * server.configure will do the most important server configurations
+ * this must be run before server.start()
+ *
+ * @param {Function} cb callback takes no params
+ */
 server.configure = function(cb) {
 
 
   server.mongoose = require('mongoose');
   server.settings = require('./settings');
-  server.routes   = require('./routes'); 
+  
+  // Require Apps
+  server.bang     = require('./bang');
 
-
-  server.app = server.configureApp();
-  server.io  = require('socket.io').listen(server.app);
+  // Require Default Routes
+  server.routes   = require('./routes');
+  
+  // Configure server web engine and socket.io
+  server.app      = server.configureApp();
+  server.io       = require('socket.io').listen(server.app);
   server.io.set('transports', ['websocket', 'xhr-polling']);
 
+  // Load server libraries: security, db, logger, etc
   server.loadLibraries();
-
-  console.log('find apps in ./server');
   
   cb();
   return server;
@@ -23,18 +33,15 @@ server.configure = function(cb) {
 /**
  * start will bootup the server
  */
-server.start = function() {
+server.start = function(cb) {
   /**
    * add the routes
    */
-  server.routes.init({
-    mongoose: server.mongoose,
-    logger:   server.logger,
-    settings: server.settings,
-    security: server.security,
-    app:      server.app,
-    io:       server.io
+  server.bang.init(server, function() {
+    console.log('server.bang.init() completed');
   });
+  
+  server.routes.init(server);
 
   // Socket.io
   server.io.sockets.on('connection', server.routes.ioStream.addRoutes);
@@ -47,6 +54,7 @@ server.start = function() {
     + server.app.address().port + ' in ' 
     + server.app.settings.env   + ' mode', function(err, doc) {});
 
+  cb();
   return server;
 };
 
@@ -58,14 +66,10 @@ server.loadLibraries = function() {
   server.db       = require('./lib/db');
   
   /**
-   * start up the database
+   * start up the database.  The logger is currently an async dependency of db,
+   * thus why its loaded in here
    */
-  server.db.extend({ 
-    mongoose: server.mongoose, 
-    logger:   server.logger, 
-    settings: server.settings
-  })
-  .init(function(err) {
+  server.db.init(server, function(err) {
     if(err) {
       console.log(err);
       process.exit();
@@ -75,12 +79,7 @@ server.loadLibraries = function() {
      * Initialize the logger.  init[obj, callback]
      * callback takes a function(err)
      */
-    server.logger.extend({ 
-      settings: server.settings,
-      mongoose: server.mongoose,
-      io:       server.io
-    })
-    .init(function(err) {
+    server.logger.extend(server).init(function(err) {
       if(err) {
         console.log(err.msg);
       process.exit();
@@ -92,20 +91,22 @@ server.loadLibraries = function() {
     
   /**
    * start up security
-   *
    */
-  server.security.extend({ 
-    logger:   server.logger, 
-    settings: server.settings,
-    mongoose: server.mongoose
-  })
-  .init(function(err) {
+  server.security.extend(server).init(function(err) {
     if(err) {
       server.logger.logMessage(err.msg);
       console.log('security failed - exiting...');
       process.exit();
     }
   });  
+  
+  /**
+   * This is needed once the server already has the libraries loaded
+   * @todo - expand on this.  Maybe we want to add additional libraries at runtime
+   */
+  server.loadLibraries = function() {
+    return { msg: 'libraries have already been loaded' };
+  };
 };
 
 /**
@@ -136,8 +137,18 @@ server.configureApp = function() {
       }
     }));
     app.use(app.router);
-    app.use('/extjs', express.static(__dirname + '/../client/extjs'));
-    app.use('/img',   express.static(__dirname + '/../client/img'));
+    
+    // Setup bang's client repo of static JS files
+    // @todo - refine this
+    // @todo - minify static JS
+    app.use('/client/bang/controller', express.static(__dirname + '/../client/bang/controller'));
+    app.use('/client/bang/model',      express.static(__dirname + '/../client/bang/model'));
+    app.use('/client/bang/store',      express.static(__dirname + '/../client/bang/store'));
+    app.use('/client/bang/view',       express.static(__dirname + '/../client/bang/view'));
+            
+    // Core static routes
+    app.use('/extjs',  express.static(__dirname + '/../client/extjs'));
+    app.use('/img',    express.static(__dirname + '/../client/img'));
     app.use(express.static(__dirname + '/../client/public'));
   });
 

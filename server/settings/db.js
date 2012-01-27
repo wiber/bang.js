@@ -1,1 +1,1 @@
-exports.connect   = 'mongodb://localhost/bang';
+exports.connect   = 'mongodb://192.168.3.5/bang';
