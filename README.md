@@ -24,7 +24,7 @@
 * [Mongoose](http://mongoosejs.com/) for a MongoDB object modeling tool designed to work in an asynchronous environment.
 * [Socket.io](http://socket.io) for realtime transport mechanisms
 * [Coffee-Script](http://coffeescript.org/) for cleaner code flow
-* Crypto for client side encryption
+* [Crypto](http://code.google.com/p/crypto-js/) for client side encryption
     
 ## Requires
 * [NodeJS](http://nodejs.org/) 0.6.8
