@@ -74,7 +74,7 @@
 ## Start up bang.js
 
 ### no interactive debugging
-    coffee bang.coffee
+    coffee bang
     
 ### interactive debugging with tab completion 
     coffee
