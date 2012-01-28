@@ -1,16 +1,6 @@
 // Scoped
 var db = {};
 
-db.extend = function(bang) {
-
-  db.mongoose      = bang.mongoose;
-  db.logger        = bang.logger;
-  db.settings      = bang.settings.db;
-  db.settings.path = bang.settings.path;
-  
-  return db;
-};
-
 /**
  * db.init will connect to the database, load the schemas, and run a callback
  * 
@@ -20,24 +10,24 @@ db.extend = function(bang) {
  *    bang.settings
  * @return {boolean} success or failure of running the function
  */
-db.init = function(cb) {
+db.init = function(server, cb) {
   
-  db.mongoose.connect(db.settings.connect, function(err) {
+  server.mongoose.connect(server.settings.db.connect, function(err) {
     if(err) {
       cb(err);
     }
   });
   
-  db.mongoose.connection.on('open', function() {
-    db.logger.logMessage('[Server][db] - mongoose opened', function(err, doc) {});
+  server.mongoose.connection.on('open', function() {
+    server.logger.logMessage('[Server][db] - mongoose opened', function(err, doc) {});
   });
   
-  db.loadSchema(function(err) {
+  db.loadSchema(server, function(err) {
     if(err) {
       cb(err);
     }
 
-    db.logger.logMessage('[Server][db] - schemas loaded', function(err, doc) {});
+    server.logger.logMessage('[Server][db] - schemas loaded', function(err, doc) {});
     cb();
   });
   
@@ -45,15 +35,15 @@ db.init = function(cb) {
   return db;
 };
 
-db.loadSchema = function(cb) {
+db.loadSchema = function(server, cb) {
 
   var model = require(__dirname + '/../model');
-  model.init(db.mongoose, function(err) {
+  model.init(server.mongoose, function(err) {
     if(err) {
-      db.logger.logMessage('[Server][db][model] - ' + err.msg, function(err, doc) {});
+      server.logger.logMessage('[Server][db][model] - ' + err.msg, function(err, doc) {});
     }
     
-    db.logger.logMessage('[Server][db][model] - models loaded', function(err, doc) {});
+    server.logger.logMessage('[Server][db][model] - models loaded', function(err, doc) {});
   });
   
   cb();

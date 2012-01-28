@@ -1,8 +1,8 @@
 var Security = {};
 
-Security.extend = function(bang) {
-  Security.logger   = bang.logger;
-  Security.mongoose = bang.mongoose;
+Security.extend = function(server) {
+  Security.logger   = server.logger;
+  Security.mongoose = server.mongoose;
   
   return Security;
 };

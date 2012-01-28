@@ -2,13 +2,13 @@ var logger = {};
 
 logger.logQueue = Array();
 
-logger.extend = function(bang) {
+logger.extend = function(server) {
   logger.fs       = require('fs');
   logger.util     = require('util');
-  logger.settings = bang.settings;
-  logger.mongoose = bang.mongoose;
-  logger.debug    = logger.settings.debug;
-  logger.io       = bang.io;  
+  logger.settings = server.settings;
+  logger.mongoose = server.mongoose;
+  logger.debug    = server.settings.debug;
+  logger.io       = server.io;  
   
   return logger;
 };

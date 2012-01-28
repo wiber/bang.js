@@ -1,6 +1,6 @@
 {
     "name": "bang.js"
-  , "version": "0.2.4"
+  , "version": "0.2.5"
   , "private": true
   , "dependencies": {
       "express": "2.5.2"
@@ -10,5 +10,6 @@
     , "stylus": ">= 0.20.1"
     , "socket.io": ">= 0.8.7"
     , "async": "<=0.1.15"
+    , "coffee-script": "<=1.2.0"
   }
 }

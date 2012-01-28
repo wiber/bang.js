@@ -27,6 +27,9 @@ ioStream.addRoutes = function(socket) {
   socket.on('disconnect',           ioStream.disconnect);
 };
 
+/**
+ * io event: 'update handshake'
+ */
 ioStream.updateHandshake = function(data) {
   var security = ioStream.security,
       logger   = ioStream.logger,
@@ -84,7 +87,7 @@ ioStream.updateHandshake = function(data) {
 };
 
 /**
- *
+ * io event 'disconnect'
  */
 ioStream.disconnect = function() {
     var clients = ioStream.mongoose.model('clients');
