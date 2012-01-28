@@ -23,6 +23,7 @@
 * [Stylus](http://learnboost.github.com/stylus/) for an expressive, dynamic and robust CSS
 * [Mongoose](http://mongoosejs.com/) for a MongoDB object modeling tool designed to work in an asynchronous environment.
 * [Socket.io](http://socket.io) for realtime transport mechanisms
+* [Coffee-Script](http://coffeescript.org/) for cleaner code flow
 * Crypto for client side encryption
     
 ## Requires
@@ -39,6 +40,7 @@
 * [Bang.js Client CLI interface](https://github.com/mikekunze/bang.js/wiki/Bang.js-Client-CLI-interface)  (via web browser console)
    
 ## Installation
+    npm install -g coffee-script
     git clone https://mikekunze@github.com/mikekunze/bang.js.git
     cd bang.js
     npm install
@@ -72,20 +74,19 @@
 ## Start up bang.js
 
 ### no interactive debugging
-    node bang.js
+    coffee bang.coffee
     
 ### interactive debugging with tab completion 
-    node
-    > var server = require('./bang');
+    coffee
+    > server = require './bang'
 
-    > server.settings;  // settings object
+    > server.settings   // settings object
     > server.db         // db object containing db functions
     > server.logger     // logger object containing logging functionality
     
     // Log a message to the log_messages collection:
-    > server.logger.logMessage('hey, our servers are belong to us', function () {
-        console.log('#    logger succeeds');        
-      });
+    > server.logger.logMessage 'hey, our servers are belong to us', () ->
+        console.log '#    logger succeeds'
     
 ## Using bang Client
     Bang is designed to utilize the current functionality:  realtime log console, realtime

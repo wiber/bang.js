@@ -1,3 +1,4 @@
+require "coffee-script"
 server = require './server'
 
 server.configure ->
