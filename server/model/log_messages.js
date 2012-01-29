@@ -8,5 +8,7 @@ module.exports = {
       timestamp: { time: Number },
       message:   { type: String }
     }));
+
+    callback();
   }
 }

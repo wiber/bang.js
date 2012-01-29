@@ -1,6 +1,6 @@
 {
     "name": "bang.js"
-  , "version": "0.2.5"
+  , "version": "0.2.6"
   , "private": true
   , "dependencies": {
       "express": "2.5.2"

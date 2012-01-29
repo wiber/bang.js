@@ -1,14 +1,28 @@
 class abstractServer
 
-  constructor: () ->
+  constructor: (cb) ->
     @mongoose = require 'mongoose'
     @settings = require './settings'
     @bang     = require './bang'
     @routes   = require './routes'
-    @logger   = require './lib/logger'
     @security = require './lib/security'
-    @db       = require './lib/db.coffee'
 
-    console.log 'abstractServer.constructor() - **** HELLO WORLD WE HAVE LIFT OFF ******'
+    server = @
+
+    Db = require './lib/db.coffee'
+    @db = new Db @, () ->
+      console.log 'abstractServer.db = new Db()'
+      server.loadLogger()
+      console.log 'abstractServer.constructor() - **** HELLO WORLD WE HAVE LIFT OFF ******'
+      cb()
+
+  loadLogger: () ->
+    Logger = require './lib/logger'
+    @logger = new Logger @, (err) ->
+      if err
+        console.log err.msg
+        process.exit();
+
+      console.log('abstractServer.logger = new Logger()')
 
 module.exports = abstractServer
