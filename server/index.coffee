@@ -1,76 +1,65 @@
-server = 
-  configure: (cb) ->
+abstractServer = require './abstractServer.coffee'
 
-    server.mongoose = require 'mongoose'
-    server.settings = require './settings'
+###
+# Server extends abstractServer
+# Server will setup necessary components
+###
+class Server extends abstractServer
   
-    server.bang     = require './bang'
+  constructor: (cb) ->
+    super () ->
 
-    server.routes   = require './routes'
-  
-    server.app      = server.configureApp();
-    server.io       = require('socket.io').listen(server.app);
-    server.io.set('transports', ['websocket', 'xhr-polling']);
+    @app      = @configureApp();
+    @io       = require('socket.io').listen(@app)
+    @io.set 'transports', ['websocket', 'xhr-polling']
 
-    server.loadLibraries();
-  
+    @loadLibraries();
+
     cb();
-    return server;
-
-
+    return @;
 
   start: (cb) ->
-
-    server.bang.init server, ()->
+    @bang.init @, ()->
       console.log 'server.bang.init() completed'
-  
-    server.routes.init server 
 
-    server.io.sockets.on 'connection', server.routes.ioStream.addRoutes
+    @routes.init @ 
 
-    server.app.listen server.settings.web.port 
+    @io.sockets.on 'connection', @routes.ioStream.addRoutes
+
+    @app.listen @settings.web.port 
     
-    logMessage = server.logger.logMessage
-    port       = server.app.address().port
-    env        = server.app.settings.env
+    logMessage = @logger.logMessage
+    port       = @app.address().port
+    env        = @.app.settings.env
     logMessage '[Server] - listening on port ' + port + ' in ' + env + ' mode', (err, doc) ->
 
     cb();
-    return server;
-  
-  
+    return @;
+
   loadLibraries: () ->
-    settings = server.settings
-  
-    server.logger   = require './lib/logger' 
-    server.security = require './lib/security' 
-    server.db       = require './lib/db' 
-   
-    server.db.init server, (err) ->
+    server = @
+    
+    @db.init @, (err) ->
       if err 
         console.log(err) 
         process.exit() 
   
-      server.logger.extend server 
-      server.logger.init (err) ->
+      server.logger.init server, (err) ->
         if err 
           console.log err.msg 
-          process.exit();  
-
-    server.security.extend server 
-    server.security.init (err) ->
+          process.exit(); 
+           
+    @security.init @, (err) ->
       if err
-        server.logger.logMessage err.msg
+        @logger.logMessage err.msg
         console.log 'security failed - exiting...'
         process.exit()
           
-    server.loadLibraries = () ->
+    @loadLibraries = () ->
       return msg: 'libraries have already been loaded'
 
-
-
   configureApp: () ->
-    settings = server.settings
+    redisKey = @settings.web.redisKey
   
     express = require 'express'
     stylus  = require 'stylus'
@@ -82,7 +71,7 @@ server =
       app.use express.bodyParser()  
       app.use express.methodOverride() 
       app.use express.cookieParser() 
-      app.use express.session({ secret: settings.web.redisKey })
+      app.use express.session({ secret: redisKey })
       app.use stylus.middleware({
         src: __dirname + '/../client/css',
         dest: __dirname + '/../client/public',
@@ -111,4 +100,4 @@ server =
       
     return app;
 
-module.exports = server
+module.exports = Server
