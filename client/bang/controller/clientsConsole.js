@@ -12,7 +12,7 @@ Ext.define('bang.controller.clientsConsole', {
                     remotejs.logMessage('[Client] - clientsGrid rendered');
                 },
                 close: function() {
-                    delete(Ext.bang.views.clientsGrid);
+                    delete(Ext.bang.views.clientsConsole);
                 },
                 
                 itemdblclick: function(view, record) {

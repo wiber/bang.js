@@ -1,54 +1,56 @@
 abstractServer = require './abstractServer.coffee'
 
 ###
-# Server extends abstractServer
-# Server will setup necessary components
+  Server extends abstractServer
+  Server will setup necessary components
 ###
 class Server extends abstractServer
   
   constructor: (cb) ->
+    server = @
     super () ->
+      server.app      = server.configureApp();
+      server.io       = require('socket.io').listen(server.app)
+      server.io.set 'transports', ['websocket', 'xhr-polling']
 
-    @app      = @configureApp();
-    @io       = require('socket.io').listen(@app)
-    @io.set 'transports', ['websocket', 'xhr-polling']
+      server.loadLibraries()
 
-    @loadLibraries();
+      cb();
 
-    cb();
     return @;
 
   start: (cb) ->
+    super () ->
+
     @bang.init @, ()->
       console.log 'server.bang.init() completed'
 
-    @routes.init @ 
+    @routes.init @
 
     @io.sockets.on 'connection', @routes.ioStream.addRoutes
 
-    @app.listen @settings.web.port 
-    
-    logMessage = @logger.logMessage
+    @app.listen @settings.web.port
+
     port       = @app.address().port
-    env        = @.app.settings.env
-    logMessage '[Server] - listening on port ' + port + ' in ' + env + ' mode', (err, doc) ->
+    env        = @app.settings.env
+    @logger.logMessage '[Server] - listening on port ' + port + ' in ' + env + ' mode', (err, doc) ->
 
     cb();
     return @;
 
   loadLibraries: () ->
     server = @
-    
+
     @db.init @, (err) ->
-      if err 
-        console.log(err) 
-        process.exit() 
-  
-      server.logger.init server, (err) ->
-        if err 
-          console.log err.msg 
-          process.exit(); 
-           
+      if err
+        console.log err
+        process.exit()
+
+    @logger.init @, (err) ->
+      if err
+        console.log err
+        process.exit()
+
     @security.init @, (err) ->
       if err
         @logger.logMessage err.msg

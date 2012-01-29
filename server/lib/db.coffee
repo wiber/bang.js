@@ -1,32 +1,42 @@
-db =
+class Db
 
-  init: (server, cb) ->
+  constructor: (server, cb) ->
+    @mongoose = server.mongoose
+
     server.mongoose.connect server.settings.db.connect, (err) ->
       if err
         cb err
-  
-    server.mongoose.connection.on 'open', () ->
-      server.logger.logMessage '[Server][db] - mongoose opened', (err, doc) ->
-  
-    db.loadSchema server, (err) ->
+
+      log_messages = require __dirname + '/../model/log_messages'
+      log_messages.init server.mongoose, () ->
+        console.log 'Db.constructor loaded log_messages model into mongoose'
+
+      cb()
+    return @
+
+  init: (server, cb) ->
+    @mongoose.connection.on 'open', () ->
+      console.log '[Server][db] - mongoose opened', (err, doc) ->
+
+    @loadSchema server, (err) ->
       if err
         cb err
 
-      server.logger.logMessage '[Server][db] - schemas loaded', (err, doc) ->
+      console.log '[Server][db] - schemas loaded', (err, doc) ->
       cb()
-  
-    return db
+
+    return @
 
   loadSchema: (server, cb) ->
     model = require __dirname + '/../model'
-    model.init server.mongoose, (err) ->
+    model.init @mongoose, (err) ->
       if err 
-        server.logger.logMessage '[Server][db][model] - ' + err.msg, () ->
+        console.log '[Server][db][model] - ' + err.msg, () ->
     
-      server.logger.logMessage '[Server][db][model] - models loaded', () ->
+      console.log '[Server][db][model] - models loaded', () ->
   
     cb()
   
-    return db
+    return @
 
-module.exports = db
+module.exports = Db
