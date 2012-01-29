@@ -7,7 +7,7 @@
 #
 # Author Mike Kunze
 ###
-require "coffee-script"
+require "iced-coffee-script"
 
 Server = require './server/index.coffee'
 
