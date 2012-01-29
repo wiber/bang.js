@@ -1,18 +1,13 @@
-abstractServer = require './abstractServer'
+abstractServer = require './abstractServer.coffee'
 
+###
+# Server extends abstractServer
+# Server will setup necessary components
+###
 class Server extends abstractServer
   
   constructor: (cb) ->
-
     super () ->
-
-    @mongoose = require 'mongoose'
-    @settings = require './settings'
-    @bang     = require './bang'
-    @routes   = require './routes'  
-    @logger   = require './lib/logger' 
-    @security = require './lib/security' 
-    @db       = require './lib/db'
 
     @app      = @configureApp();
     @io       = require('socket.io').listen(@app)
@@ -41,7 +36,6 @@ class Server extends abstractServer
     cb();
     return @;
 
-
   loadLibraries: () ->
     server = @
     
@@ -63,7 +57,6 @@ class Server extends abstractServer
           
     @loadLibraries = () ->
       return msg: 'libraries have already been loaded'
-
 
   configureApp: () ->
     redisKey = @settings.web.redisKey

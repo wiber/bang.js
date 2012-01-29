@@ -1,6 +1,15 @@
+###
+# Bang.js
+#
+# Bang.js is a work in progress.
+#
+# GPL 3.0
+#
+# Author Mike Kunze
+###
 require "coffee-script"
 
-Server = require './server'
+Server = require './server/index.coffee'
 
 server = new Server ->
   console.log 'server.configure.() completed'

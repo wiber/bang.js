@@ -1,7 +1,6 @@
 db =
 
   init: (server, cb) ->
-  
     server.mongoose.connect server.settings.db.connect, (err) ->
       if err
         cb err
@@ -19,7 +18,6 @@ db =
     return db
 
   loadSchema: (server, cb) ->
-
     model = require __dirname + '/../model'
     model.init server.mongoose, (err) ->
       if err 
