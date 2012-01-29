@@ -1,14 +1,10 @@
 var Security = {};
 
-Security.extend = function(server) {
+Security.init = function(server, cb) {
+
   Security.logger   = server.logger;
   Security.mongoose = server.mongoose;
   
-  return Security;
-};
-
-Security.init = function(cb) {
-
   Security.crypto = require('crypto');
   Security.clearClients(Security.mongoose);
   

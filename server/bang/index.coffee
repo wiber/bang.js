@@ -11,6 +11,6 @@ bangIndex =
 
     cb()
     
-    return bangIndex
+    return @
 
 module.exports = bangIndex

@@ -2,19 +2,14 @@ var logger = {};
 
 logger.logQueue = Array();
 
-logger.extend = function(server) {
+// initialize the logger, add needed components
+logger.init = function(server, cb) {
   logger.fs       = require('fs');
   logger.util     = require('util');
   logger.settings = server.settings;
   logger.mongoose = server.mongoose;
   logger.debug    = server.settings.debug;
   logger.io       = server.io;  
-  
-  return logger;
-};
-
-// initialize the logger, add needed components
-logger.init = function(cb) {
   logger.logMessage('[Console] - Logger Initialized', function() {}); 
 };
 
