@@ -25,4 +25,9 @@ class abstractServer
 
       console.log('abstractServer.logger = new Logger()')
 
+  start: (cb) ->
+    console.log '[/server/abstractServer.coffee] - abstractServer.start()'
+    cb()
+
+
 module.exports = abstractServer

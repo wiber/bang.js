@@ -13,24 +13,26 @@ class Server extends abstractServer
       server.io       = require('socket.io').listen(server.app)
       server.io.set 'transports', ['websocket', 'xhr-polling']
 
-      server.loadLibraries();
+      server.loadLibraries()
 
       cb();
 
     return @;
 
   start: (cb) ->
+    super () ->
+
     @bang.init @, ()->
       console.log 'server.bang.init() completed'
 
-    @routes.init @ 
+    @routes.init @
 
     @io.sockets.on 'connection', @routes.ioStream.addRoutes
 
-    @app.listen @settings.web.port 
-    
+    @app.listen @settings.web.port
+
     port       = @app.address().port
-    env        = @.app.settings.env
+    env        = @app.settings.env
     @logger.logMessage '[Server] - listening on port ' + port + ' in ' + env + ' mode', (err, doc) ->
 
     cb();
