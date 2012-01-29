@@ -1,7 +1,11 @@
-class server 
+abstractServer = require './abstractServer'
+
+class Server extends abstractServer
   
   constructor: (cb) ->
-  
+
+    super () ->
+
     @mongoose = require 'mongoose'
     @settings = require './settings'
     @bang     = require './bang'
@@ -15,7 +19,7 @@ class server
     @io.set 'transports', ['websocket', 'xhr-polling']
 
     @loadLibraries();
-  
+
     cb();
     return @;
 
@@ -103,4 +107,4 @@ class server
       
     return app;
 
-module.exports = server
+module.exports = Server
