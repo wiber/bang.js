@@ -1,6 +1,5 @@
 server = 
   configure: (cb) ->
-
     server.mongoose = require 'mongoose'
     server.settings = require './settings'
   
@@ -9,21 +8,18 @@ server =
     server.routes   = require './routes'
   
     server.app      = server.configureApp();
-    server.io       = require('socket.io').listen(server.app);
-    server.io.set('transports', ['websocket', 'xhr-polling']);
+    server.io       = require('socket.io').listen(server.app)
+    server.io.set 'transports', ['websocket', 'xhr-polling']
 
     server.loadLibraries();
   
     cb();
     return server;
 
-
-
   start: (cb) ->
-
     server.bang.init server, ()->
       console.log 'server.bang.init() completed'
-  
+
     server.routes.init server 
 
     server.io.sockets.on 'connection', server.routes.ioStream.addRoutes
@@ -37,8 +33,8 @@ server =
 
     cb();
     return server;
-  
-  
+
+
   loadLibraries: () ->
     settings = server.settings
   

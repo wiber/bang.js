@@ -3,7 +3,7 @@ server = require './server'
 
 server.configure ->
   console.log 'server.configure.() completed'
-.start ->
+server.start ->
   console.log 'server.start() completed'
   
 module.exports = server
