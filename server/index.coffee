@@ -41,7 +41,7 @@ class Server extends abstractServer
   loadLibraries: () ->
     server = @
 
-    @db.init @, (err) ->
+    @db.init (err) ->
       if err
         console.log err
         process.exit()

@@ -1,9 +1,12 @@
-class Db
+AbstractDb = require './abstractDb.coffee'
+
+class Db extends AbstractDb
 
   constructor: (server, cb) ->
-    @mongoose = server.mongoose
+    super server, ()->
+      console.log 'AbstractDb.constructor()'
 
-    server.mongoose.connect server.settings.db.connect, (err) ->
+    @mongoose.connect @settings.db.connect, (err) ->
       if err
         cb err
 
@@ -12,22 +15,25 @@ class Db
         console.log 'Db.constructor loaded log_messages model into mongoose'
 
       cb()
-    return @
+    return @;
 
-  init: (server, cb) ->
+  init: (cb) ->
+
     @mongoose.connection.on 'open', () ->
-      console.log '[Server][db] - mongoose opened', (err, doc) ->
+      console.log '[Server][db] - mongoose opened'
 
-    @loadSchema server, (err) ->
+    @loadSchema (err) ->
       if err
         cb err
 
-      console.log '[Server][db] - schemas loaded', (err, doc) ->
+      console.log '[Server][db] - schemas loaded'
       cb()
 
-    return @
+    return @;
 
-  loadSchema: (server, cb) ->
+
+  loadSchema: (cb) ->
+    server = @server
     model = require __dirname + '/../model'
     model.init @mongoose, (err) ->
       if err 
