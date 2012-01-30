@@ -10,6 +10,8 @@ class Db extends AbstractDb
       if err
         cb err
 
+      console.log '[Server][db] - mongoose opened'
+
       log_messages = require __dirname + '/../model/log_messages'
       log_messages.init server.mongoose, () ->
         console.log 'Db.constructor loaded log_messages model into mongoose'
@@ -18,9 +20,6 @@ class Db extends AbstractDb
     return @;
 
   init: (cb) ->
-
-    @mongoose.connection.on 'open', () ->
-      console.log '[Server][db] - mongoose opened'
 
     @loadSchema (err) ->
       if err
@@ -37,9 +36,9 @@ class Db extends AbstractDb
     model = require __dirname + '/../model'
     model.init @mongoose, (err) ->
       if err 
-        console.log '[Server][db][model] - ' + err.msg, () ->
+        console.log '[Server][db][model] - ' + err.msg
     
-      console.log '[Server][db][model] - models loaded', () ->
+      console.log '[Server][db][model] - models loaded'
   
     cb()
   
