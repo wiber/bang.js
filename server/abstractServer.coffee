@@ -15,9 +15,6 @@ class abstractServer
       console.log 'abstractServer.db = new Db()'
       cb()
 
-  loadLogger: () ->
-
-
   start: (cb) ->
     console.log '[/server/abstractServer.coffee] - abstractServer.start()'
     cb()
