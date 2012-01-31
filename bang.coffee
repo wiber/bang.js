@@ -9,7 +9,7 @@
 ###
 require "iced-coffee-script"
 
-Server = require './server/index.coffee'
+Server = require './server/server.coffee'
 
 server = Server.getServer()
 
