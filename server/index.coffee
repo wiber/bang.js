@@ -63,11 +63,9 @@ class Server extends abstractServer
         console.log err
         process.exit()
 
-    @security.init @, (err) ->
-      if err
-        @logger.logMessage err.msg
-        console.log 'security failed - exiting...'
-        process.exit()
+    Security = require './lib/security.coffee'
+    @security = new Security @, () ->
+      console.log 'loaded security.coffee'
           
     @loadLibraries = () ->
       return msg: 'libraries have already been loaded'
