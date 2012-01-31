@@ -10,7 +10,11 @@ class abstractServer
     server = @
 
     Db = require './lib/db.coffee'
-    @db = new Db @, () ->
+    @db = new Db @, (err) ->
+      if err
+        console.log err
+        process.exit()
+        
       console.log 'abstractServer.db = new Db()'
       server.loadLogger()
       console.log 'abstractServer.constructor() - DB loaded, kicked off logger'

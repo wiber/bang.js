@@ -9,6 +9,7 @@ class Db extends AbstractDb
     @mongoose.connect @settings.db.connect, (err) ->
       if err
         cb err
+        return
 
       console.log '[Server][db] - mongoose opened'
 
