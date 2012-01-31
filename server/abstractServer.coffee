@@ -1,22 +1,18 @@
 class abstractServer
 
-  constructor: (cb) ->
+  constructor: (server, cb) ->
     @mongoose = require 'mongoose'
     @settings = require './settings'
     @bang     = require './bang'
     @routes   = require './routes'
 
-    server = @
-
     Db = require './lib/db.coffee'
-    @db = new Db @, (err) ->
+    @db = new Db server, (err) ->
       if err
         console.log err
         process.exit()
 
       console.log 'abstractServer.db = new Db()'
-      server.loadLogger()
-      console.log 'abstractServer.constructor() - DB loaded, kicked off logger'
       cb()
 
   loadLogger: () ->
