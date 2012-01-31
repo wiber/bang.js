@@ -35,9 +35,9 @@
 * [master](https://github.com/mikekunze/bang.js) has the most stable code base  
 * [bang.js-dev](https://github.com/mikekunze/bang.js/tree/bang.js-dev) has the most unstable and experimental code
 
-## GitHub Wiki 
-* [Bang.js Server CLI interface](https://github.com/mikekunze/bang.js/wiki/Bang.js-Server-CLI-interface)
-* [Bang.js Client CLI interface](https://github.com/mikekunze/bang.js/wiki/Bang.js-Client-CLI-interface)  (via web browser console)
+## GitHub Wiki
+* [Bang.js Server CLI interface](https://github.com/mikekunze/bang.js/blob/master/docs/server.md)
+* [Bang.js Client CLI interface](https://github.com/mikekunze/bang.js/blob/master/docs/client.md)  (via web browser console)
    
 ## Installation
     npm install -g iced-coffee-script
