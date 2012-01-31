@@ -28,7 +28,7 @@
 * [bang.js-dev](https://github.com/mikekunze/bang.js/tree/bang.js-dev) has the most unstable and experimental code
 
 ## Documentation
-* [Setup MongoDB](https://github.com/mikekunze/bang.js/blob/master/docs/mongodb.md)
+* [Required:  Add MongoDB test users](https://github.com/mikekunze/bang.js/blob/master/docs/mongodb.md)
 * [Bang.js Server interface](https://github.com/mikekunze/bang.js/blob/master/docs/server.md)
 * [Bang.js Client interface](https://github.com/mikekunze/bang.js/blob/master/docs/client.md)  (via web browser console)
    

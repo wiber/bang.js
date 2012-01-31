@@ -44,4 +44,3 @@
 
     remotejs.getJS({ app: 'bang', js: 'broadcastMessage.js', remoteClient: '123412341234' }, Ext.bang.util.run);
 
-    
