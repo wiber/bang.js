@@ -11,5 +11,7 @@ module.exports = {
       password:    { type: String },
       userHash:    { type: String }
     }));
+
+    callback()
   }
 }

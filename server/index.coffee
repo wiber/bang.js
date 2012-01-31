@@ -5,7 +5,19 @@ abstractServer = require './abstractServer.coffee'
   Server will setup necessary components
 ###
 class Server extends abstractServer
-  
+  _instance = undefined
+
+  @getServer: () ->
+    if !_instance
+      _instance = new Server ()->
+
+        _instance.logger.logMessage '[/server/index.coffee] - server.configure.() completed', () ->
+
+        _instance.start ->
+        _instance.logger.logMessage '[/server/index.coffee] - server.start() completed', () ->
+    else
+      return _instance
+
   constructor: (cb) ->
     server = @
     super () ->
@@ -41,7 +53,7 @@ class Server extends abstractServer
   loadLibraries: () ->
     server = @
 
-    @db.init @, (err) ->
+    @db.init (err) ->
       if err
         console.log err
         process.exit()
@@ -51,11 +63,9 @@ class Server extends abstractServer
         console.log err
         process.exit()
 
-    @security.init @, (err) ->
-      if err
-        @logger.logMessage err.msg
-        console.log 'security failed - exiting...'
-        process.exit()
+    Security = require './lib/security.coffee'
+    @security = new Security @, () ->
+      console.log 'loaded security.coffee'
           
     @loadLibraries = () ->
       return msg: 'libraries have already been loaded'

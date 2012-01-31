@@ -1,39 +1,52 @@
-class Db
+AbstractDb = require './abstractDb.coffee'
+
+class Db extends AbstractDb
 
   constructor: (server, cb) ->
-    @mongoose = server.mongoose
+    super server, ()->
+      console.log 'AbstractDb.constructor()'
 
-    server.mongoose.connect server.settings.db.connect, (err) ->
+    @mongoose.connect @settings.db.connect, (err) ->
       if err
         cb err
 
-      log_messages = require __dirname + '/../model/log_messages'
+      console.log '[Server][db] - mongoose opened'
+
+      log_messages = require __dirname + '/model/log_messages'
       log_messages.init server.mongoose, () ->
         console.log 'Db.constructor loaded log_messages model into mongoose'
 
+      users = require __dirname + '/model/users'
+      users.init server.mongoose, () ->
+        console.log 'Db.constructor loaded users model into mongoose'
+
+      clients = require __dirname + '/model/clients'
+      clients.init server.mongoose, () ->
+        console.log 'Db.constructor loaded clients model into mongoose'
+
       cb()
-    return @
+    return @;
 
-  init: (server, cb) ->
-    @mongoose.connection.on 'open', () ->
-      console.log '[Server][db] - mongoose opened', (err, doc) ->
+  init: (cb) ->
 
-    @loadSchema server, (err) ->
+    @loadSchema (err) ->
       if err
         cb err
 
-      console.log '[Server][db] - schemas loaded', (err, doc) ->
+      console.log '[Server][db] - schemas loaded'
       cb()
 
-    return @
+    return @;
 
-  loadSchema: (server, cb) ->
+
+  loadSchema: (cb) ->
+    server = @server
     model = require __dirname + '/../model'
     model.init @mongoose, (err) ->
       if err 
-        console.log '[Server][db][model] - ' + err.msg, () ->
+        console.log '[Server][db][model] - ' + err.msg
     
-      console.log '[Server][db][model] - models loaded', () ->
+      console.log '[Server][db][model] - models loaded'
   
     cb()
   

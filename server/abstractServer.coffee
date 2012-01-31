@@ -13,7 +13,7 @@ class abstractServer
     @db = new Db @, () ->
       console.log 'abstractServer.db = new Db()'
       server.loadLogger()
-      console.log 'abstractServer.constructor() - **** HELLO WORLD WE HAVE LIFT OFF ******'
+      console.log 'abstractServer.constructor() - DB loaded, kicked off logger'
       cb()
 
   loadLogger: () ->

@@ -11,5 +11,7 @@ module.exports = {
       username:   { type: String   },
       handshake:  { type: String   }
     }));
+
+    callback()
   }
 }
