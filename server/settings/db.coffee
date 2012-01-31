@@ -1,1 +1,1 @@
-exports.connect   = 'mongodb://portal/bang'
+exports.connect   = 'mongodb://localhost/bang'
