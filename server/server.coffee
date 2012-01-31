@@ -7,14 +7,17 @@ AbstractServer = require './abstractServer.coffee'
 class Server extends AbstractServer
   _instance = undefined
 
-  @getServer: () ->
+  @getInstance: () ->
     if !_instance
       _instance = new Server ()->
 
         _instance.logger.logMessage '[/server/index.coffee] - server.configure.() completed', () ->
 
         _instance.start ->
-        _instance.logger.logMessage '[/server/index.coffee] - server.start() completed', () ->
+          # Do not allow start to be fired again
+          delete _instance.start
+
+          _instance.logger.logMessage '[/server/server.coffee] - server.start() completed', () ->
     else
       return _instance
 
@@ -61,17 +64,21 @@ class Server extends AbstractServer
         console.log err
         process.exit()
 
-    @logger.init @, (err) ->
+    Logger = require './lib/logger'
+    @logger = new Logger @, (err) ->
       if err
-        console.log err
-        process.exit()
+        console.log err.msg
+      console.log 'server.logger = new Logger() completed'
+
+    @logger.init @, (err) ->
+      console.log 'server.logger.init() completed'
+
 
     Security = require './lib/security.coffee'
     @security = new Security @, () ->
       console.log 'loaded security.coffee'
 
-    @loadLibraries = () ->
-      return msg: 'libraries have already been loaded'
+    delete _instance.loadLibraries
 
   configureApp: () ->
     redisKey = @settings.web.redisKey

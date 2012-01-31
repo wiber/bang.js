@@ -16,13 +16,7 @@ class abstractServer
       cb()
 
   loadLogger: () ->
-    Logger = require './lib/logger'
-    @logger = new Logger @, (err) ->
-      if err
-        console.log err.msg
-        process.exit();
 
-      console.log('abstractServer.logger = new Logger()')
 
   start: (cb) ->
     console.log '[/server/abstractServer.coffee] - abstractServer.start()'

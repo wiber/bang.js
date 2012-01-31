@@ -17,6 +17,7 @@ class Logger
 
     @logMessage '[Console] - Logger Initialized', () ->
 
+    cb()
     return @
 
   clearLogMessages: (mongoose) ->
