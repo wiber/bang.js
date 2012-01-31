@@ -5,7 +5,19 @@ abstractServer = require './abstractServer.coffee'
   Server will setup necessary components
 ###
 class Server extends abstractServer
-  
+  _instance = undefined
+
+  @getServer: () ->
+    if !_instance
+      _instance = new Server ()->
+
+        _instance.logger.logMessage '[/server/index.coffee] - server.configure.() completed', () ->
+
+        _instance.start ->
+        _instance.logger.logMessage '[/server/index.coffee] - server.start() completed', () ->
+    else
+      return _instance
+
   constructor: (cb) ->
     server = @
     super () ->

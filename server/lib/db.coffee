@@ -12,7 +12,7 @@ class Db extends AbstractDb
 
       console.log '[Server][db] - mongoose opened'
 
-      log_messages = require __dirname + '/../model/log_messages'
+      log_messages = require __dirname + '/model/log_messages'
       log_messages.init server.mongoose, () ->
         console.log 'Db.constructor loaded log_messages model into mongoose'
 
