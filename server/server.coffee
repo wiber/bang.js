@@ -42,8 +42,6 @@ class Server extends AbstractServer
     return @;
 
   loadLibraries: () ->
-    server = @
-
     @db.init (err) ->
       if err
         console.log err
