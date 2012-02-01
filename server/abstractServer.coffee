@@ -15,6 +15,8 @@ class abstractServer
       console.log 'abstractServer.db = new Db()'
       cb()
 
+    return server
+
   start: (cb) ->
     console.log '[/server/abstractServer.coffee] - abstractServer.start()'
     cb()

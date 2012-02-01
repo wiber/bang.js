@@ -10,19 +10,15 @@ class Server extends AbstractServer
   @getInstance: () ->
     if !_instance
       _instance = new Server ()->
-
-        _instance.logger.logMessage '[/server/index.coffee] - server.configure.() completed', () ->
-
         _instance.start ->
           # Do not allow start to be fired again
           delete _instance.start
 
           _instance.logger.logMessage '[/server/server.coffee] - server.start() completed', () ->
     else
-      return _instance
+      return _instance;
 
   constructor: (cb) ->
-
     server = @
     super @, () ->
       console.log 'abstractServer.constructor() completed'
