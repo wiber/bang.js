@@ -5,18 +5,9 @@ AbstractServer = require './abstractServer.coffee'
   Server will setup necessary components
 ###
 class Server extends AbstractServer
-  _instance = undefined
 
   @getInstance: () ->
-    if !_instance
-      _instance = new Server ()->
-        _instance.start ->
-          # Do not allow start to be fired again
-          delete _instance.start
-
-          _instance.logger.logMessage '[/server/server.coffee] - server.start() completed', () ->
-    else
-      return _instance;
+    return super Server
 
   constructor: (cb) ->
     super @, () =>
@@ -72,7 +63,7 @@ class Server extends AbstractServer
     @security = new Security @, () ->
       console.log 'loaded security.coffee'
 
-    delete _instance.loadLibraries
+    delete Server.getInstance().loadLibraries
 
   configureApp: () ->
     redisKey = @settings.web.redisKey
