@@ -20,7 +20,6 @@ class Db extends AbstractDb
 
     return @;
 
-
   loadSchema: (cb) ->
     server = @server
     model = require __dirname + '/../model'

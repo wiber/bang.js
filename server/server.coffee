@@ -19,14 +19,13 @@ class Server extends AbstractServer
       return _instance;
 
   constructor: (cb) ->
-    server = @
-    super @, () ->
+    super @, () =>
       console.log 'abstractServer.constructor() completed'
-      server.app      = server.configureApp();
-      server.io       = require('socket.io').listen(server.app)
-      server.io.set 'transports', ['websocket', 'xhr-polling']
+      @app      = @configureApp();
+      @io       = require('socket.io').listen(@app)
+      @io.set 'transports', ['websocket', 'xhr-polling']
 
-      server.loadLibraries()
+      @loadLibraries()
 
       cb();
 
