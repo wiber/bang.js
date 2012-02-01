@@ -26,7 +26,6 @@ class Server extends AbstractServer
     server = @
     super @, () ->
       console.log 'abstractServer.constructor() completed'
-      server.loadLogger()
       server.app      = server.configureApp();
       server.io       = require('socket.io').listen(server.app)
       server.io.set 'transports', ['websocket', 'xhr-polling']
