@@ -1,6 +1,11 @@
-class AbstractDb
+AbstractLibrary = require './abstractLibrary.coffee'
+
+class AbstractDb extends AbstractLibrary
 
   constructor: (server, cb) ->
+    super ()->
+      console.log 'AbstractLibrary.constructor() completed for AbstractDB'
+
     @server   = server
     @mongoose = server.mongoose
     @settings = server.settings

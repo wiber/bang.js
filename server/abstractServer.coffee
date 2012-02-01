@@ -1,4 +1,4 @@
-class abstractServer
+class AbstractServer
 
   constructor: (server, cb) ->
     @mongoose = require 'mongoose'
@@ -22,4 +22,4 @@ class abstractServer
     cb()
 
 
-module.exports = abstractServer
+module.exports = AbstractServer
