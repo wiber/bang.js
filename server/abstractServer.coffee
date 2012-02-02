@@ -17,7 +17,7 @@ class AbstractServer
 
           return _instance
     else
-      return _instance;
+      return _instance
 
   ###
     AbstractServer's constructor loads necessary libraries and boots the db
@@ -30,14 +30,10 @@ class AbstractServer
   constructor: (server, cb) ->
     @mongoose = require 'mongoose'
     @settings = require './settings'
-    @bang     = require './bang'
     @routes   = require './routes'
 
     Db = require './lib/db.coffee'
-    @db = new Db server, (err) ->
-      if err
-        console.log err
-        process.exit()
+    @db = new Db server, () ->
 
       console.log 'abstractServer.db = new Db()'
       cb()
@@ -48,7 +44,6 @@ class AbstractServer
     AbstractServer start currently doesnt do anything special
   ###
   start: (cb) ->
-    console.log '[/server/abstractServer.coffee] - abstractServer.start()'
     cb()
 
 

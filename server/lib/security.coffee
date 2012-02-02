@@ -14,7 +14,7 @@ class Security extends AbstractSecurity
 
     cb()
 
-    return @;
+    return @
 
   clearClients: () ->
     clients = @mongoose.model 'clients'
@@ -22,7 +22,7 @@ class Security extends AbstractSecurity
       docs.forEach (doc) ->
         doc.remove()
 
-    return @;
+    return @
 
   authenticateHandshake: (request, cb) ->
     clients = @mongoose.model 'clients'
@@ -47,7 +47,7 @@ class Security extends AbstractSecurity
 
       cb undefined, response
 
-    return @;
+    return @
 
   authenticate: (request, cb) ->
     users  = @mongoose.model 'users'
@@ -77,6 +77,6 @@ class Security extends AbstractSecurity
 
       cb(undefined, response)
 
-    return @;
+    return @
 
 module.exports = Security

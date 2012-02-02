@@ -25,6 +25,8 @@ class Server extends AbstractServer
   start: (cb) ->
     super () ->
 
+    BangApplication = require './bang/bangApplication.coffee'
+    @bang = new BangApplication()
     @bang.init @, ()->
       console.log 'server.bang.init() completed'
 
@@ -39,14 +41,9 @@ class Server extends AbstractServer
     @logger.logMessage '[Server] - listening on port ' + port + ' in ' + env + ' mode', (err, doc) ->
 
     cb();
-    return @;
+    return @
 
   loadLibraries: () ->
-    @db.init (err) ->
-      if err
-        console.log err
-        process.exit()
-
     Logger = require './lib/logger'
     @logger = new Logger @, (err) ->
       if err
@@ -83,7 +80,7 @@ class Server extends AbstractServer
       compile: (str, path) ->
         return stylus(str)
           .set('filename', path)
-          .set('compress', true);
+          .set('compress', true)
       })
 
       app.use app.router
@@ -103,6 +100,6 @@ class Server extends AbstractServer
     app.configure 'production', () ->
       app.use express.errorHandler()
 
-    return app;
+    return app
 
 module.exports = Server

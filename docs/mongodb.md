@@ -1,5 +1,17 @@
 ## Mongodb Setup
 
+### Pre-Installation
+    sudo mkdir /data
+    sudo mkdir /data/db
+
+### Install mongo
+    wget http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-2.0.2.tgz
+    tar zxvf mongodb-linux-x86_64-2.0.2.tgz
+    sudo mv mongodb-linux-x86_64-2.0.2 /opt/mongodb
+
+### Start mongod
+    sudo /opt/mongodb/bin/mongod --dbpath /data/db --journal > /dev/null &
+
 ### Add mongo users
 ###### With the mongo client, run the following command:
     use bang
@@ -19,4 +31,3 @@
     test4 / test4
     test5 / test5
     test6 / test6
-
