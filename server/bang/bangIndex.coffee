@@ -1,10 +1,12 @@
-class BangIndex
+AbstractApplication = require '../abstractApplication.coffee'
+
+class BangIndex extends AbstractApplication
 
   constructor: () ->
+    super()
     return @
 
   init: (server, cb) ->
-
     BangControllerIndex = require './controller/BangControllerIndex.coffee'
     @controller = new BangControllerIndex()
     @controller.init server, () ->

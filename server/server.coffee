@@ -25,7 +25,6 @@ class Server extends AbstractServer
   start: (cb) ->
     super () ->
 
-
     BangIndex = require './bang/bangIndex.coffee'
     @bang = new BangIndex()
     @bang.init @, ()->

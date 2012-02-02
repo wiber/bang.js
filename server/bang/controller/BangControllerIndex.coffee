@@ -3,7 +3,6 @@ class BangControllerIndex
     return @
 
   init: (server, cb) ->
-
     cb()
     return server
   

@@ -44,7 +44,6 @@ class AbstractServer
     AbstractServer start currently doesnt do anything special
   ###
   start: (cb) ->
-    console.log '[/server/abstractServer.coffee] - abstractServer.start()'
     cb()
 
 
