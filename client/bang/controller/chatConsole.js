@@ -4,6 +4,7 @@ Ext.define('bang.controller.chatConsole', {
     models: ['chatMessage'],
     stores: ['chatMessages'],
     init: function() {
+        this.initialized = true;
     
         var sendMessage = function(textField) {
         
