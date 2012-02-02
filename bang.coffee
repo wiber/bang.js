@@ -11,7 +11,4 @@ require "iced-coffee-script"
 
 Server = require './server/server.coffee'
 
-server = Server.getInstance()
-
-
-module.exports = server
+module.exports = Server.getInstance() 
