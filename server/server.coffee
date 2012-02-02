@@ -20,7 +20,7 @@ class Server extends AbstractServer
 
       cb();
 
-    return @;
+    return @
 
   start: (cb) ->
     super () ->
@@ -28,9 +28,12 @@ class Server extends AbstractServer
     BangApplication = require './bang/bangApplication.coffee'
     @bang = new BangApplication()
     @bang.init @, ()->
-      console.log 'server.bang.init() completed'
+      console.log 'BangApplication.init() completed'
 
-    @routes.init @
+    DefaultRoutes   = require './routes/DefaultRoutes.coffee'
+    @routes = new DefaultRoutes()
+    @routes.init @, ()->
+      console.log 'DefaultRoutes.init() completed'
 
     @io.sockets.on 'connection', @routes.ioStream.addRoutes
 

@@ -30,7 +30,6 @@ class AbstractServer
   constructor: (server, cb) ->
     @mongoose = require 'mongoose'
     @settings = require './settings'
-    @routes   = require './routes'
 
     Db = require './lib/db.coffee'
     @db = new Db server, () ->
