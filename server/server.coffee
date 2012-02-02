@@ -25,8 +25,8 @@ class Server extends AbstractServer
   start: (cb) ->
     super () ->
 
-    BangIndex = require './bang/bangIndex.coffee'
-    @bang = new BangIndex()
+    BangApplication = require './bang/bangApplication.coffee'
+    @bang = new BangApplication()
     @bang.init @, ()->
       console.log 'server.bang.init() completed'
 
@@ -44,11 +44,6 @@ class Server extends AbstractServer
     return @
 
   loadLibraries: () ->
-    @db.init (err) ->
-      if err
-        console.log err
-        process.exit()
-
     Logger = require './lib/logger'
     @logger = new Logger @, (err) ->
       if err
