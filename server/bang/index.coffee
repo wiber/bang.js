@@ -3,10 +3,10 @@ bangIndex =
   model:      require './model'
   init: (server, cb) ->
 
-    @controller.init bangIndex, server, () ->
+    @controller.init server, () ->
       console.log 'server.bang.controller.init() completed'
   
-    @model.init bangIndex, server, () ->
+    @model.init server, () ->
       console.log 'server.bang.model.init() completed'
 
     cb()

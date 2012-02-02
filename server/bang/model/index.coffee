@@ -1,6 +1,6 @@
 bangModelIndex =
 
-  init: (bangIndex, server, cb) ->
+  init: (server, cb) ->
     cb()
     return server
 
