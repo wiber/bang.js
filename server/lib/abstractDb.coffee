@@ -12,8 +12,8 @@ class AbstractDb extends AbstractLibrary
 
     @mongoose.connect @settings.db.connect, (err) =>
       if err
-        cb err
-        return
+        console.log err
+        process.exit()
 
       console.log '[Server][db] - mongoose opened'
 

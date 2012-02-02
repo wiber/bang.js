@@ -34,10 +34,7 @@ class AbstractServer
     @routes   = require './routes'
 
     Db = require './lib/db.coffee'
-    @db = new Db server, (err) ->
-      if err
-        console.log err
-        process.exit()
+    @db = new Db server, () ->
 
       console.log 'abstractServer.db = new Db()'
       cb()
