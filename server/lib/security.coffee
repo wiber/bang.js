@@ -4,6 +4,8 @@ class Security extends AbstractSecurity
 
   constructor: (server, cb) ->
 
+    super
+    
     @server   = server
     @mongoose = server.mongoose
     @crypto   = require('crypto')

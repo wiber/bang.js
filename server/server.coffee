@@ -5,32 +5,18 @@ AbstractServer = require './abstractServer.coffee'
   Server will setup necessary components
 ###
 class Server extends AbstractServer
-  _instance = undefined
 
   @getInstance: () ->
-    if !_instance
-      _instance = new Server ()->
-
-        _instance.logger.logMessage '[/server/index.coffee] - server.configure.() completed', () ->
-
-        _instance.start ->
-          # Do not allow start to be fired again
-          delete _instance.start
-
-          _instance.logger.logMessage '[/server/server.coffee] - server.start() completed', () ->
-    else
-      return _instance
+    return super Server
 
   constructor: (cb) ->
-
-    server = @
-    super @, () ->
+    super @, () =>
       console.log 'abstractServer.constructor() completed'
-      server.app      = server.configureApp();
-      server.io       = require('socket.io').listen(server.app)
-      server.io.set 'transports', ['websocket', 'xhr-polling']
+      @app      = @configureApp();
+      @io       = require('socket.io').listen(@app)
+      @io.set 'transports', ['websocket', 'xhr-polling']
 
-      server.loadLibraries()
+      @loadLibraries()
 
       cb();
 
@@ -56,8 +42,6 @@ class Server extends AbstractServer
     return @;
 
   loadLibraries: () ->
-    server = @
-
     @db.init (err) ->
       if err
         console.log err
@@ -77,7 +61,7 @@ class Server extends AbstractServer
     @security = new Security @, () ->
       console.log 'loaded security.coffee'
 
-    delete _instance.loadLibraries
+    delete Server.getInstance().loadLibraries
 
   configureApp: () ->
     redisKey = @settings.web.redisKey
