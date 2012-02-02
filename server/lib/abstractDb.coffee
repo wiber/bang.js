@@ -25,7 +25,7 @@ class AbstractDb extends AbstractLibrary
 
       cb()
 
-    return @;
+    return @
 
 module.exports = AbstractDb
 

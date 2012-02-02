@@ -7,7 +7,7 @@ class Db extends AbstractDb
       console.log 'AbstractDb.constructor()'
       cb()
 
-    return @;
+    return @
 
   init: (cb) ->
 
@@ -18,7 +18,7 @@ class Db extends AbstractDb
       console.log '[Server][db] - schemas loaded'
       cb()
 
-    return @;
+    return @
 
   loadSchema: (cb) ->
     server = @server

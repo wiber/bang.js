@@ -17,7 +17,7 @@ class AbstractServer
 
           return _instance
     else
-      return _instance;
+      return _instance
 
   ###
     AbstractServer's constructor loads necessary libraries and boots the db

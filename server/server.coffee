@@ -42,7 +42,7 @@ class Server extends AbstractServer
     @logger.logMessage '[Server] - listening on port ' + port + ' in ' + env + ' mode', (err, doc) ->
 
     cb();
-    return @;
+    return @
 
   loadLibraries: () ->
     @db.init (err) ->
@@ -86,7 +86,7 @@ class Server extends AbstractServer
       compile: (str, path) ->
         return stylus(str)
           .set('filename', path)
-          .set('compress', true);
+          .set('compress', true)
       })
 
       app.use app.router
@@ -106,6 +106,6 @@ class Server extends AbstractServer
     app.configure 'production', () ->
       app.use express.errorHandler()
 
-    return app;
+    return app
 
 module.exports = Server

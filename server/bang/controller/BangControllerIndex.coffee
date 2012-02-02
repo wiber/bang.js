@@ -7,4 +7,4 @@ class BangControllerIndex
     cb()
     return server
   
-module.exports = BangControllerIndex;
+module.exports = BangControllerIndex
