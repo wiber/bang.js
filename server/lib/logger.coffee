@@ -56,9 +56,6 @@ class Logger
 
     if @debug
       console.log('logged: ' + msg);
-      if msg is null
-        console.log('---------------> blank logMessage here, stack below.  Clean up this code')
-        console.trace()
 
     return @
 
