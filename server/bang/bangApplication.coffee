@@ -7,8 +7,7 @@ class BangApplication extends AbstractApplication
     super server
 
     BangControllerIndex = require './controller/BangControllerIndex.coffee'
-    @controller = new BangControllerIndex()
-    @controller.init server, () =>
+    @controller = new BangControllerIndex server, () =>
       @logger.logMessage '[Server][Bang] - server.bang.controller.init() completed'
 
     fs = require 'fs'

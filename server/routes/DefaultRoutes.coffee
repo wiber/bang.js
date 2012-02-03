@@ -1,7 +1,6 @@
 class DefaultRoutes
   constructor: () ->
     @post     = require './post'
-    @get      = require './get'
     @put      = require './put'
     @ioStream = require './ioStream'
 
@@ -12,7 +11,6 @@ class DefaultRoutes
     @ioStream.init server
 
     @post.init server
-    @get.init server
     @put.init server
 
     cb()
