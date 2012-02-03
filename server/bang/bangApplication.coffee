@@ -1,22 +1,19 @@
 AbstractApplication = require '../abstractApplication.coffee'
 
 class BangApplication extends AbstractApplication
+  __appName:    'bang'
+  __appVersion: 1.0
 
   constructor:  (server, cb) ->
+    @server = server
 
-    super server
+    super @, ()=>
 
-    BangControllerIndex = require './controller/BangControllerIndex.coffee'
-    @controller = new BangControllerIndex server, () =>
-      @logger.logMessage '[Server][Bang] - server.bang.controller.init() completed'
+      BangControllerIndex = require './controller/BangControllerIndex.coffee'
+      @controller = new BangControllerIndex server, () =>
+        @logger.logMessage '[Server][Bang] - server.bang.controller.init() completed'
 
-    fs = require 'fs'
-    fs.readdirSync(__dirname + '/model').forEach (file)=>
-      model = require __dirname + '/model/' + file
-      model.init @mongoose, () =>
-        @logger.logMessage '[Server][bang] - BangApplication loaded ' + file + ' model into mongoose'
-
-    cb()
+      cb()
     
     return @
 

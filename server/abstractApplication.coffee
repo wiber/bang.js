@@ -1,9 +1,18 @@
 class AbstractApplication
-  constructor: (server)->
+  constructor: (Application, cb)->
 
-    @mongoose = server.mongoose
-    @logger   = server.logger
+    @mongoose = Application.server.mongoose
+    @logger   = Application.server.logger
 
-    return server
+    fs = require 'fs'
+    folder = __dirname + '/' + Application.__appName + '/model'
+
+    fs.readdirSync(folder).forEach (file)=>
+      model = require folder + '/' + file
+      model.init @mongoose, () =>
+        @logger.logMessage '[Server][Bang] - BangApplication loaded ' + file + ' model into mongoose'
+
+    cb()
+    return Application
 
 module.exports = AbstractApplication

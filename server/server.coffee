@@ -41,12 +41,12 @@ class Server extends AbstractServer
   loadApplications: () ->
     BangApplication = require './bang/bangApplication.coffee'
     @bang = new BangApplication @, ()=>
-      @logger.logMessage '[Server] - BangApplication.init() completed'
+      @logger.logMessage '[Server][Bang] - new BangApplication() completed'
 
     DefaultRoutes   = require './routes/DefaultRoutes.coffee'
     @routes = new DefaultRoutes()
     @routes.init @, ()=>
-      @logger.logMessage '[Server] - DefaultRoutes.init() completed'
+      @logger.logMessage '[Server][DefaultRoutes] - DefaultRoutes.init() completed'
 
     @io.sockets.on 'connection', @routes.ioStream.addRoutes
 
@@ -55,7 +55,7 @@ class Server extends AbstractServer
 
     Security = require './lib/security.coffee'
     @security = new Security @, () =>
-      @logger.logMessage '[Server] - new Security() completed'
+      @logger.logMessage '[Server][Security] - new Security() completed'
 
     delete Server.getInstance().loadLibraries
 
