@@ -1,9 +1,6 @@
 get = {}
 get.logMessages = (logger, req, res) ->
   logger.getMessages req.query, (err, response) ->
-    logger.logMessage err, ->
-      if err
-        console.log err
     res.send response
     return
 

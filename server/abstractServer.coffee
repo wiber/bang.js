@@ -32,18 +32,14 @@ class AbstractServer
     @settings = require './settings'
 
     Db = require './lib/db.coffee'
-    @db = new Db server, () ->
-
-      console.log 'abstractServer.db = new Db()'
-      cb()
+    @db = new Db server, () -> cb()
 
     return server
 
   ###
     AbstractServer start currently doesnt do anything special
   ###
-  start: (cb) ->
-    cb()
+  start: (cb) -> cb()
 
 
 module.exports = AbstractServer

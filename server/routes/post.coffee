@@ -6,7 +6,7 @@ Post.init = (server) ->
   io = server.io
   security = server.security
   mongoose = server.mongoose
-  logger.logMessage "[Server][routes] - Mapping posts", (err, doc) ->
+  logger.logMessage "[Server][routes] - Mapping posts"
 
   app.post "/bang/getJS", (req, res) ->
     rpc = (request, cb) ->
@@ -17,7 +17,7 @@ Post.init = (server) ->
           js = request.data[0].js
           if remoteClient
             message = "[Server][getJS] - remote execution sent to " + remoteClient
-            logger.logMessage message + remoteClient, (err) ->
+            logger.logMessage message + remoteClient
 
             io.sockets.socket(remoteClient).emit "loadJs",
               js: js
@@ -49,7 +49,7 @@ Post.init = (server) ->
         when "broadcastMessage"
           data = request.data[0]
           if data.remoteClient
-            logger.logMessage "[Server][broadcastMessage][" + data.remoteClient + "] - " + data, ->
+            logger.logMessage "[Server][broadcastMessage][" + data.remoteClient + "] - " + data
 
             io.sockets.socket(data.remoteClient).emit "broadcastMessage",
               message: data.msg
@@ -57,13 +57,13 @@ Post.init = (server) ->
             io.sockets.emit "broadcastMessage",
               message: data.msg
 
-            logger.logMessage "[Server][broadcastMessage] - " + data.msg, ->
+            logger.logMessage "[Server][broadcastMessage] - " + data.msg
           request.result = data.msg
           cb request
         when "chatMessage"
           data = request.data[0]
           if not data.msg or not data.security.handshake
-            logger.logMessage "[Server][chatMessage] - missing arguments", ->
+            logger.logMessage "[Server][chatMessage] - missing arguments"
 
             delete (request.data)
 
@@ -81,13 +81,13 @@ Post.init = (server) ->
           , (err, user) ->
             if err
               response.err = err.msg
-              logger.logMessage "bad handshake " + data.security.username, ->
+              logger.logMessage "bad handshake " + data.security.username
 
               cb response
             else
               if data.msg
                 message = "[Server][chatMessage][" + data.security.username + "] - " + data.msg
-                logger.logMessage message, ->
+                logger.logMessage message
 
                 chatMessageObject =
                   msg: data.msg
@@ -98,9 +98,6 @@ Post.init = (server) ->
                 chatMessages = mongoose.model("chat_message")
                 chatMessage = new chatMessages(chatMessageObject)
                 chatMessage.save (err) ->
-                  logger.logMessage err, ->
-                    if err
-                      console.log err
                   io.sockets.emit "newChatMessage", chatMessageObject
 
                 response.result = data.msg
