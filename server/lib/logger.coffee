@@ -6,18 +6,12 @@ class Logger
     @debug    = server.settings.debug
     @settings = server.settings
 
-    cb()
-
-    return @
-
-  init: (server, cb) ->
     @server   = server
     @logQueue = Array()
     @mongoose = server.mongoose
 
-    @logMessage '[Console] - Logger Initialized'
-
     cb()
+
     return @
 
   clearLogMessages: (mongoose) ->

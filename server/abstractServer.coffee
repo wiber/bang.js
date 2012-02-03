@@ -20,7 +20,7 @@ class AbstractServer
       return _instance
 
   ###
-    AbstractServer's constructor loads necessary libraries and boots the db
+    AbstractServer's constructor boots up the logger and db
 
     @param {Object} server instance
     @param {Function} cb callback
@@ -32,7 +32,13 @@ class AbstractServer
     @settings = require './settings'
 
     Db = require './lib/db.coffee'
-    @db = new Db server, () -> cb()
+    @db = new Db server, () =>
+
+      # logger depends on db
+      Logger = require './lib/logger'
+      @logger = new Logger server, ()=>
+
+      cb()
 
     return server
 

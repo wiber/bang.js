@@ -14,6 +14,9 @@ class Server extends AbstractServer
 
   constructor: (cb) ->
     super @, () =>
+      @logger.logMessage '[Server] new db() completed'
+      @logger.logMessage '[Server] new logger() completed'
+
       @app      = @configureApp();
       @io       = require('socket.io').listen(@app)
       @io.set 'transports', ['websocket', 'xhr-polling']
@@ -48,14 +51,6 @@ class Server extends AbstractServer
     @io.sockets.on 'connection', @routes.ioStream.addRoutes
 
   loadLibraries: () ->
-    Logger = require './lib/logger'
-    @logger = new Logger @, (err) ->
-      if err
-        console.log err
-
-    @logger.init @, (err) ->
-      if err
-        console.log err
 
 
     Security = require './lib/security.coffee'

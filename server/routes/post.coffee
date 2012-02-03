@@ -75,10 +75,11 @@ Post.init = (server) ->
             action: request.action
             method: request.method
 
-          security.authenticateHandshake
+          authHandshake =
             username: data.security.userHash
             handshake: data.security.handshake
-          , (err, user) ->
+
+          security.authenticateHandshake authHandshake, (err, user) ->
             if err
               response.err = err.msg
               logger.logMessage "bad handshake " + data.security.username
