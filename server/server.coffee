@@ -5,6 +5,7 @@ AbstractServer = require './abstractServer.coffee'
   Server will setup necessary components
 ###
 class Server extends AbstractServer
+  Server: Server
 
   @start: () ->
     return Server.getInstance()
@@ -40,7 +41,7 @@ class Server extends AbstractServer
 
   loadApplications: () ->
     BangApplication = require './bang/bangApplication.coffee'
-    @bang = new BangApplication @, ()=>
+    @bang = new BangApplication ()=>
       @logger.logMessage '[Server][Bang] - new BangApplication() completed'
 
     DefaultRoutes   = require './routes/DefaultRoutes.coffee'

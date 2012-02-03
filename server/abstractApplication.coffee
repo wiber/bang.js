@@ -1,8 +1,11 @@
+Server              = require './server.coffee'
+
 class AbstractApplication
   constructor: (Application, cb)->
+    @server   = Server.getInstance()
 
-    @mongoose = Application.server.mongoose
-    @logger   = Application.server.logger
+    @mongoose = @server.mongoose
+    @logger   = @server.logger
 
     fs = require 'fs'
     folder = __dirname + '/' + Application.__appName + '/model'
