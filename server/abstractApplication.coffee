@@ -22,7 +22,7 @@ class AbstractApplication
     fs.readdirSync(controllerDir).forEach (file)=>
       Controller = require controllerDir + '/' + file
       controller = new Controller application, ()=>
-        @logger.logMessage '[Server][Bang] - BangApplication loaded' + file + ' controller into app'
+        @logger.logMessage '[Server][Bang] - BangApplication loaded ' + file + ' controller into app'
 
     cb()
     return application
