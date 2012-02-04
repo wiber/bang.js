@@ -41,8 +41,12 @@ class Server extends CoreServer
 
   loadApplications: () ->
     BangApplication = require './bang/bangApplication.coffee'
-    @bang = new BangApplication ()=>
-      @logger.logMessage '[Server][Bang] - new BangApplication() completed'
+    new BangApplication ()=>
+      @logger.logMessage '[Server][Bang] - new BangApplication() completed\n'
+
+    BoomApplication = require './boom/boomApplication.coffee'
+    new BoomApplication ()=>
+      @logger.logMessage '[Server][Boom] - new BoomApplication() completed\n'
 
     ioStream = require './routes/ioStream.coffee'
     ioStream.init @
@@ -52,7 +56,7 @@ class Server extends CoreServer
   loadLibraries: () ->
     Security = require './lib/security.coffee'
     @security = new Security @, () =>
-      @logger.logMessage '[Server][Security] - new Security() completed'
+      # security loaded
 
     delete Server.getInstance().loadLibraries
 
