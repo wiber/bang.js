@@ -1,10 +1,12 @@
-AbstractLibrary = require './abstractLibrary.coffee'
+CoreLibrary = require './CoreLibrary.coffee'
 
-class AbstractDb extends AbstractLibrary
+# extends CoreLibrary?
+class MongoDb extends CoreLibrary
 
   constructor: (server, cb) ->
-    super server, ()->
+    super server, ()=>
 
+    @mongoose = require 'mongoose'
     @mongoose.connect @settings.db.connect, (err) =>
       if err
         console.log err
@@ -14,10 +16,11 @@ class AbstractDb extends AbstractLibrary
       fs.readdirSync(__dirname + '/model').forEach (file)=>
         model = require __dirname + '/model/' + file
         model.init @mongoose, () ->
+          # model is loaded, or err
 
       cb()
 
     return @
 
-module.exports = AbstractDb
+module.exports = MongoDb
 

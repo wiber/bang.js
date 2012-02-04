@@ -21,14 +21,17 @@
 ## Requires
 * [NodeJS](http://nodejs.org/) 0.6.8
 * [MongoDB](http://www.mongodb.org/) 2.0.2
+* [RedisServer](http://redis.io) 2.4.7
 * [ExtJS](http://www.sencha.com/products/extjs/) 4.0.7 (place it inside ./client)
      
-##  GitHub Repo Branches
+## GitHub Repo Branches
 * [master](https://github.com/mikekunze/bang.js) has the most stable code base  
 * [bang.js-dev](https://github.com/mikekunze/bang.js/tree/bang.js-dev) has the most unstable and experimental code
 
 ## Documentation
-* [Required:  Add MongoDB test users](https://github.com/mikekunze/bang.js/blob/master/docs/mongodb.md)
+* Required: [Add MongoDB test users](https://github.com/mikekunze/bang.js/blob/master/docs/mongodb.md)
+* Required: [Add RedisServer](https://github.com/mikekunze/bang.js/blob/master/docs/redis.md)
+
 * [Bang.js Server interface](https://github.com/mikekunze/bang.js/blob/master/docs/server.md)
 * [Bang.js Client interface](https://github.com/mikekunze/bang.js/blob/master/docs/client.md)  (via web browser console)
    

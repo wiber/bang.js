@@ -1,10 +1,12 @@
 class Controller
   constructor: (application)->
-    server    = application.server
+    @application = application
+
+    server = application.server
 
     @app      = server.app
     @logger   = server.logger
-    @mongoose = server.mongoose
+    @mongoose = server.db.mongoose
     @settings = server.settings
     @security = server.security
     @io       = server.io

@@ -1,4 +1,4 @@
-class AbstractServer
+class CoreServer
 
   ###
     AbstractServer::getInstance will obtain our server instance
@@ -28,7 +28,6 @@ class AbstractServer
     @return {Object} server
   ###
   constructor: (server, cb) ->
-    @mongoose = require 'mongoose'
     @settings = require '../settings'
 
     Db = require './db.coffee'
@@ -48,4 +47,4 @@ class AbstractServer
   start: (cb) -> cb()
 
 
-module.exports = AbstractServer
+module.exports = CoreServer

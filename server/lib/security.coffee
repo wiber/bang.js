@@ -7,7 +7,7 @@ class Security extends AbstractSecurity
     super server
     
     @server   = server
-    @mongoose = server.mongoose
+    @mongoose = server.db.mongoose
     @crypto   = require('crypto')
 
     @clearClients(Security.mongoose)

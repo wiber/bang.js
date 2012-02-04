@@ -1,6 +1,6 @@
-AbstractLibrary = require './abstractLibrary.coffee'
+CoreLibrary = require './CoreLibrary.coffee'
 
-class AbstractSecurity extends AbstractLibrary
+class AbstractSecurity extends CoreLibrary
 
   constructor: (server) ->
     super server, ()->

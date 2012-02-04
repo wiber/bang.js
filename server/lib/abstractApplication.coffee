@@ -3,11 +3,12 @@ Controller = require './Controller.coffee'
 
 class AbstractApplication
   constructor: (application, cb)->
-    @server   = Server.getInstance()
+    @application = application
+    @server      = Server.getInstance()
 
     @settings = @server.settings
     @app      = @server.app
-    @mongoose = @server.mongoose
+    @mongoose = @server.db.mongoose
     @logger   = @server.logger
 
     fs = require 'fs'
