@@ -4,16 +4,20 @@ class BangApplication extends AbstractApplication
   __appName:    'bang'
   __appVersion: 1.0
 
+  __controllers: [ '/bang', '/' ]
+
   constructor:  (cb) ->
 
-    super @,  ()=>
-
-      BangControllerIndex = require './controller/BangControllerIndex.coffee'
-      @controller = new BangControllerIndex @server, () =>
-        @logger.logMessage '[Server][Bang] - server.bang.controller.init() completed'
-
-      cb()
+    super @, ()=> @loadController ()=> cb()
     
+    return @
+
+  loadController: (cb) ->
+    BangController = require './controller/BangController.coffee'
+    @controller = new BangController @, () =>
+      @logger.logMessage '[Server][Bang] - new BangController() completed'
+      cb()
+
     return @
 
 module.exports = BangApplication

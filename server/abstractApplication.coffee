@@ -8,10 +8,10 @@ class AbstractApplication
     @logger   = @server.logger
 
     fs = require 'fs'
-    folder = __dirname + '/' + Application.__appName + '/model'
+    modelDir = __dirname + '/' + Application.__appName + '/model'
 
-    fs.readdirSync(folder).forEach (file)=>
-      model = require folder + '/' + file
+    fs.readdirSync(modelDir).forEach (file)=>
+      model = require modelDir + '/' + file
       model.init @mongoose, () =>
         @logger.logMessage '[Server][Bang] - BangApplication loaded ' + file + ' model into mongoose'
 

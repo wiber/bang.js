@@ -52,8 +52,6 @@ class Server extends AbstractServer
     @io.sockets.on 'connection', @routes.ioStream.addRoutes
 
   loadLibraries: () ->
-
-
     Security = require './lib/security.coffee'
     @security = new Security @, () =>
       @logger.logMessage '[Server][Security] - new Security() completed'

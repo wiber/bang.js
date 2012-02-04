@@ -1,5 +1,11 @@
-class BangControllerIndex
-  constructor: (server, cb) ->
+Controller = require '../../lib/Controller.coffee'
+
+class BangController extends Controller
+  constructor: (Application, cb) ->
+    super Application
+    
+    server    = Application.server
+
     @app      = server.app
     @logger   = server.logger
     @mongoose = server.mongoose
@@ -30,7 +36,7 @@ class BangControllerIndex
         when "chatMessages"
           @chatMessages req, res
         else
-          @logger.logMessage "[Server][Router] Bang READ - unknown request " + req.params.component
+          @logger.logMessage "[Server][Bang] GET Bang -s unknown request " + req.params.component
 
     cb()
     return server
@@ -76,4 +82,4 @@ class BangControllerIndex
 
         res.send response
   
-module.exports = BangControllerIndex
+module.exports = BangController
