@@ -1,4 +1,4 @@
-AbstractApplication = require '../abstractApplication.coffee'
+AbstractApplication = require '../lib/abstractApplication.coffee'
 
 class BangApplication extends AbstractApplication
   __appName:    'bang'

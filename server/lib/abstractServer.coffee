@@ -29,13 +29,13 @@ class AbstractServer
   ###
   constructor: (server, cb) ->
     @mongoose = require 'mongoose'
-    @settings = require './settings'
+    @settings = require '../settings'
 
-    Db = require './lib/db.coffee'
+    Db = require './db.coffee'
     @db = new Db server, () =>
 
       # logger depends on db
-      Logger = require './lib/logger'
+      Logger = require './logger.coffee'
       @logger = new Logger server, ()=>
 
       cb()

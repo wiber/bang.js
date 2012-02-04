@@ -1,4 +1,4 @@
-AbstractServer = require './abstractServer.coffee'
+AbstractServer = require './lib/abstractServer.coffee'
 
 ###
   Server extends abstractServer

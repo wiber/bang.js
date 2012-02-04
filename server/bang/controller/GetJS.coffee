@@ -81,6 +81,7 @@ class GetJS extends Controller
 
           cb request
           return
+
         response =
           tid: request.tid
           type: request.type
