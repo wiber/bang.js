@@ -3,13 +3,6 @@ Controller = require '../../lib/Controller.coffee'
 class BangController extends Controller
   constructor: (Application, cb) ->
     super Application
-    
-    server    = Application.server
-
-    @app      = server.app
-    @logger   = server.logger
-    @mongoose = server.mongoose
-    @settings = server.settings
 
     @app.get "/", (req, res) =>
       res.render "index",
@@ -39,13 +32,15 @@ class BangController extends Controller
           @logger.logMessage "[Server][Bang] GET Bang -s unknown request " + req.params.component
 
     cb()
-    return server
+    return Application.server
 
+  # GET '/bang/logMessages/read'
   logMessages: (req, res) ->
     @logger.getMessages req.query, (err, response) ->
       res.send response
       return
 
+  # GET '/bang/chatMessages/read'
   chatMessages: (req, res) ->
     chatMessages = @mongoose.model "chat_message"
     chatMessages.count {}, (err, count) =>
@@ -58,6 +53,7 @@ class BangController extends Controller
 
         res.send response
 
+  # GET '/bang/clients/read'
   getClients: (req, res) ->
     clients = @mongoose.model("clients")
     clients.count {}, (err, count) =>
@@ -71,6 +67,7 @@ class BangController extends Controller
 
         res.send response
 
+  # GET '/bang/users/read'
   getUsers: (req, res) ->
     users = @mongoose.model("users")
     users.count {}, (err, count) =>
