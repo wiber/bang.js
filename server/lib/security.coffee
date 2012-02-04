@@ -4,7 +4,7 @@ class Security extends AbstractSecurity
 
   constructor: (server, cb) ->
 
-    super
+    super server
     
     @server   = server
     @mongoose = server.mongoose

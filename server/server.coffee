@@ -1,17 +1,23 @@
-AbstractServer = require './abstractServer.coffee'
+AbstractServer = require './lib/abstractServer.coffee'
 
 ###
   Server extends abstractServer
   Server will setup necessary components
 ###
 class Server extends AbstractServer
+  Server: Server
+
+  @start: () ->
+    return Server.getInstance()
 
   @getInstance: () ->
     return super Server
 
   constructor: (cb) ->
     super @, () =>
-      console.log 'abstractServer.constructor() completed'
+      @logger.logMessage '[Server] new db() completed'
+      @logger.logMessage '[Server] new logger() completed'
+
       @app      = @configureApp();
       @io       = require('socket.io').listen(@app)
       @io.set 'transports', ['websocket', 'xhr-polling']
@@ -20,43 +26,33 @@ class Server extends AbstractServer
 
       cb();
 
-    return @;
+    return @
 
   start: (cb) ->
-    super () ->
+    super () => @loadApplications()
 
-    BangApplication = require './bang/bangApplication.coffee'
-    @bang = new BangApplication()
-    @bang.init @, ()->
-      console.log 'server.bang.init() completed'
+    @port = @settings.web.port
+    @app.listen @port
 
-    @routes.init @
-
-    @io.sockets.on 'connection', @routes.ioStream.addRoutes
-
-    @app.listen @settings.web.port
-
-    port       = @app.address().port
-    env        = @app.settings.env
-    @logger.logMessage '[Server] - listening on port ' + port + ' in ' + env + ' mode', (err, doc) ->
+    @logger.logMessage '[Server] - listening on port ' + @port + ' in ' + @app.settings.env + ' mode'
 
     cb();
     return @
 
+  loadApplications: () ->
+    BangApplication = require './bang/bangApplication.coffee'
+    @bang = new BangApplication ()=>
+      @logger.logMessage '[Server][Bang] - new BangApplication() completed'
+
+    ioStream = require './routes/ioStream.coffee'
+    ioStream.init @
+
+    @io.sockets.on 'connection', ioStream.addRoutes
+
   loadLibraries: () ->
-    Logger = require './lib/logger'
-    @logger = new Logger @, (err) ->
-      if err
-        console.log err.msg
-      console.log 'server.logger = new Logger() completed'
-
-    @logger.init @, (err) ->
-      console.log 'server.logger.init() completed'
-
-
     Security = require './lib/security.coffee'
-    @security = new Security @, () ->
-      console.log 'loaded security.coffee'
+    @security = new Security @, () =>
+      @logger.logMessage '[Server][Security] - new Security() completed'
 
     delete Server.getInstance().loadLibraries
 

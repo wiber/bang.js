@@ -20,7 +20,7 @@ class AbstractServer
       return _instance
 
   ###
-    AbstractServer's constructor loads necessary libraries and boots the db
+    AbstractServer's constructor boots up the logger and db
 
     @param {Object} server instance
     @param {Function} cb callback
@@ -29,13 +29,15 @@ class AbstractServer
   ###
   constructor: (server, cb) ->
     @mongoose = require 'mongoose'
-    @settings = require './settings'
-    @routes   = require './routes'
+    @settings = require '../settings'
 
-    Db = require './lib/db.coffee'
-    @db = new Db server, () ->
+    Db = require './db.coffee'
+    @db = new Db server, () =>
 
-      console.log 'abstractServer.db = new Db()'
+      # logger depends on db
+      Logger = require './logger.coffee'
+      @logger = new Logger server, ()=>
+
       cb()
 
     return server
@@ -43,8 +45,7 @@ class AbstractServer
   ###
     AbstractServer start currently doesnt do anything special
   ###
-  start: (cb) ->
-    cb()
+  start: (cb) -> cb()
 
 
 module.exports = AbstractServer

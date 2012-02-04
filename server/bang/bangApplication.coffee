@@ -1,26 +1,31 @@
-AbstractApplication = require '../abstractApplication.coffee'
+AbstractApplication = require '../lib/abstractApplication.coffee'
 
 class BangApplication extends AbstractApplication
+  __appName:    'bang'
+  __appVersion: 1.0
+  __appPath:    __dirname
 
-  constructor: () ->
-    super()
-    return @
+  __controllers: [ '/bang', '/' ]
 
-  init: (server, cb) ->
-    @mongoose = server.mongoose
+  constructor:  (cb) ->
 
-    BangControllerIndex = require './controller/BangControllerIndex.coffee'
-    @controller = new BangControllerIndex()
-    @controller.init server, () ->
-      console.log 'server.bang.controller.init() completed'
+    super @, ()=>
 
-    fs = require 'fs'
-    fs.readdirSync(__dirname + '/model').forEach (file)=>
-      model = require __dirname + '/model/' + file
-      model.init @mongoose, () ->
-        console.log 'BangApplication loaded ' + file + ' model into mongoose'
+      @app.get "/", (req, res) =>
+        res.render "index",
+          title: "Bang.js"
+          settings: @settings
+          layout: "index.layout.jade"
 
-    cb()
+      @app.get "/bang", (req, res) =>
+        @settings.app = "bang"
+        res.render "bang", {
+          layout: "bang.layout.jade"
+          title: "Bang.js"
+          settings: @settings
+        }
+
+      cb()
     
     return @
 

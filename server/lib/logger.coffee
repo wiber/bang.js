@@ -6,18 +6,12 @@ class Logger
     @debug    = server.settings.debug
     @settings = server.settings
 
-    cb()
-
-    return @
-
-  init: (server, cb) ->
     @server   = server
     @logQueue = Array()
     @mongoose = server.mongoose
 
-    @logMessage '[Console] - Logger Initialized', () ->
-
     cb()
+
     return @
 
   clearLogMessages: (mongoose) ->
@@ -49,11 +43,10 @@ class Logger
 
     logMessages.create newLogMessage, (err, doc) ->
 
-      server.io.sockets.emit 'newLogMessage', {
-        doc: doc
-      }
+      server.io.sockets.emit 'newLogMessage', { doc: doc }
 
-      cb err, doc
+      if cb
+        cb err, doc
 
     if @debug
       console.log('logged: ' + msg);
