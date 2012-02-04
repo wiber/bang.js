@@ -3,7 +3,7 @@ Post.init = (server) ->
   app = server.app
   logger = server.logger
   settings = server.settings
-  io = server.io
+  io = server.io  
   security = server.security
   mongoose = server.mongoose
   logger.logMessage "[Server][routes] - Mapping posts"

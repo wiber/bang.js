@@ -1,6 +1,6 @@
 class Controller
-  constructor: (Application)->
-    server    = Application.server
+  constructor: (application)->
+    server    = application.server
 
     @app      = server.app
     @logger   = server.logger
@@ -8,5 +8,5 @@ class Controller
     @settings = server.settings
 
     return @
-3444
+
 module.exports = Controller
