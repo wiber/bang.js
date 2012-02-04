@@ -1,20 +1,33 @@
-module.exports = init: (mongoose, callback) ->
-  Schema = mongoose.Schema
-  ObjectId = Schema.ObjectId
-  mongoose.model "users", new Schema(
-    username:
-      type: String
+CoreModel = require '../CoreModel.coffee'
 
-    description:
-      type: String
+class UsersModel extends CoreModel
+  constructor: (mongoose, cb) ->
+    super mongoose
 
-    email:
-      type: String
+    @init () =>
+      cb()
 
-    password:
-      type: String
+    return @
 
-    userHash:
-      type: String
-  )
-  callback()
+  init: (cb) ->
+    Schema = @mongoose.Schema
+    ObjectId = Schema.ObjectId
+    @mongoose.model "users", new Schema(
+      username:
+        type: String
+
+      description:
+        type: String
+
+      email:
+        type: String
+
+      password:
+        type: String
+
+      userHash:
+        type: String
+    )
+    cb()
+
+module.exports = UsersModel

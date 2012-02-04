@@ -1,18 +1,31 @@
-module.exports = init: (mongoose, cb) ->
-  Schema = mongoose.Schema
-  ObjectId = Schema.ObjectId
-  mongoose.model "chat_message", new Schema(
-    timestamp:
-      type: Date
+CoreModel = require '../../lib/CoreModel.coffee'
 
-    user_id:
-      type: ObjectId
-      ref: "users"
+class ChatMessagesModel extends CoreModel
+  constructor: (mongoose, cb) ->
+    super mongoose
 
-    username:
-      type: String
+    @init ()=>
+      cb()
 
-    msg:
-      type: String
-  )
-  cb()
+    return @
+
+  init: (cb)->
+    Schema = @mongoose.Schema
+    ObjectId = Schema.ObjectId
+    @mongoose.model "chat_message", new Schema(
+      timestamp:
+        type: Date
+
+      user_id:
+        type: ObjectId
+        ref: "users"
+
+      username:
+        type: String
+
+      msg:
+        type: String
+    )
+    cb()
+
+module.exports = ChatMessagesModel

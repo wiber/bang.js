@@ -1,14 +1,28 @@
-module.exports = init: (mongoose, callback) ->
-  Schema = mongoose.Schema
-  ObjectId = Schema.ObjectId
-  mongoose.model "log_messages", new Schema(
-    date:
-      type: Date
+CoreModel = require '../CoreModel.coffee'
 
-    timestamp:
-      time: Number
+class LogMessagesModel extends CoreModel
+  constructor: (mongoose, cb) ->
+    super mongoose
 
-    message:
-      type: String
-  )
-  callback()
+    @init () =>
+      cb()
+
+    return @
+
+  init: (cb) ->
+    Schema = @mongoose.Schema
+    ObjectId = Schema.ObjectId
+    @mongoose.model "log_messages", new Schema(
+      date:
+        type: Date
+
+      timestamp:
+        type: Number
+
+      message:
+        type: String
+    )
+    cb()
+
+
+module.exports = LogMessagesModel
