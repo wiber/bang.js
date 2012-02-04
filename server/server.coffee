@@ -1,10 +1,10 @@
-AbstractServer = require './lib/abstractServer.coffee'
+CoreServer = require './lib/CoreServer.coffee'
 
 ###
   Server extends abstractServer
   Server will setup necessary components
 ###
-class Server extends AbstractServer
+class Server extends CoreServer
   Server: Server
 
   @start: () ->

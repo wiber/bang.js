@@ -1,11 +1,13 @@
-AbstractDb = require './abstractDb.coffee'
+MongoDb = require './MongoDb.coffee'
 
-class Db extends AbstractDb
+class Db extends MongoDb
 
   constructor: (server, cb) ->
     super server, ()->
       cb()
 
     return @
+
+
 
 module.exports = Db

@@ -8,7 +8,7 @@ class Logger
 
     @server   = server
     @logQueue = Array()
-    @mongoose = server.mongoose
+    @mongoose = server.db.mongoose
 
     cb()
 

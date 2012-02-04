@@ -1,9 +1,9 @@
 ioStream = {}
-ioStream.init = (bang) ->
-  ioStream.mongoose = bang.mongoose
-  ioStream.logger = bang.logger
-  ioStream.io = bang.io
-  ioStream.security = bang.security
+ioStream.init = (server) ->
+  ioStream.mongoose = server.db.mongoose
+  ioStream.logger = server.logger
+  ioStream.io = server.io
+  ioStream.security = server.security
   ioStream
 
 ioStream.addRoutes = (socket) ->
