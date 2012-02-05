@@ -74,31 +74,27 @@ class GetJS extends Controller
         cb request
       when "chatMessage"
         data = request.data[0]
-        if not data.msg or not data.security.handshake
-          @logger.logMessage "[Server][chatMessage] - missing arguments"
 
-          delete (request.data)
+        @verifyHandshake data.security, (err, user)=>
 
-          cb request
-          return
-
-        response =
-          tid: request.tid
-          type: request.type
-          action: request.action
-          method: request.method
-
-        authHandshake =
-          username: data.security.userHash
-          handshake: data.security.handshake
-
-        @security.authenticateHandshake authHandshake, (err, user) =>
-          if err
-            response.err = err.msg
-            @logger.logMessage "bad handshake " + data.security.username
-
-            cb response
+          if(err)
+            console.log 'auth error'
           else
+
+            if not data.msg or not data.security.handshake
+              @logger.logMessage "[Server][chatMessage] - missing arguments"
+
+              delete (request.data)
+
+              cb request
+              return
+
+            response =
+              tid: request.tid
+              type: request.type
+              action: request.action
+              method: request.method
+
             if data.msg
               message = "[Server][chatMessage][" + data.security.username + "] - " + data.msg
               @logger.logMessage message
@@ -116,6 +112,7 @@ class GetJS extends Controller
 
               response.result = data.msg
               cb response
+
       else
         @logger.logMessage "unknown method '" + request.method + "' called from " + request.action
 

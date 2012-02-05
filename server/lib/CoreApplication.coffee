@@ -1,4 +1,4 @@
-Server     = require '../server.coffee'
+Server     = require '../Server.coffee'
 Controller = require './Controller.coffee'
 
 class AbstractApplication
@@ -15,8 +15,8 @@ class AbstractApplication
     modelDir = __dirname + '/../' + application.__appName + '/model'
 
     fs.readdirSync(modelDir).forEach (file)=>
-      model = require modelDir + '/' + file
-      model.init @mongoose, () =>
+      Model = require modelDir + '/' + file
+      new Model @mongoose, () =>
         @logger.logMessage '[Server][Bang] - BangApplication loaded ' + file + ' model into mongoose'
 
     controllerDir = __dirname + '/../' + application.__appName + '/controller'

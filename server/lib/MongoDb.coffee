@@ -14,13 +14,12 @@ class MongoDb extends CoreLibrary
 
       fs = require 'fs'
       fs.readdirSync(__dirname + '/model').forEach (file)=>
-        model = require __dirname + '/model/' + file
-        model.init @mongoose, () ->
-          # model is loaded, or err
+        Model = require __dirname + '/model/' + file
+        new Model @mongoose, () ->
+          #model is loaded, or err
 
       cb()
 
     return @
 
 module.exports = MongoDb
-

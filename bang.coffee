@@ -9,6 +9,6 @@
 ###
 require "iced-coffee-script"
 
-Server = require './server/server.coffee'
+Server = require './server/Server.coffee'
 
 module.exports = Server.start()

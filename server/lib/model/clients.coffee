@@ -1,20 +1,23 @@
-CoreModel = require '../../lib/CoreModel.coffee'
+CoreModel = require '../CoreModel.coffee'
 
-class ChatMessagesModel extends CoreModel
+class ClientsModel extends CoreModel
   constructor: (mongoose, cb) ->
     super mongoose
 
-    @init ()=>
+    @init () =>
       cb()
 
     return @
 
-  init: (cb)->
+  init: (cb) ->
     Schema = @mongoose.Schema
     ObjectId = Schema.ObjectId
-    @mongoose.model "chat_message", new Schema(
+    @mongoose.model "clients", new Schema(
       timestamp:
         type: Date
+
+      socket_id:
+        type: String
 
       user_id:
         type: ObjectId
@@ -23,9 +26,10 @@ class ChatMessagesModel extends CoreModel
       username:
         type: String
 
-      msg:
+      handshake:
         type: String
     )
     cb()
 
-module.exports = ChatMessagesModel
+module.exports = ClientsModel
+

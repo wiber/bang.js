@@ -1,11 +1,24 @@
-module.exports = init: (mongoose, cb) ->
-  Schema = mongoose.Schema
-  ObjectId = Schema.ObjectId
-  mongoose.model "loaded_applications", new Schema(
-    user_id:
-      type: ObjectId
+CoreModel = require '../../lib/CoreModel.coffee'
 
-    js:
-      type: String
-  )
-  cb()
+class LoadedApplicationsModel extends CoreModel
+  constructor: (mongoose, cb) ->
+    super mongoose
+
+    @init ()=>
+      cb()
+
+    return @
+
+  init: (cb)->
+    Schema = @mongoose.Schema
+    ObjectId = Schema.ObjectId
+    @mongoose.model "loaded_applications", new Schema(
+      user_id:
+        type: ObjectId
+
+      js:
+        type: String
+    )
+    cb()
+
+module.exports = LoadedApplicationsModel

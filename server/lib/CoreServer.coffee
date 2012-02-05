@@ -30,7 +30,7 @@ class CoreServer
   constructor: (server, cb) ->
     @settings = require '../settings'
 
-    Db = require './db.coffee'
+    Db = require './Db.coffee'
     @db = new Db server, () =>
 
       # logger depends on db
