@@ -5,7 +5,7 @@ Ext.define('bang.view.loginPanel', {
   autoShow: true,
   requires: ['Ext.form.Panel'],
   initComponent: function() {    
-        
+    this.modal = true,
     this.items = [
       {
         xtype: 'form',
