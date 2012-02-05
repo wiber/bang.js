@@ -58,7 +58,7 @@ class Server extends CoreServer
     @security = new Security @, () =>
       # security loaded
 
-    delete Server.getInstance().loadLibraries
+    delete @loadLibraries
 
   configureApp: () ->
     redisKey = @settings.web.redisKey
