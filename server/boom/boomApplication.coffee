@@ -1,6 +1,6 @@
-AbstractApplication = require '../lib/abstractApplication.coffee'
+CoreApplication = require '../lib/CoreApplication.coffee'
 
-class BoomApplication extends AbstractApplication
+class BoomApplication extends CoreApplication
   __appName:    'boom'
   __appVersion: 1.0
   __appPath:    __dirname

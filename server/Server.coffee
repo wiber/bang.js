@@ -5,7 +5,12 @@ CoreServer = require './lib/CoreServer.coffee'
   Server will setup necessary components
 ###
 class Server extends CoreServer
-  Server: Server
+
+  __applications: [
+    './bang/bangApplication.coffee'
+    './boom/boomApplication.coffee'
+    './docExplorer/DocExplorerApplication.coffee'
+  ]
 
   @start: () ->
     return Server.getInstance()
@@ -29,7 +34,16 @@ class Server extends CoreServer
     return @
 
   start: (cb) ->
-    super () => @loadApplications()
+    IoStream = require './lib/IoStream.coffee'
+    @ioStream = new IoStream @
+
+    @ioStream.addListener { name: "update handshake",     fn: @ioStream.updateHandshake }
+    @ioStream.addListener { name: "client authenticated", fn: @ioStream.clientAuthenticated }
+    @ioStream.addListener { name: "disconnect",           fn: @ioStream.disconnect }
+
+    super () =>
+      @loadApplications()
+      @io.sockets.on 'connection', @ioStream.addAllRoutesOnConnect
 
     @port = @settings.web.port
     @app.listen @port
@@ -40,25 +54,13 @@ class Server extends CoreServer
     return @
 
   loadApplications: () ->
-    BangApplication = require './bang/bangApplication.coffee'
-    new BangApplication ()=>
-      @logger.logMessage '[Server][Bang] - new BangApplication() completed\n'
-
-    BoomApplication = require './boom/boomApplication.coffee'
-    new BoomApplication ()=>
-      @logger.logMessage '[Server][Boom] - new BoomApplication() completed\n'
-
-    DocExplorerApplication = require './docExplorer/DocExplorerApplication.coffee'
-    new DocExplorerApplication ()=>
-      @logger.logMessage '[Server][DocExplorer] - new DocExplorerApplication() completed\n'
-
-    ioStream = require './routes/ioStream.coffee'
-    ioStream.init @
-
-    @io.sockets.on 'connection', ioStream.addRoutes
+    @__applications.forEach (app) =>
+      App = require app
+      new App ()=>
+        @logger.logMessage '[Server] - initialized ' + app + '\n'
 
   loadLibraries: () ->
-    Security = require './lib/security.coffee'
+    Security = require './lib/Security.coffee'
     @security = new Security @, () =>
       # security loaded
 

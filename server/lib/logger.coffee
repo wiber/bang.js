@@ -49,7 +49,7 @@ class Logger
         cb err, doc
 
     if @debug
-      console.log('logged: ' + msg);
+      console.log('[Debug]' + msg);
 
     return @
 

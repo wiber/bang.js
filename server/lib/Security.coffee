@@ -1,4 +1,4 @@
-AbstractSecurity = require './abstractSecurity.coffee'
+AbstractSecurity = require './CoreSecurity.coffee'
 
 class Security extends AbstractSecurity
 

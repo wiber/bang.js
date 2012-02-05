@@ -1,4 +1,4 @@
-Server     = require '../server.coffee'
+Server     = require '../Server.coffee'
 Controller = require './Controller.coffee'
 
 class AbstractApplication

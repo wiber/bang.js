@@ -1,11 +1,11 @@
-AbstractApplication = require '../lib/abstractApplication.coffee'
+CoreApplication = require '../lib/CoreApplication.coffee'
 
-class DocExplorerApplication extends AbstractApplication
-  __appName:    'boom'
+class DocExplorerApplication extends CoreApplication
+  __appName:    'docExplorer'
   __appVersion: 1.0
   __appPath:    __dirname
 
-  __controllers: [ '/DocExplorer' ]
+  __controllers: [ '/docExplorer' ]
 
   constructor:  (cb) ->
 
