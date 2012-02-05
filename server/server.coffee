@@ -48,6 +48,10 @@ class Server extends CoreServer
     new BoomApplication ()=>
       @logger.logMessage '[Server][Boom] - new BoomApplication() completed\n'
 
+    DocExplorerApplication = require './docExplorer/DocExplorerApplication.coffee'
+    new DocExplorerApplication ()=>
+      @logger.logMessage '[Server][DocExplorer] - new DocExplorerApplication() completed\n'
+
     ioStream = require './routes/ioStream.coffee'
     ioStream.init @
 
