@@ -34,12 +34,15 @@ class Server extends CoreServer
     return @
 
   start: (cb) ->
+    fs = require 'fs'
+
     IoStream = require './lib/IoStream.coffee'
     @ioStream = new IoStream @
 
-    @ioStream.addListener { name: "update handshake",     fn: @ioStream.updateHandshake }
-    @ioStream.addListener { name: "client authenticated", fn: @ioStream.clientAuthenticated }
-    @ioStream.addListener { name: "disconnect",           fn: @ioStream.disconnect }
+    fs = require 'fs'
+    fs.readdirSync(__dirname + '/lib/io').forEach (file)=>
+      Io = require __dirname + '/lib/io/' + file
+      new Io @
 
     super () =>
       @loadApplications()
