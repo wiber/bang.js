@@ -73,8 +73,8 @@ class Server extends CoreServer
     stylus  = require 'stylus'
     app     = express.createServer()
 
-    @redisStore = new require('connect-redis')(express)
     redisKey = @settings.web.redisKey
+    @redisStore = new (require('connect-redis')(express))
 
     app.configure () =>
       app.set 'views', __dirname + '/../client'
