@@ -1,11 +1,9 @@
-CoreServer = require './lib/CoreServer.coffee'
-
+CoreServer  = require './lib/CoreServer.coffee'
 ###
   Server extends abstractServer
   Server will setup necessary components
 ###
 class Server extends CoreServer
-
   __applications: [
     './bang/bangApplication.coffee'
     './boom/boomApplication.coffee'
@@ -71,19 +69,20 @@ class Server extends CoreServer
     delete @loadLibraries
 
   configureApp: () ->
-    redisKey = @settings.web.redisKey
-
     express = require 'express'
     stylus  = require 'stylus'
     app     = express.createServer()
 
-    app.configure () ->
+    @redisStore = new require('connect-redis')(express)
+    redisKey = @settings.web.redisKey
+
+    app.configure () =>
       app.set 'views', __dirname + '/../client'
       app.set 'view engine', 'jade'
       app.use express.bodyParser()
       app.use express.methodOverride()
       app.use express.cookieParser()
-      app.use express.session({ secret: redisKey })
+      app.use express.session({ secret: redisKey, store: @redisStore })
       app.use stylus.middleware({
       src: __dirname + '/../client/css',
       dest: __dirname + '/../client/public',
