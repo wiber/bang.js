@@ -10,6 +10,7 @@ class Server extends CoreServer
     './bang/bangApplication.coffee'
     './boom/boomApplication.coffee'
     './docExplorer/DocExplorerApplication.coffee'
+    './mobile/MobileApplication.coffee'
   ]
 
   @start: () ->
@@ -94,6 +95,7 @@ class Server extends CoreServer
 
       app.use app.router
 
+      # These are for application bang's client side ExtJS MVC environment
       app.use '/client/bang/controller', express.static __dirname + '/../client/bang/controller'
       app.use '/client/bang/model',      express.static __dirname + '/../client/bang/model'
       app.use '/client/bang/store',      express.static __dirname + '/../client/bang/store'
