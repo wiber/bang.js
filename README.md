@@ -42,9 +42,9 @@
     npm install
 
 ## Settings
-* settings/db.js    configures mongoose connect string and other db related constants
-* settings/web.js   configures web server constants
-* settings/index.js configures path and auto loads db, web, and anything else in settings
+* server/settings/db.js    configures mongoose connect string and other db related constants
+* server/settings/web.js   configures web server constants
+* server/settings/index.js configures path and auto loads db, web, and anything else in settings
 
 ## Start up bang.js
 
