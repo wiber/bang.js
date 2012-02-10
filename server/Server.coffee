@@ -1,15 +1,14 @@
-CoreServer = require './lib/CoreServer.coffee'
-
+CoreServer  = require './lib/CoreServer.coffee'
 ###
   Server extends abstractServer
   Server will setup necessary components
 ###
 class Server extends CoreServer
-
   __applications: [
     './bang/bangApplication.coffee'
     './boom/boomApplication.coffee'
     './docExplorer/DocExplorerApplication.coffee'
+    './mobile/MobileApplication.coffee'
   ]
 
   @start: () ->
@@ -34,12 +33,15 @@ class Server extends CoreServer
     return @
 
   start: (cb) ->
+    fs = require 'fs'
+
     IoStream = require './lib/IoStream.coffee'
     @ioStream = new IoStream @
 
-    @ioStream.addListener { name: "update handshake",     fn: @ioStream.updateHandshake }
-    @ioStream.addListener { name: "client authenticated", fn: @ioStream.clientAuthenticated }
-    @ioStream.addListener { name: "disconnect",           fn: @ioStream.disconnect }
+    fs = require 'fs'
+    fs.readdirSync(__dirname + '/lib/io').forEach (file)=>
+      Io = require __dirname + '/lib/io/' + file
+      new Io @
 
     super () =>
       @loadApplications()
@@ -67,19 +69,20 @@ class Server extends CoreServer
     delete @loadLibraries
 
   configureApp: () ->
-    redisKey = @settings.web.redisKey
-
     express = require 'express'
     stylus  = require 'stylus'
     app     = express.createServer()
 
-    app.configure () ->
+    redisKey = @settings.web.redisKey
+    @redisStore = new (require('connect-redis')(express))
+
+    app.configure () =>
       app.set 'views', __dirname + '/../client'
       app.set 'view engine', 'jade'
       app.use express.bodyParser()
       app.use express.methodOverride()
       app.use express.cookieParser()
-      app.use express.session({ secret: redisKey })
+      app.use express.session({ secret: redisKey, store: @redisStore })
       app.use stylus.middleware({
       src: __dirname + '/../client/css',
       dest: __dirname + '/../client/public',
@@ -91,11 +94,13 @@ class Server extends CoreServer
 
       app.use app.router
 
+      # These are for application bang's client side ExtJS MVC environment
       app.use '/client/bang/controller', express.static __dirname + '/../client/bang/controller'
       app.use '/client/bang/model',      express.static __dirname + '/../client/bang/model'
       app.use '/client/bang/store',      express.static __dirname + '/../client/bang/store'
       app.use '/client/bang/view',       express.static __dirname + '/../client/bang/view'
 
+      app.use '/touch',  express.static __dirname + '/../client/touch'
       app.use '/extjs',  express.static __dirname + '/../client/extjs'
       app.use '/img',    express.static __dirname + '/../client/img'
       app.use express.static __dirname + '/../client/public'

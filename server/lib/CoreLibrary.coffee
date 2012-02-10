@@ -1,4 +1,4 @@
-class AbstractLibrary
+class CoreLibrary
 
   constructor: (server, cb) ->
     @server = server
@@ -6,4 +6,4 @@ class AbstractLibrary
 
     cb()
 
-module.exports = AbstractLibrary
+module.exports = CoreLibrary

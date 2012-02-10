@@ -31,6 +31,10 @@ class BangApplication extends CoreApplication
         settings: @settings
       }
 
+    @app.get "/client/bang/index.js", (req, res) =>
+      require("fs").readFile @settings.path + "/client/bang/index.js", "utf8", (err, data) =>
+        res.send(data);
+
     cb()
 
 module.exports = BangApplication

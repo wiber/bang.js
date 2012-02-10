@@ -1,8 +1,9 @@
 .idea
 todo
-public
+client/public
 bang.message.log
 .monitor
 node_modules
-extjs
+client/extjs
+client/touch
 scripts

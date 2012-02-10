@@ -18,13 +18,6 @@
     This console will show all connected socket clients.  Currently, that means
     all authenticated clients that are listening to the server.
 
-    If you run login again, with another username, the clientsConsole will update.
-    This functionality is likely to change, allowing one client one login session.
-
-    Ext.bang.util.getApp({ app: 'bang', js: 'login.js' }, function(err, app) {
-      Ext.JSON.decode(app);
-    });
-
 ##### broadcastMessage - messages all users with interface loaded
     Ext.bang.util.getApp({ app: 'bang', js: 'broadcastMessage.js' }, function(err, app) {
       Ext.JSON.decode(app);
