@@ -9,6 +9,7 @@ class Server extends CoreServer
     './boom/boomApplication.coffee'
     './docExplorer/DocExplorerApplication.coffee'
     './mobile/MobileApplication.coffee'
+    './quank/QuankApplication.coffee'
   ]
 
   @onReady: (fn) ->

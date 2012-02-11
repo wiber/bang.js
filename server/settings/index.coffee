@@ -1,6 +1,6 @@
 module.exports =
   path:  '/opt/bang.js'
-  debug: false
+  debug: true
   web:   require './web.coffee'
   db:    require './db.coffee'
 
