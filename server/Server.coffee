@@ -105,9 +105,14 @@ class Server extends CoreServer
       app.use '/client/bang/store',      express.static __dirname + '/../client/bang/store'
       app.use '/client/bang/view',       express.static __dirname + '/../client/bang/view'
 
-      app.use '/touch',  express.static __dirname + '/../client/touch'
-      app.use '/extjs',  express.static __dirname + '/../client/extjs'
-      app.use '/img',    express.static __dirname + '/../client/img'
+      # Define client lib routes
+      app.use '/lib',           express.static __dirname + '/../client/lib'
+      app.use '/lib/extjs',     express.static __dirname + '/../client/lib/extjs'
+      app.use '/lib/touch',     express.static __dirname + '/../client/lib/touch'
+      app.use '/lib/bootstrap', express.static __dirname + '/../client/lib/bootstrap'
+
+      app.use '/img', express.static __dirname + '/../client/img'
+
       app.use express.static __dirname + '/../client/public'
 
     app.configure 'development', () ->
