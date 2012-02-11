@@ -11,6 +11,9 @@ class Server extends CoreServer
     './mobile/MobileApplication.coffee'
   ]
 
+  @onReady: (fn) ->
+    @__onReady = fn
+
   @start: () ->
     return Server.getInstance()
 
@@ -52,7 +55,9 @@ class Server extends CoreServer
 
     @logger.logMessage '[Server] - listening on port ' + @port + ' in ' + @app.settings.env + ' mode'
 
-    cb();
+    Server.__onReady()
+
+    cb()
     return @
 
   loadApplications: () ->

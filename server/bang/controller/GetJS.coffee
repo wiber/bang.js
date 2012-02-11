@@ -5,7 +5,6 @@ class GetJS extends Controller
     super application
 
     @app.post "/bang/getJS", (req, res) =>
-
       if req.body instanceof Array
         response = new Array()
         async = require("async")
@@ -22,6 +21,7 @@ class GetJS extends Controller
           res.send data
 
   rpc: (request, cb) ->
+
     switch request.method
       when "getJS"
         remoteClient = request.data[0].remoteClient
@@ -75,43 +75,38 @@ class GetJS extends Controller
       when "chatMessage"
         data = request.data[0]
 
-        @verifyHandshake data.security, (err, user)=>
 
-          if(err)
-            console.log 'auth error'
-          else
+        if not data.msg or not data.security.handshake
+          @logger.logMessage "[Server][chatMessage] - missing arguments"
 
-            if not data.msg or not data.security.handshake
-              @logger.logMessage "[Server][chatMessage] - missing arguments"
+          delete (request.data)
 
-              delete (request.data)
+          cb request
+          return
 
-              cb request
-              return
+        response =
+          tid: request.tid
+          type: request.type
+          action: request.action
+          method: request.method
 
-            response =
-              tid: request.tid
-              type: request.type
-              action: request.action
-              method: request.method
+        if data.msg
+          message = "[Server][chatMessage][" + data.security.username + "] - " + data.msg
+          @logger.logMessage message
 
-            if data.msg
-              message = "[Server][chatMessage][" + data.security.username + "] - " + data.msg
-              @logger.logMessage message
+          chatMessageObject =
+            msg: data.msg
+            username: data.security.username
+            user_id: data.security.user_id
+            timestamp: Date.now()
 
-              chatMessageObject =
-                msg: data.msg
-                username: data.security.username
-                user_id: data.security.user_id
-                timestamp: Date.now()
+          chatMessages = @mongoose.model("chat_message")
+          chatMessage = new chatMessages(chatMessageObject)
+          chatMessage.save (err) =>
+            @io.sockets.emit "newChatMessage", chatMessageObject
 
-              chatMessages = @mongoose.model("chat_message")
-              chatMessage = new chatMessages(chatMessageObject)
-              chatMessage.save (err) =>
-                @io.sockets.emit "newChatMessage", chatMessageObject
-
-              response.result = data.msg
-              cb response
+          response.result = data.msg
+          cb response
 
       else
         @logger.logMessage "unknown method '" + request.method + "' called from " + request.action

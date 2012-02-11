@@ -1,4 +1,5 @@
 // Create namespaces for specific components of the application
+Ext.namespace('Ext.bang.settings')
 Ext.namespace('Ext.bang.apps');
 Ext.namespace('Ext.bang.views');
 Ext.namespace('Ext.bang.security');
@@ -22,7 +23,7 @@ Ext.bang.util.findKey = function(string, array) {
     return -1;
 }
 
-var socket = new io.connect('#{settings.web.url}');
+var socket = new io.connect(Ext.bang.settings.url);
 
 socket.on('connection received', function(data) {
     Ext.bang.socket = data;

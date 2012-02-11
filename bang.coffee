@@ -11,4 +11,9 @@ require "iced-coffee-script"
 
 Server = require './server/Server.coffee'
 
+Server.onReady () ->
+  console.log 'bang.js ready'
+
 module.exports = Server.start()
+
+
