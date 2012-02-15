@@ -1,4 +1,6 @@
 class CoreServer
+  @__onReady = () ->
+    return @
 
   ###
     AbstractServer::getInstance will obtain our server instance

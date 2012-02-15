@@ -2,13 +2,15 @@
 html
   head
     title= title
-    link(rel='stylesheet', href='/extjs/resources/css/ext-all.css')
+    link(rel='stylesheet', href='/lib/extjs/resources/css/ext-all.css')
     
-    script(src='/extjs/bootstrap.js',     type='application/javascript')
-    script(src='/socket.io/socket.io.js', type='application/javascript')
-    
-    script(src='http://crypto-js.googlecode.com/files/2.3.0-crypto-sha256.js', type='application/javascript')
+    script(src='/lib/extjs/bootstrap.js',     type='application/javascript')
+    script(src='/socket.io/socket.io.js',     type='application/javascript')
+    script(src='/lib/2.3.0-crypto-sha256.js', type='application/javascript')
 
     script(src='/client/bang/index.js', type='application/javascript')
+
+    script
+      Ext.bang.settings.url = '#{settings.web.url}';
 
   body!= body

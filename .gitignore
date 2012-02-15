@@ -4,6 +4,7 @@ client/public
 bang.message.log
 .monitor
 node_modules
-client/extjs
-client/touch
+client/lib/extjs
+client/lib/touch
+client/lib/bootstrap
 scripts

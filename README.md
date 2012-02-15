@@ -22,7 +22,10 @@
 * [NodeJS](http://nodejs.org/) 0.6.8
 * [MongoDB](http://www.mongodb.org/) 2.0.2
 * [RedisServer](http://redis.io) 2.4.7
-* [ExtJS](http://www.sencha.com/products/extjs/) 4.0.7 (place it inside ./client)
+* [ExtJS](http://www.sencha.com/products/extjs/) 4.0.7 (place it inside ./client/lib as extjs)
+* [Sencha Touch](http://www.sencha.com/products/touch/) (place it inside ./client/lib as touch)
+* [BackboneJS](http://documentcloud.github.com/backbone/)
+* [Twitter Bootstrap](http://twitter.github.com/bootstrap/) (place it inside ./client/lib as bootstrap)
      
 ## GitHub Repo Branches
 * [master](https://github.com/mikekunze/bang.js) has the most stable code base  
@@ -33,6 +36,8 @@
 * Required: [Add RedisServer](https://github.com/mikekunze/bang.js/blob/master/docs/redis.md)
 
 * [Bang.js Server interface](https://github.com/mikekunze/bang.js/blob/master/docs/server.md)
+  * [Creating an Application](https://github.com/mikekunze/bang.js/blob/master/docs/application.md)
+
 * [Bang.js Client interface](https://github.com/mikekunze/bang.js/blob/master/docs/client.md)  (via web browser console)
    
 ## Installation
@@ -42,9 +47,9 @@
     npm install
 
 ## Settings
-* settings/db.js    configures mongoose connect string and other db related constants
-* settings/web.js   configures web server constants
-* settings/index.js configures path and auto loads db, web, and anything else in settings
+* server/settings/db.js    configures mongoose connect string and other db related constants
+* server/settings/web.js   configures web server constants
+* server/settings/index.js configures path and auto loads db, web, and anything else in settings
 
 ## Start up bang.js
 
