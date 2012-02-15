@@ -1,33 +1,33 @@
 #### Creating an application
 
-
+##### ExampleApplication.coffee
     CoreApplication = require '../lib/CoreApplication.coffee'
     
-    class QuankApplication extends CoreApplication
-      __appName:    'quank'
+    class ExampleApplication extends CoreApplication
+      __appName:    'example'
       __appVersion: 1.0
       __appPath:    __dirname
     
-      __controllers: [ '/quank' ]
+      __controllers: [ '/example' ]
     
       constructor:  (cb) ->
     
         super @, ()=> @loadControllers ()=>
-          @logger.logMessage '[Server][Quank] - QuankApplication is loaded'
+          @logger.logMessage '[Server][Example] - ExampleApplication is loaded'
           cb()
     
           @
     
       loadControllers: (cb) ->
     
-        @app.get "/quank", (req, res) =>
-          @settings.app = "quank"
-          res.render "quank", {
-          layout: "quank.layout.jade"
-          title: "Quank"
+        @app.get "/example", (req, res) =>
+          @settings.app = "example"
+          res.render "example", {
+          layout: "example.layout.jade"
+          title: "Example"
           settings: @settings
           }
     
         cb()
     
-    module.exports = QuankApplication
+    module.exports = ExampleApplication

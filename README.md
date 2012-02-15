@@ -36,6 +36,8 @@
 * Required: [Add RedisServer](https://github.com/mikekunze/bang.js/blob/master/docs/redis.md)
 
 * [Bang.js Server interface](https://github.com/mikekunze/bang.js/blob/master/docs/server.md)
+  * [Creating an Application](https://github.com/mikekunze/bang.js/blob/master/docs/application.md)
+
 * [Bang.js Client interface](https://github.com/mikekunze/bang.js/blob/master/docs/client.md)  (via web browser console)
    
 ## Installation
