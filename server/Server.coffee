@@ -5,7 +5,7 @@ CoreServer  = require './lib/CoreServer.coffee'
 ###
 class Server extends CoreServer
   __applications: [
-    './bang/bangApplication.coffee'
+#    './bang/bangApplication.coffee'
     './boom/boomApplication.coffee'
     './docExplorer/DocExplorerApplication.coffee'
     './mobile/MobileApplication.coffee'
