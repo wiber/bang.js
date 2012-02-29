@@ -15,7 +15,7 @@
 * [Stylus](http://learnboost.github.com/stylus/) for an expressive, dynamic and robust CSS
 * [Mongoose](http://mongoosejs.com/) for a MongoDB object modeling tool designed to work in an asynchronous environment.
 * [Socket.io](http://socket.io) for realtime transport mechanisms
-* [Iced-Coffee-Script](http://maxtaco.github.com/coffee-script/) for coffee-script code flow with async support
+* [Coffee-Script](http://maxtaco.github.com/coffee-script/) for coffee-script code flow
 * [Crypto](http://code.google.com/p/crypto-js/) for client side encryption
     
 ## Requires
@@ -41,7 +41,7 @@
 * [Bang.js Client interface](https://github.com/mikekunze/bang.js/blob/master/docs/client.md)  (via web browser console)
    
 ## Installation
-    npm install -g iced-coffee-script
+    npm install -g coffee-script
     git clone https://mikekunze@github.com/mikekunze/bang.js.git
     cd bang.js
     npm install

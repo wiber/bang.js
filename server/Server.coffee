@@ -5,21 +5,16 @@ CoreServer  = require './lib/CoreServer.coffee'
 ###
 class Server extends CoreServer
   __applications: [
-#    './bang/bangApplication.coffee'
+    './bang/bangApplication.coffee'
     './boom/boomApplication.coffee'
     './docExplorer/DocExplorerApplication.coffee'
     './mobile/MobileApplication.coffee'
     './quank/QuankApplication.coffee'
   ]
 
-  @onReady: (fn) ->
-    @__onReady = fn
-
-  @start: () ->
-    return Server.getInstance()
-
-  @getInstance: () ->
-    return super Server
+  @onReady:     (fn) -> @__onReady = fn
+  @start:       ()   -> return Server.getInstance()
+  @getInstance: ()   -> return super Server
 
   constructor: (cb) ->
     super @, () =>
@@ -60,6 +55,9 @@ class Server extends CoreServer
 
     cb()
     return @
+
+  loadIo: () ->
+
 
   loadApplications: () ->
     @__applications.forEach (app) =>
