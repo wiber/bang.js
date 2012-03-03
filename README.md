@@ -53,4 +53,4 @@
 
 ## Start up bang.js
 
-    iced bang
+    coffee bang
