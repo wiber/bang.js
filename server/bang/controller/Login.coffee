@@ -5,14 +5,14 @@ class Login extends Controller
     super application
 
     @app.post "/bang/login", (req, res) =>
-      authCallback = (err, user) ->
+      authCallback = (err, user) =>
         if err
           response =
             success: false
             err: err
 
           logMessage = "[Server][routes] - bad user/pass for "
-          @logger.logMessage logMessage + req.body.username, (err, doc) ->
+          @logger.logMessage logMessage + req.body.username
 
           res.send response
           return

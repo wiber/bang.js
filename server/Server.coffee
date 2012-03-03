@@ -12,14 +12,9 @@ class Server extends CoreServer
     './quank/QuankApplication.coffee'
   ]
 
-  @onReady: (fn) ->
-    @__onReady = fn
-
-  @start: () ->
-    return Server.getInstance()
-
-  @getInstance: () ->
-    return super Server
+  @onReady:     (fn) -> @__onReady = fn
+  @start:       ()   -> return Server.getInstance()
+  @getInstance: ()   -> return super Server
 
   constructor: (cb) ->
     super @, () =>
@@ -60,6 +55,9 @@ class Server extends CoreServer
 
     cb()
     return @
+
+  loadIo: () ->
+
 
   loadApplications: () ->
     @__applications.forEach (app) =>
