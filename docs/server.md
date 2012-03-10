@@ -1,7 +1,7 @@
 ## Server Documentation
 
 ### interactive debugging with tab completion
-    iced
+    coffee
     > Server = require './server/server.coffee'
     > server = Server.getInstance()
 

@@ -1,14 +1,14 @@
-vows   = require 'vows'
-assert = require 'assert'
 Server = require process.cwd() + '/server/Server'
 
-vows
-  .describe('Server').addBatch
-    'when we start the webserver':
-      topic: ->
-        return Server.start()
+class TestServer extends Server
+  constructor:  (cb) ->
+    super(cb)
 
-      'we get a server instance returned': (serverInstance) ->
-        assert.equal Server.getInstance(), serverInstance
+    return @
 
-  .export(module)
+  @start: (cb)->
+    return TestServer.getInstance(cb)
+
+  @getInstance: (cb) -> return super(cb)
+
+module.exports = TestServer
