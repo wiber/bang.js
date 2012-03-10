@@ -10,13 +10,14 @@ class CoreServer
     @return {Object} Server instance
   ###
   _instance = undefined
-  @getInstance: (Server) ->
+  @getInstance: (Server, cb) ->
     if !_instance
       _instance = new Server ()->
         _instance.start ->
           # Do not allow start to be fired again
           delete _instance.start
 
+          cb(null, _instance)
           return _instance
     else
       return _instance
