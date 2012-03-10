@@ -17,5 +17,3 @@ Server.onReady () ->
 
 Server.start (serverInstance)->
   module.exports = serverInstance
-
-

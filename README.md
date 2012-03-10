@@ -53,4 +53,4 @@
 
 ## Start up bang.js
 
-    coffee bang
+    coffee ./bin/bang

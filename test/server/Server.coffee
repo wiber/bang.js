@@ -9,7 +9,6 @@ class TestServer extends Server
   @start: (cb)->
     return TestServer.getInstance(cb)
 
-
   @getInstance: (cb) -> return super(cb)
 
 module.exports = TestServer
