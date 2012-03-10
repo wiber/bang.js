@@ -2,7 +2,7 @@
   "author":  "Mike Kunze <michael.kunze@gmail.com>",
 
   "name": "bang.js",
-  "version": "0.2.7.1",
+  "version": "0.2.7",
 
   "homepage":    "https://github.com/mikekunze/bang.js",
   "description": "Full Stack Web Application Server",
@@ -15,7 +15,7 @@
   "main": "./bang.coffee",
 
   "scripts": {
-    "test": "vows test/server/* --spec"
+    "test": "vows test/bang.coffee --spec"
   },
 
   "engines": {
