@@ -13,7 +13,7 @@ class Server extends CoreServer
   ]
 
   @onReady:     (fn) -> @__onReady = fn
-  @start:       ()   -> return Server.getInstance()
+  @start:       (cb) -> cb(Server.getInstance())
   @getInstance: ()   -> return super Server
 
   constructor: (cb) ->

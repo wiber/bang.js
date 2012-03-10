@@ -4,7 +4,12 @@ class TestServer extends Server
   constructor:  (cb) ->
     super(cb)
 
-  @start:       () -> return TestServer.getInstance()
+    return @
+
+  @start: (cb)->
+    serverInstance = TestServer.getInstance()
+    cb(null, serverInstance)
+
   @getInstance: () -> return super TestServer
 
 module.exports = TestServer

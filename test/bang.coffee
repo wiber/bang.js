@@ -6,9 +6,11 @@ vows
   .describe('Server').addBatch
     'when we start the webserver':
       topic: ->
-        return Server.start()
+        Server.start @callback
+        undefined
 
-      'we get a server instance returned': (serverInstance) ->
+      'we get a server instance returned': (err, serverInstance) ->
+        assert.isNull err
         assert.equal Server.getInstance(), serverInstance
 
   .export(module)
