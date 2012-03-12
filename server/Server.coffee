@@ -4,14 +4,6 @@ CoreServer  = require './lib/CoreServer.coffee'
   Server will setup necessary components
 ###
 class Server extends CoreServer
-  __applications: [
-    './bang/bangApplication.coffee'
-    './boom/boomApplication.coffee'
-    './docExplorer/DocExplorerApplication.coffee'
-    './mobile/MobileApplication.coffee'
-    './quank/QuankApplication.coffee'
-  ]
-
   @onReady:     (fn) -> @__onReady = fn
 
   @start:       (cb) ->
@@ -63,7 +55,7 @@ class Server extends CoreServer
 
 
   loadApplications: () ->
-    @__applications.forEach (app) =>
+    @settings.apps.forEach (app) =>
       App = require app
       new App ()=>
         @logger.logMessage '[Server] - initialized ' + app + '\n'
