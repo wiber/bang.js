@@ -2,7 +2,7 @@
 
 ### interactive debugging with tab completion
     coffee
-    > Server = require './server/server.coffee'
+    > Server = require './server/Server.coffee' 
     > server = Server.getInstance()
 
     > server.settings   # settings object
